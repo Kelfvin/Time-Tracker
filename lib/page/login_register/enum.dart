@@ -1,0 +1,1 @@
+enum PageForm { login, register }
