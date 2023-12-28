@@ -3,7 +3,7 @@ import "dart:convert";
 import "package:dio/dio.dart";
 import "package:get/get.dart";
 import "package:shared_preferences/shared_preferences.dart";
-import 'package:time_tracker/bean/user.dart';
+import "package:time_tracker/common/model/user.dart";
 import "package:time_tracker/common/routes/app_pages.dart";
 
 class UserManager {

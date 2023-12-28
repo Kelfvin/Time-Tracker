@@ -1,40 +1,25 @@
-import 'dart:async';
-
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-
 class Event {
+  int? id;
+  String? name;
+  int? color;
 
-  // 自增长的id
-  final int id;
-  final DateTime startTimestamp;
-  final DateTime endTimestamp;
+  int? categoryId;
 
-  Event(
-      {required this.id,
-      required this.startTimestamp,
-      required this.endTimestamp});
+  Event({this.id, this.name, this.color, this.categoryId});
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'startTimestamp': startTimestamp.millisecondsSinceEpoch,
-      'endTimestamp': endTimestamp.millisecondsSinceEpoch,
-    };
+  Event.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    color = json['color'];
+    categoryId = json['categoryId'];
   }
 
-  static Event fromMap(Map<String, dynamic> map) {
-    return Event(
-      id: map['id'],
-      startTimestamp:
-          DateTime.fromMillisecondsSinceEpoch(map['startTimestamp']),
-      endTimestamp: DateTime.fromMillisecondsSinceEpoch(map['endTimestamp']),
-    );
-  }
-
-  @override
-  String toString() {
-    return 'Event{id: $id, startTimestamp: $startTimestamp, endTimestamp: $endTimestamp}';
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    // data['id'] = this.id;
+    data['name'] = this.name;
+    data['color'] = this.color;
+    data['categoryId'] = this.categoryId;
+    return data;
   }
 }

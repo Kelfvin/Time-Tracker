@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:sidebarx/sidebarx.dart';
-import 'package:time_tracker/page/grid_page/time_grid_page.dart';
+import 'package:time_tracker/page/timegrid/time_grid_page.dart';
 import 'package:time_tracker/page/setting/setting_page.dart';
 import 'package:time_tracker/widget/analys/statistic.dart';
 
-class ScreensExample extends StatelessWidget {
-  ScreensExample({
+
+/// 主视图,侧边栏旁边的那部分，用于显示各个页面
+class Screen extends StatelessWidget {
+  Screen({
     Key? key,
   }) : super(key: key);
 
@@ -15,7 +17,6 @@ class ScreensExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return AnimatedBuilder(
       animation: controller,
       builder: (context, child) {

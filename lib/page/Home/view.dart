@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:time_tracker/common/user_manager.dart';
-import 'package:time_tracker/page/grid_page/time_grid_page.dart';
 
 import 'package:time_tracker/page/home/home_controller.dart';
 import 'package:time_tracker/page/home/widget/my_side_barX.dart';
@@ -27,29 +26,8 @@ class HomePage extends StatelessWidget {
         body: Row(children: [
       MySideBarX(),
       Expanded(
-        child: ScreensExample(),
+        child: Screen(),
       ),
     ]));
-  }
-
-  Widget old() {
-    return Scaffold(
-      body: Obx(() => IndexedStack(
-            index: 0,
-            children: [
-              TimeGridPage(),
-              Text("home2"),
-              SettingPage(),
-            ],
-          )),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "记录"),
-          BottomNavigationBarItem(icon: Icon(Icons.timelapse), label: "统计"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "设置"),
-        ],
-        onTap: (int index) => {},
-      ),
-    );
   }
 }

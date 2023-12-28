@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:time_tracker/common/routes/app_pages.dart';
 import 'package:time_tracker/common/user_manager.dart';
 import 'package:settings_ui/settings_ui.dart';
 
@@ -20,6 +21,13 @@ class SettingPage extends StatelessWidget {
             leading: const Icon(Icons.exit_to_app),
             onPressed: (BuildContext context) {
               userManager.logout();
+            },
+          ),
+          SettingsTile(
+            title: Text("分类管理"),
+            leading: Icon(Icons.category),
+            onPressed: (BuildContext context) {
+              Get.toNamed(AppPages.Category);
             },
           ),
         ],

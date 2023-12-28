@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import "package:table_calendar/table_calendar.dart";
 import 'package:time_tracker/widget/timegrid/view.dart';
 
-import '../../widget/category_action_line/cate_gory_action_line.dart';
+import '../../widget/category_event_line/category_event_line.dart';
 import '../../widget/time_line/time_line.dart';
 
 class TimeGridPage extends StatefulWidget {
@@ -11,8 +11,6 @@ class TimeGridPage extends StatefulWidget {
   @override
   State<TimeGridPage> createState() => _TimeGridPageState();
 }
-
-
 
 class _TimeGridPageState extends State<TimeGridPage> {
   @override
@@ -35,7 +33,7 @@ class _TimeGridPageState extends State<TimeGridPage> {
             children: [
               Expanded(child: TimeLine()),
               Expanded(flex: 4, child: Timegrid()),
-              Expanded(flex: 1, child: CategoryActionLine()),
+              Expanded(flex: 1, child: CategoryEventLine()),
             ],
           ),
         ),

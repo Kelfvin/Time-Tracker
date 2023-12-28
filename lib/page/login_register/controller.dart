@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:time_tracker/bean/user.dart';
+import 'package:time_tracker/common/model/user.dart';
 import 'package:time_tracker/common/user_manager.dart';
 import 'package:time_tracker/page/login_register/enum.dart';
 
