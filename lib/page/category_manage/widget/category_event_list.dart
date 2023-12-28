@@ -8,27 +8,33 @@ class TitleButton extends StatelessWidget {
   String? text;
   Color? color;
 
-  TitleButton({required this.text, required this.color});
+  /// 按下回调
+  VoidCallback? onPressed;
+
+  TitleButton({required this.text, required this.color, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      height: 50,
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        height: 50,
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: color,
+                shape: BoxShape.circle,
+              ),
+              width: 15,
             ),
-            width: 15,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(text ?? ""),
-        ],
+            const SizedBox(
+              width: 10,
+            ),
+            Text(text ?? ""),
+          ],
+        ),
       ),
     );
   }
