@@ -9,7 +9,13 @@ class AddCategoryEventPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("添加分类")),
+        backgroundColor: Color(0xFFEFEFEF),
         body: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          margin: const EdgeInsets.all(50),
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [

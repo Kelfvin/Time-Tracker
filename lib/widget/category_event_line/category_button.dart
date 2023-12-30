@@ -25,23 +25,25 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(3.0),
-      child: Ink(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(8),
-          onTap: onTap,
-          child: SizedBox(
-            height: 40,
-            width: 200,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center, // Add this line
-              children: [
-                Text(text),
-                if (icon != null) Icon(icon),
-              ],
+      child: Material(
+        child: Ink(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(8),
+            onTap: onTap,
+            child: SizedBox(
+              height: 40,
+              width: 200,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center, // Add this line
+                children: [
+                  Text(text),
+                  if (icon != null) Icon(icon),
+                ],
+              ),
             ),
           ),
         ),

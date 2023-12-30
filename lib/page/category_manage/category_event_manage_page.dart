@@ -14,9 +14,7 @@ class CategoryManagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("分类管理"),
-      ),
+      backgroundColor: Colors.transparent,
       body: CategoryEventList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

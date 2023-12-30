@@ -7,6 +7,7 @@ import 'package:time_tracker/page/home/home_controller.dart';
 import 'package:time_tracker/page/home/widget/my_side_barX.dart';
 import 'package:time_tracker/page/home/widget/screen.dart';
 import 'package:time_tracker/page/setting/setting_page.dart';
+import 'package:time_tracker/widget/framwork/pc_ui_frame.dart';
 
 class HomePage extends StatelessWidget {
   final HomeController homeController =
@@ -22,12 +23,6 @@ class HomePage extends StatelessWidget {
     UserManager userManager = Get.find(tag: "userManager");
     userManager.checkLogin();
 
-    return Scaffold(
-        body: Row(children: [
-      MySideBarX(),
-      Expanded(
-        child: Screen(),
-      ),
-    ]));
+    return Scaffold(body: PCUIFrame());
   }
 }
