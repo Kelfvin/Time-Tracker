@@ -5,72 +5,12 @@ import 'package:get/get.dart';
 import 'package:time_tracker/common/model/event.dart';
 
 import "package:time_tracker/common/model/record.dart";
-
-/// 生成测试数据
-List<Record> generateTestRecords() {
-  List<Record> records = [
-    Record(
-        id: 1,
-        startTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day, 0, 0, 0, 0),
-        endTime: DateTime(
-          DateTime.now().year,
-          DateTime.now().month,
-          DateTime.now().day,
-          7,
-          30,
-        ),
-        event: Event(name: "睡觉", color: 0xff2eaefd),
-        eventId: 1),
-    Record(
-        id: 2,
-        startTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day, 7, 30, 1, 1),
-        endTime: DateTime(
-          DateTime.now().year,
-          DateTime.now().month,
-          DateTime.now().day,
-          10,
-          30,
-        ),
-        event: Event(name: "工作", color: 0xff41e28c),
-        eventId: 2),
-    Record(
-        id: 3,
-        startTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day, 10, 30, 1, 1),
-        endTime: DateTime(
-          DateTime.now().year,
-          DateTime.now().month,
-          DateTime.now().day,
-          12,
-          30,
-        ),
-        event: Event(name: "吃饭", color: 0xfff66c89),
-        eventId: 3),
-    Record(
-        id: 4,
-        startTime: DateTime(
-          DateTime.now().year,
-          DateTime.now().month,
-          DateTime.now().day,
-          12,
-          30,
-        ),
-        endTime: DateTime(
-          DateTime.now().year,
-          DateTime.now().month,
-          DateTime.now().day,
-          13,
-          00,
-        ),
-        event: Event(name: "工作", color: 0xff41e28c),
-        eventId: 2),
-  ];
-  return records;
-}
+import 'package:time_tracker/common/utils/data.dart';
 
 class TimegridController extends GetxController {
+  /// 显示的日期,默认为今天
+  var focusedDay = DateTime.now().obs;
+
   /// 当前的时间
   var currentTime = DateTime.now().obs;
 
@@ -105,12 +45,41 @@ class TimegridController extends GetxController {
   var startTime = DateTime.now().obs;
   var endTime = DateTime.now().obs;
 
-  List<Record> records = generateTestRecords();
+  List<Record> records = DataUtils.generateTestRecords();
 
   TimegridController();
 
+  /// 检查是否选择了时间区间
+  bool checkSelected() {
+    if (startTime.value == endTime.value) {
+      return false;
+    }
+    return true;
+  }
+
+  /// 修改focusDay
+  void changeFocusDay(DateTime day) {
+    print("changeFocusDay: $day");
+    focusedDay.value = day;
+
+    /// todo: 获取当天的记录,更新显示
+    print("获取$day的记录,更新显示");
+  }
+
+  /// 添加事件
+  void addRecord(Event event) {
+    // 检查是否选择了时间区间
+    if (!checkSelected()) {
+      print("没有选择时间区间");
+      return;
+    }
+
+    // 获取选中的时间区间
+    print("添加事件: ${event.name} 开始时间 ${startTime.value} 结束时间 ${endTime.value} ");
+  }
+
   /// 清空选中状态
-  void clearSelected() {
+  void _clearSelected() {
     for (int i = 0; i < rowNum.value; i++) {
       for (int j = 0; j < colNum.value; j++) {
         cellSelected[i][j] = false;
@@ -118,39 +87,43 @@ class TimegridController extends GetxController {
     }
   }
 
-  /// 当手指按下网格
+  /// 当手指按下网格，记录起始位置，同时更新选中状态
   void onTouchLayerDown(DragDownDetails details) {
     isSelecting = !isSelecting;
 
-    //  按下的时候先清除上一次的选中状态
-    clearSelected();
+    // 如果当前是非选中状态，那就说明现在是取消选中，直接返回
+    if (!isSelecting) {
+      print("取消选中");
+      _clearSelected();
+      return;
+    }
+
+    print("开始选中");
 
     // 计算按下的位置
-    int row = (details.localPosition.dy / eachHeight.value).floor();
-    int col = (details.localPosition.dx / eachWidth.value).floor();
-
     // 设置起始选中的格子
-    startRow = row;
-    startCol = col;
+    startRow = (details.localPosition.dy / eachHeight.value).floor();
+    startCol = (details.localPosition.dx / eachWidth.value).floor();
 
     // 更新选中状态
-    if (row >= 0 &&
-        row < rowNum.value &&
-        col >= 0 &&
-        col < colNum.value &&
+    if (startRow >= 0 &&
+        startRow < rowNum.value &&
+        startCol >= 0 &&
+        startCol < colNum.value &&
         isSelecting) {
-      cellSelected[row][col] = true;
+      cellSelected[startRow][startCol] = true;
     }
   }
 
   /// 通过网格的位置得到时间
-  DateTime getTimeByPosition(int row, int col) {
+  DateTime _getTimeByPosition(int row, int col) {
     return DateTime(currentTime.value.year, currentTime.value.month,
         currentTime.value.day, row, col * splitSpan.value);
   }
 
   /// 当手指在网格上移动
   void onTouchLayerUpdate(DragUpdateDetails details) {
+    // 如果当前是非选中状态，那就说明现在是取消选中，直接返回
     if (!isSelecting) {
       return;
     }
@@ -159,18 +132,14 @@ class TimegridController extends GetxController {
     int col = (details.localPosition.dx / eachWidth.value).floor();
 
     // 更新选中状态
-    if (row >= 0 &&
-        row < rowNum.value &&
-        col >= 0 &&
-        col < colNum.value &&
-        isSelecting) {
+    if (row >= 0 && row < rowNum.value && col >= 0 && col < colNum.value) {
       // 实现算法实现跨行选中
       setCellSelected(row, col);
     }
 
     // 更新选中的时间
-    startTime.value = getTimeByPosition(startRow, startCol);
-    endTime.value = getTimeByPosition(row, col);
+    startTime.value = _getTimeByPosition(startRow, startCol);
+    endTime.value = _getTimeByPosition(row, col);
 
     print("startTime: ${startTime.value}");
     print("endTime: ${endTime.value}");
@@ -229,12 +198,12 @@ class TimegridController extends GetxController {
   }
 
   /// 更新时间
-  updateTimeCursor() {
+  void updateTimeCursor() {
     currentTime.value = DateTime.now();
   }
 
   /// 算法实现跨行选中
-  setCellSelected(int row, int col) {
+  void setCellSelected(int row, int col) {
     // 如果原地选中，就不变
     if (startRow == row && startCol == col) {
       return;
@@ -247,6 +216,24 @@ class TimegridController extends GetxController {
       }
     }
 
+    // 如果是同一行
+    if (row == startRow) {
+      // 如果是正向选中
+      if (col > startCol) {
+        for (int i = startCol; i <= col; i++) {
+          cellSelected[row][i] = true;
+        }
+      }
+      // 如果是反向选中
+      else {
+        for (int i = startCol; i >= col; i--) {
+          cellSelected[row][i] = true;
+        }
+      }
+      return;
+    }
+
+    // 实现正向选中
     if (row > startRow) {
       for (int i = startCol; i < colNum.value; i++) {
         cellSelected[startRow][i] = true;
@@ -262,6 +249,8 @@ class TimegridController extends GetxController {
       for (int i = 0; i <= col; i++) {
         cellSelected[row][i] = true;
       }
+
+      return;
     }
 
     // 实现反向选中

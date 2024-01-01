@@ -13,4 +13,11 @@ class Record {
       required this.endTime,
       required this.event,
       required this.eventId});
+
+  Record.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        startTime = DateTime.fromMillisecondsSinceEpoch(json['startTime']),
+        endTime = DateTime.fromMillisecondsSinceEpoch(json['endTime']),
+        event = Event.fromJson(json['event']),
+        eventId = json['eventId'];
 }

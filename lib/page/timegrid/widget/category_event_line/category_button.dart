@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_tracker/common/model/category.dart';
 import 'package:time_tracker/common/model/event.dart';
+import 'package:time_tracker/page/timegrid/widget/timegrid/timgrid_controller.dart';
 
 /// 一个按钮类，统一风格
 class Button extends StatelessWidget {
@@ -53,30 +54,32 @@ class Button extends StatelessWidget {
 }
 
 class ActionButton extends StatelessWidget {
-  final Event action;
+  final Event event;
 
-  ActionButton({Key? key, required this.action}) : super(key: key);
+  final TimegridController timegridController =
+      Get.find(tag: "timegridController");
+
+  ActionButton({Key? key, required this.event}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Button(
-      text: action.name ?? "null",
-      onTap: () {},
-      color: Color(action.color ?? 0xffffff),
+      text: event.name ?? "null",
+      onTap: () {
+        timegridController.addRecord(event);
+      },
+      color: Color(event.color ?? 0xffffff),
     );
   }
 }
 
 /// 一个类别的按钮列表，点击类别可以展开子类别
 class CategoryButton extends StatelessWidget {
-  VoidCallback? onTap;
+  final Category category;
 
-  Category category;
+  final isExpanded = true.obs;
 
-  var isExpanded = true.obs;
-
-  CategoryButton({Key? key, this.onTap, required this.category})
-      : super(key: key);
+  CategoryButton({Key? key, required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +104,7 @@ class CategoryButton extends StatelessWidget {
       if (isExpanded.value) {
         return Column(
           children: [
-            for (Event action in category.events!) ActionButton(action: action)
+            for (Event action in category.events!) ActionButton(event: action)
           ],
         );
       } else {

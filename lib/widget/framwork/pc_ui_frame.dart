@@ -121,7 +121,7 @@ class Sidebar extends StatelessWidget {
 
 /// PC 和 Web 端的界面框架
 class PCUIFrame extends StatelessWidget {
-  PCUIFrameController sidebarController =
+  final PCUIFrameController sidebarController =
       Get.put(PCUIFrameController(), tag: "sidebarController");
 
   @override
@@ -141,7 +141,8 @@ class PCUIFrame extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
-  PCUIFrameController sidebarController = Get.find(tag: "sidebarController");
+  final PCUIFrameController sidebarController =
+      Get.find(tag: "sidebarController");
 
   Body({super.key});
 

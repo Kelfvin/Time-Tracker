@@ -3,13 +3,13 @@ import "dart:convert";
 import "package:dio/dio.dart";
 import "package:get/get.dart";
 import "package:shared_preferences/shared_preferences.dart";
+import "package:time_tracker/common/dao/user_dao.dart";
 import "package:time_tracker/common/model/user.dart";
 import "package:time_tracker/common/routes/app_pages.dart";
 
 class UserManager {
   User? user;
   String? token;
-  Dio dio = Get.find(tag: "dio");
 
   /// 保存用户信息到本地
   storeUser(User user) async {
@@ -70,16 +70,11 @@ class UserManager {
     }
 
     // 验证token是否有效
+    bool isValid = await UserDao.validateToken(token!);
 
-    try {
-      var response = await dio.get("/user/checkLogin", queryParameters: {
-        "token": token,
-      });
-
-      if (!response.data["success"]) {
-        Get.offAllNamed(AppPages.LoginRegister);
-        return;
-      }
-    } catch (e) {}
+    if (!isValid) {
+      Get.offAllNamed(AppPages.LoginRegister);
+      return;
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/dao/user_dao.dart';
 import 'package:time_tracker/common/model/user.dart';
 import 'package:time_tracker/common/user_manager.dart';
 import 'package:time_tracker/page/login_register/enum.dart';
@@ -52,38 +53,21 @@ class LoginRegisterController extends GetxController {
 
   /// 用户登录
   void onLogin() async {
-    print("onLogin");
+    var response = await UserDao.login(user.value);
 
-    print(user.value.username);
-    print(user.value.password);
+    // 如果登录成功
+    if (response.data["success"]) {
+      // 保存token
+      User user = User.fromJson(response.data["data"]);
+      userManager.storeUser(user);
+      userManager.storeToken(response.data["data"]["token"]);
 
-    // 身份验证
-    // 请求登录，得到token
-
-    var data = {
-      "username": user.value.username,
-      "password": user.value.password,
-    };
-
-    try {
-      var response = await dio.post("/user/login", data: data);
-
-      // 如果登录成功
-      if (response.data["success"]) {
-        // 保存token
-        User user = User.fromJson(response.data["data"]);
-        userManager.storeUser(user);
-        userManager.storeToken(response.data["data"]["token"]);
-
-        // 跳转到主页
-        Get.snackbar("登录成功", response.data["message"], colorText: Colors.green);
-        Get.offAllNamed("/home");
-      } else {
-        // 登录失败
-        Get.snackbar("登录失败", response.data["message"]);
-      }
-    } catch (e) {
-      print(e);
+      // 跳转到主页
+      Get.snackbar("登录成功", response.data["message"], colorText: Colors.green);
+      Get.offAllNamed("/home");
+    } else {
+      // 登录失败
+      Get.snackbar("登录失败", response.data["message"]);
     }
   }
 
