@@ -5,8 +5,7 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:time_tracker/common/model/category.dart';
 import 'package:time_tracker/common/model/record.dart';
 
-class CategoryDao{
-
+class CategoryDao {
   static final Dio dio = Get.find(tag: "dio");
 
   /// 获取用户的所有分类
@@ -23,5 +22,4 @@ class CategoryDao{
 
     return [];
   }
-  
 }

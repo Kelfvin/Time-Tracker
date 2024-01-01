@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_tracker/common/model/category.dart';
 import 'package:time_tracker/common/model/event.dart';
-import 'package:time_tracker/page/timegrid/widget/timegrid/timgrid_controller.dart';
+import 'package:time_tracker/page/timegrid/timgrid_controller.dart';
 
 /// 一个按钮类，统一风格
 class Button extends StatelessWidget {

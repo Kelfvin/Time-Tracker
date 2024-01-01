@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_tracker/common/model/event.dart';
-import 'package:time_tracker/page/timegrid/widget/timegrid/timgrid_controller.dart';
+import 'package:time_tracker/page/timegrid/timgrid_controller.dart';
 import "package:time_tracker/common/model/record.dart";
 
 class Timegrid extends StatelessWidget {

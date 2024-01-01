@@ -6,6 +6,7 @@ import 'package:time_tracker/common/model/event.dart';
 
 import "package:time_tracker/common/model/record.dart";
 import 'package:time_tracker/common/utils/data.dart';
+import 'package:time_tracker/page/time_line/time_line_page.dart';
 
 class TimegridController extends GetxController {
   /// 显示的日期,默认为今天
@@ -46,6 +47,9 @@ class TimegridController extends GetxController {
   var endTime = DateTime.now().obs;
 
   List<Record> records = DataUtils.generateTestRecords();
+
+  /// 当前视图模式
+  var viewMode = ViewMode.timeGrid.obs;
 
   TimegridController();
 
@@ -272,5 +276,10 @@ class TimegridController extends GetxController {
         cellSelected[row][i] = true;
       }
     }
+  }
+
+  void changeViewMode(timeLine) {
+    viewMode.value = timeLine;
+    update(["timegrid"]);
   }
 }

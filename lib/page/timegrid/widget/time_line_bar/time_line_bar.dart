@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class TimeLine extends StatelessWidget {
-  const TimeLine({super.key});
+/// 侧边时间轴
+class TimelistBar extends StatelessWidget {
+  const TimelistBar({super.key});
 
   @override
   Widget build(BuildContext context) {
