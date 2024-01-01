@@ -13,10 +13,6 @@ class UserManager {
 
   /// 保存用户信息到本地
   storeUser(User user) async {
-    if (user == null) {
-      return;
-    }
-
     this.user = user;
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -32,7 +28,6 @@ class UserManager {
 
   /// 从本地加载用户信息
   loadUser() async {
-    print("从本地加载用户信息");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userBean = prefs.getString("user");
     if (userBean == null) {
@@ -55,7 +50,6 @@ class UserManager {
   /// 如果token过期，返回null
   /// 如果token有效，返回token
   loadToken() async {
-    print("从本地加载token");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     if (token == null) {
@@ -71,7 +65,6 @@ class UserManager {
     await loadToken();
 
     if (user == null || token == null) {
-      print("用户未登录！");
       Get.offAllNamed(AppPages.LoginRegister);
       return;
     }
@@ -84,14 +77,9 @@ class UserManager {
       });
 
       if (!response.data["success"]) {
-        print("用户未登录！");
         Get.offAllNamed(AppPages.LoginRegister);
         return;
       }
-
-      print("$response.data[\"message\"] 用户已登录！");
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 }

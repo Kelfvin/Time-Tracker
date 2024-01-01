@@ -6,7 +6,7 @@ import 'package:time_tracker/page/login_register/enum.dart';
 
 class RegisterForm extends StatelessWidget {
   RegisterForm({Key? key}) : super(key: key);
-  LoginRegisterController loginRegisterController =
+  final LoginRegisterController loginRegisterController =
       Get.find(tag: "loginRegisterController");
 
   @override
@@ -41,7 +41,7 @@ class RegisterForm extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         TextField(
-          obscureText: loginRegisterController.isShowPassword.value,
+          obscureText: loginRegisterController.obscureText.value,
           decoration: InputDecoration(
             hintText: '密码',
             suffixIcon: const Icon(

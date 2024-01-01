@@ -10,7 +10,7 @@ import 'package:flutter_login/flutter_login.dart';
 import 'package:time_tracker/page/login_register/widgets/register_form.dart';
 
 class Body extends StatelessWidget {
-  LoginRegisterController loginRegisterController =
+  final LoginRegisterController loginRegisterController =
       Get.find(tag: "loginRegisterController");
 
   @override

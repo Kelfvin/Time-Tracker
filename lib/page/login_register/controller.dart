@@ -15,7 +15,7 @@ class LoginRegisterController extends GetxController {
   var pageForm = PageForm.login.obs; // 默认是登录页面
 
   /// 是否显示密码
-  var isShowPassword = false.obs;
+  var obscureText = true.obs;
 
   LoginRegisterController();
 

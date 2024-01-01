@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class EventButton extends StatelessWidget {
-  String title = "null";
-  Color color = Colors.white;
-  Duration? duration;
+  final String title;
+  final Color color;
+  final Duration? duration;
 
-  EventButton(
+  const EventButton(
       {super.key, required this.title, required this.color, this.duration});
 
   /// 时间间隔格式化输出
@@ -51,7 +51,7 @@ class EventButton extends StatelessWidget {
                   formatDuration(
                     duration ?? Duration.zero,
                   ),
-                  style: TextStyle(fontSize: 10),
+                  style: const TextStyle(fontSize: 10),
                 )
               ],
             ),
