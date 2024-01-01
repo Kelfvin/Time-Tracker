@@ -68,7 +68,7 @@ class ActionButton extends StatelessWidget {
       onTap: () {
         timegridController.addRecord(event);
       },
-      color: Color(event.color ?? 0xffffff),
+      color: event.color,
     );
   }
 }

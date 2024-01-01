@@ -142,7 +142,7 @@ class RecordLayer extends StatelessWidget {
 
         // 添加record的小方块
         blocks.add(Block(
-            color: Color(record.event!.color ?? 0xffffff),
+            color: record.event.color,
             flex: recordDuration.inMinutes,
             text: text));
 

@@ -70,7 +70,7 @@ class EventTitleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(60, 0, 0, 0),
-      child: TitleButton(text: event.name, color: Color(event.color ?? 0)),
+      child: TitleButton(text: event.name, color: event.color),
     );
   }
 }
@@ -96,7 +96,7 @@ class CategoryEventList extends StatelessWidget {
       Category category = Category(name: CATEGORY[i], color: COLOR[i]);
 
       for (int j = 0; j < 3; j++) {
-        Event event = Event(name: EVENT[j], color: COLOR[j]);
+        Event event = Event(name: EVENT[j], color: Color(COLOR[i]), categoryId: i);
         category.events!.add(event);
       }
       categories.add(category);

@@ -27,7 +27,7 @@ class CategoryEventLine extends StatelessWidget {
       Category category = Category(name: CATEGORY[i]);
 
       for (int j = 0; j < 5; j++) {
-        Event event = Event(name: EVENT[j], color: COLOR[j].value);
+        Event event = Event(name: EVENT[j], color: COLOR[j], categoryId: i);
         category.events!.add(event);
       }
       categories.add(category);

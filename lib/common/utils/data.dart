@@ -1,3 +1,4 @@
+import "package:flutter/material.dart";
 import "package:time_tracker/common/model/event.dart";
 import "package:time_tracker/common/model/record.dart";
 
@@ -16,7 +17,7 @@ class DataUtils {
             7,
             45,
           ),
-          event: Event(name: "睡觉", color: 0xff2eaefd),
+          event: Event(name: "睡觉", color: Color(0xff41e28c), categoryId: 1),
           eventId: 1),
       Record(
           id: 2,
@@ -29,7 +30,7 @@ class DataUtils {
             10,
             22,
           ),
-          event: Event(name: "工作", color: 0xff41e28c),
+          event: Event(name: "工作", color: Color(0xff41e28c), categoryId: 2),
           eventId: 2),
       Record(
           id: 3,
@@ -42,7 +43,7 @@ class DataUtils {
             12,
             30,
           ),
-          event: Event(name: "吃饭", color: 0xfff66c89),
+          event: Event(name: "吃饭", color: Color(0xfff66c89), categoryId: 3),
           eventId: 3),
       Record(
           id: 4,
@@ -60,7 +61,7 @@ class DataUtils {
             13,
             00,
           ),
-          event: Event(name: "工作", color: 0xff41e28c),
+          event: Event(name: "工作", color: Color(0xff41e28c), categoryId: 2),
           eventId: 2),
     ];
     return records;
