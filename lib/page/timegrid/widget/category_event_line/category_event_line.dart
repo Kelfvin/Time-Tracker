@@ -12,10 +12,13 @@ class CategoryEventLine extends StatelessWidget {
   var EVENT = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
 
   /// 彩虹颜色
-  var COLOR = [
-    0xFFE57373,
-    0xFFF06292,
-    0xFFBA68C8,
+  List<Color> COLOR = [
+    Color(0xff2eaefd),
+    Color(0xff41e28c),
+    Color(0xfff66c89),
+    Color(0xfffdc33f),
+    Color(0xffa25ddc),
+    Color(0xff2eaefd),
   ];
 
   List<Category> generateTestData() {
@@ -23,8 +26,8 @@ class CategoryEventLine extends StatelessWidget {
     for (int i = 0; i < 6; i++) {
       Category category = Category(name: CATEGORY[i]);
 
-      for (int j = 0; j < 3; j++) {
-        Event event = Event(name: EVENT[j], color: COLOR[j]);
+      for (int j = 0; j < 5; j++) {
+        Event event = Event(name: EVENT[j], color: COLOR[j].value);
         category.events!.add(event);
       }
       categories.add(category);

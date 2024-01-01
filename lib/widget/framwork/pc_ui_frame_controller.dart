@@ -4,13 +4,14 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:time_tracker/page/Home/view.dart';
 import 'package:time_tracker/page/activity/activity_page.dart';
 import 'package:time_tracker/page/category_manage/category_event_manage_page.dart';
+import 'package:time_tracker/page/group/group_page.dart';
 import 'package:time_tracker/page/setting/setting_page.dart';
 import 'package:time_tracker/page/timegrid/time_grid_page.dart';
-import 'package:time_tracker/widget/analys/statistic.dart';
+import 'package:time_tracker/page/statistic/statistic.dart';
 
 class PCUIFrameController extends GetxController {
   // 当前选中的页面
-  var currentPage = ACTIVITY.obs;
+  var currentPage = HOME.obs;
 
   static const HOME = "Home";
 
@@ -21,6 +22,8 @@ class PCUIFrameController extends GetxController {
   static const CATEGORY = "Category";
 
   static const ACTIVITY = "Activity";
+
+  static const GROUP = "Group";
 
   ///高亮颜色
   static const List<Color> highlightColors = [
@@ -37,6 +40,7 @@ class PCUIFrameController extends GetxController {
     ACTIVITY: Icons.access_time,
     STATISTIC: Icons.bar_chart,
     CATEGORY: Icons.category,
+    GROUP: Icons.group,
     SETTING: Icons.settings,
   };
 
@@ -44,9 +48,10 @@ class PCUIFrameController extends GetxController {
   static Map<String, Widget Function()> pageMap = {
     HOME: () => TimeGridPage(),
     SETTING: () => SettingPage(),
-    STATISTIC: () => Statistic(),
+    STATISTIC: () => StatisticPage(),
     CATEGORY: () => CategoryManagePage(),
-    ACTIVITY: () => ActivityPage()
+    ACTIVITY: () => ActivityPage(),
+    GROUP: () => GroupPage(),
   };
 
   // 当前选中的页面

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker/common/model/category.dart';
 import 'package:time_tracker/common/model/event.dart';
-import 'package:time_tracker/widget/category_event_line/category_button.dart';
+import 'package:time_tracker/page/timegrid/widget/category_event_line/category_button.dart';
 
 /// 定义统一的样式
 class TitleButton extends StatelessWidget {

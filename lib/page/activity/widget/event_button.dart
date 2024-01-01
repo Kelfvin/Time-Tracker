@@ -33,7 +33,7 @@ class EventButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(15),
       child: Material(
         color: color,
         child: Ink(

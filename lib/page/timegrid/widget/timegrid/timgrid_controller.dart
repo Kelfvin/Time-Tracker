@@ -2,6 +2,73 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/model/event.dart';
+
+import "package:time_tracker/common/model/record.dart";
+
+/// 生成测试数据
+List<Record> generateTestRecords() {
+  List<Record> records = [
+    Record(
+        id: 1,
+        startTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day, 0, 0, 0, 0),
+        endTime: DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+          7,
+          30,
+        ),
+        event: Event(name: "睡觉", color: 0xff2eaefd),
+        eventId: 1),
+    Record(
+        id: 2,
+        startTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day, 7, 30, 1, 1),
+        endTime: DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+          10,
+          30,
+        ),
+        event: Event(name: "工作", color: 0xff41e28c),
+        eventId: 2),
+    Record(
+        id: 3,
+        startTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day, 10, 30, 1, 1),
+        endTime: DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+          12,
+          30,
+        ),
+        event: Event(name: "吃饭", color: 0xfff66c89),
+        eventId: 3),
+    Record(
+        id: 4,
+        startTime: DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+          12,
+          30,
+        ),
+        endTime: DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+          13,
+          00,
+        ),
+        event: Event(name: "工作", color: 0xff41e28c),
+        eventId: 2),
+  ];
+  return records;
+}
 
 class TimegridController extends GetxController {
   /// 当前的时间
@@ -33,6 +100,12 @@ class TimegridController extends GetxController {
 
   /// 每个格子的高度
   var eachHeight = 0.0.obs;
+
+  /// 保存当前选中的时间区间
+  var startTime = DateTime.now().obs;
+  var endTime = DateTime.now().obs;
+
+  List<Record> records = generateTestRecords();
 
   TimegridController();
 
@@ -70,6 +143,12 @@ class TimegridController extends GetxController {
     }
   }
 
+  /// 通过网格的位置得到时间
+  DateTime getTimeByPosition(int row, int col) {
+    return DateTime(currentTime.value.year, currentTime.value.month,
+        currentTime.value.day, row, col * splitSpan.value);
+  }
+
   /// 当手指在网格上移动
   void onTouchLayerUpdate(DragUpdateDetails details) {
     if (!isSelecting) {
@@ -88,6 +167,13 @@ class TimegridController extends GetxController {
       // 实现算法实现跨行选中
       setCellSelected(row, col);
     }
+
+    // 更新选中的时间
+    startTime.value = getTimeByPosition(startRow, startCol);
+    endTime.value = getTimeByPosition(row, col);
+
+    print("startTime: ${startTime.value}");
+    print("endTime: ${endTime.value}");
   }
 
   /// 当手指抬起
@@ -162,11 +248,6 @@ class TimegridController extends GetxController {
     }
 
     if (row > startRow) {
-      print("正向选中");
-      // 将开始的那行选完
-      print("startRow: $startRow, startCol: $startCol");
-      print("row: $row, col: $col");
-
       for (int i = startCol; i < colNum.value; i++) {
         cellSelected[startRow][i] = true;
       }
@@ -185,7 +266,6 @@ class TimegridController extends GetxController {
 
     // 实现反向选中
     else {
-      print("反向选中");
       // 将开始的那行选完
       for (int i = startCol; i >= 0; i--) {
         cellSelected[startRow][i] = true;

@@ -59,9 +59,12 @@ class ActivatingWidget extends StatelessWidget {
             height: 30,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Colors.blue,
+              color: Color(0xff239afc),
             ),
-            child: const Icon(Icons.pause),
+            child: const Icon(
+              Icons.pause,
+              color: Colors.white,
+            ),
           )
 
           /// 结束按钮
@@ -74,9 +77,9 @@ class ActivatingWidget extends StatelessWidget {
             height: 30,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Colors.blue,
+              color: Color(0xff239afc),
             ),
-            child: const Icon(Icons.stop),
+            child: const Icon(Icons.stop, color: Colors.white),
           )
         ],
       ),

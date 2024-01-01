@@ -3,18 +3,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class Statistic extends StatelessWidget {
-  Statistic({Key? key}) : super(key: key);
+class LineChart extends StatelessWidget {
+  const LineChart({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SfCartesianChart(
-      title: ChartTitle(text: '本周时间统计'),
-      legend: Legend(isVisible: true, position: LegendPosition.bottom),
+      legend: const Legend(isVisible: true, position: LegendPosition.bottom),
       trackballBehavior: TrackballBehavior(
         // 使用虚线
         lineType: TrackballLineType.vertical,
-        lineDashArray: <double>[5, 5],
+        lineDashArray: const <double>[5, 5],
         // 单击显示
         activationMode: ActivationMode.singleTap,
         shouldAlwaysShow: true,
@@ -32,17 +31,17 @@ class Statistic extends StatelessWidget {
 
           ),
       series: <ChartSeries>[
-        LineSeries<SalesData, DateTime>(
+        SplineSeries<SalesData, DateTime>(
             name: "学习",
             dataSource: _getRandomData(),
             xValueMapper: (SalesData sales, _) => sales.date,
             yValueMapper: (SalesData sales, _) => sales.sales),
-        LineSeries<SalesData, DateTime>(
+        SplineSeries<SalesData, DateTime>(
             name: "工作",
             dataSource: _getRandomData(),
             xValueMapper: (SalesData sales, _) => sales.date,
             yValueMapper: (SalesData sales, _) => sales.sales),
-        LineSeries<SalesData, DateTime>(
+        SplineSeries<SalesData, DateTime>(
             name: "娱乐",
             dataSource: _getRandomData(),
             xValueMapper: (SalesData sales, _) => sales.date,

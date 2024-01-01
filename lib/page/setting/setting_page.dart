@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:time_tracker/common/routes/app_pages.dart';
 import 'package:time_tracker/common/user_manager.dart';
-import 'package:settings_ui/settings_ui.dart';
+
+import 'package:time_tracker/page/setting/widget/setting_button.dart';
+import "package:time_tracker/page/setting/widget/setting_section.dart";
 
 class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);
@@ -61,10 +62,12 @@ class SettingPage extends StatelessWidget {
             SettingCardButton(
               text: "明亮模式",
               icon: const Icon(Icons.sunny),
+              onPressed: () {},
             ),
             SettingCardButton(
               text: "夜间模式",
               icon: const Icon(Icons.dark_mode),
+              onPressed: () {},
             ),
           ],
         ),
@@ -78,80 +81,6 @@ class SettingPage extends StatelessWidget {
             },
           ),
         ])
-      ],
-    );
-  }
-}
-
-class SettingCardButton extends StatelessWidget {
-  String text = "";
-
-  Icon? icon;
-
-  VoidCallback? onPressed;
-
-  SettingCardButton({super.key, required this.text, this.icon, this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 120,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
-      ),
-      child: InkWell(
-        onTap: onPressed,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              child: Text(text),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(),
-                ),
-                icon ?? Container()
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Section extends StatelessWidget {
-  String sectionName = "";
-
-  List<Widget> chidren = [];
-
-  Section({super.key, required this.sectionName, required this.chidren});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      // 左对齐
-      crossAxisAlignment: CrossAxisAlignment.start,
-
-      children: [
-        Text(
-          sectionName,
-          textAlign: TextAlign.left,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-
-        // 流式布局
-        Wrap(
-          spacing: 20,
-          children: chidren,
-        )
       ],
     );
   }

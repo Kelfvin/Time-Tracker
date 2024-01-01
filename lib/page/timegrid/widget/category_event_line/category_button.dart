@@ -53,7 +53,7 @@ class Button extends StatelessWidget {
 }
 
 class ActionButton extends StatelessWidget {
-  Event action;
+  final Event action;
 
   ActionButton({Key? key, required this.action}) : super(key: key);
 
@@ -73,25 +73,27 @@ class CategoryButton extends StatelessWidget {
 
   Category category;
 
-  var isExpanded = false.obs;
+  var isExpanded = true.obs;
 
   CategoryButton({Key? key, this.onTap, required this.category})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Button(
-          text: category.name ?? "null",
-          onTap: () => isExpanded.value = !isExpanded.value,
-          icon: Icons.arrow_drop_down,
-          // 高级颜色
-          color: Color(0xffe0e0e0),
-        ),
-        _buildActionList(),
-      ],
-    );
+    return Obx(() => Column(
+          children: [
+            Button(
+              text: category.name ?? "null",
+              onTap: () => isExpanded.value = !isExpanded.value,
+              icon: isExpanded.value
+                  ? Icons.arrow_drop_up
+                  : Icons.arrow_drop_down,
+              // 高级颜色
+              color: Color(0xffe0e0e0),
+            ),
+            _buildActionList(),
+          ],
+        ));
   }
 
   Widget _buildActionList() {

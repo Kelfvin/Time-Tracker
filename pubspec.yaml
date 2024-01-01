@@ -48,6 +48,7 @@ dependencies:
   syncfusion_flutter_charts: ^23.2.7
   dio: ^5.4.0
   flex_color_picker: ^3.3.0
+  timeline_tile: ^2.0.0
 
 
 dev_dependencies:

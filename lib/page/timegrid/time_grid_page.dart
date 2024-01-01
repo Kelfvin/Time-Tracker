@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import "package:table_calendar/table_calendar.dart";
-import 'package:time_tracker/page/timegrid/widget/view.dart';
+import 'package:time_tracker/page/timegrid/widget/timegrid/timegrid.dart';
 
-import '../../widget/category_event_line/category_event_line.dart';
+import 'widget/category_event_line/category_event_line.dart';
 import '../../widget/time_line/time_line.dart';
 
 class TimeGridPage extends StatelessWidget {

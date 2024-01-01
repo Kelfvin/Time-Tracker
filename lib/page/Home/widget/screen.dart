@@ -4,8 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:time_tracker/page/timegrid/time_grid_page.dart';
 import 'package:time_tracker/page/setting/setting_page.dart';
-import 'package:time_tracker/widget/analys/statistic.dart';
-
+import 'package:time_tracker/page/statistic/statistic.dart';
 
 /// 主视图,侧边栏旁边的那部分，用于显示各个页面
 class Screen extends StatelessWidget {
@@ -33,7 +32,7 @@ _getWigetByIndex(int selectedIndex) {
     case 0:
       return TimeGridPage();
     case 1:
-      return Statistic();
+      return StatisticPage();
 
     case 2:
       return SettingPage();

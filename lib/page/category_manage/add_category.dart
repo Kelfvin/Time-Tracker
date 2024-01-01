@@ -2,50 +2,54 @@ import 'package:flutter/material.dart';
 
 import 'package:flex_color_picker/flex_color_picker.dart';
 
+class TextInput extends StatelessWidget {
+  String title = "";
+  TextInput({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text("分类名称"),
+        const SizedBox(
+          height: 10,
+        ),
+        const TextField(
+          // 设置高度
+
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class AddCategoryEventPage extends StatelessWidget {
   const AddCategoryEventPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("添加分类")),
-        backgroundColor: Color(0xFFEFEFEF),
+        backgroundColor: Colors.transparent,
         body: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
             borderRadius: BorderRadius.circular(10),
           ),
-          margin: const EdgeInsets.all(50),
+          margin: const EdgeInsets.all(10),
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              const SizedBox(
-                height: 20,
+              TextInput(
+                title: "分类名称",
               ),
-              const Text("分类名称"),
-              const SizedBox(
-                height: 10,
+              TextInput(
+                title: "标签",
               ),
-              const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-              ),
-
-              /// 标签
-              const SizedBox(
-                height: 20,
-              ),
-              const Text("分类标签"),
-              const SizedBox(
-                height: 10,
-              ),
-              const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-              ),
-
               const SizedBox(
                 height: 20,
               ),
