@@ -11,16 +11,22 @@ class PCUIFrameController extends GetxController {
   // 当前选中的页面
   var currentPage = ACTIVITY.obs;
 
+  // ignore: constant_identifier_names
   static const TIMELINE = "TimeLine";
 
+  // ignore: constant_identifier_names
   static const SETTING = "Setting";
 
+  // ignore: constant_identifier_names
   static const STATISTIC = "Statistic";
 
+  // ignore: constant_identifier_names
   static const CATEGORY = "Category";
 
+  // ignore: constant_identifier_names
   static const ACTIVITY = "Activity";
 
+  // ignore: constant_identifier_names
   static const GROUP = "Group";
 
   ///高亮颜色

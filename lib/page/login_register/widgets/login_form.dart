@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:time_tracker/page/login_register/controller.dart";
@@ -29,7 +30,9 @@ class LoginRegisterForm extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                print("忘记密码");
+                if (kDebugMode) {
+                  print("忘记密码");
+                }
               },
               child: const Text(
                 "忘记密码",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time_tracker/common/utils/utils.dart';
 
 class Event {
   int? id;
@@ -17,14 +18,14 @@ class Event {
   Event.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['name'] ?? "null",
-        color = Color(json['color']).withAlpha(255),
+        color = HexColor.fromHex(json['color']),
         categoryId = json['categoryId'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = this.id;
+    data['id'] = id;
     data['name'] = name;
-    data['color'] = color.value;
+    data['color'] = HexColor.toHex(color);
     data['categoryId'] = categoryId;
     return data;
   }

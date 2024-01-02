@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:time_tracker/common/activity.dart';
+import 'package:time_tracker/page/activity/activity_controller.dart';
 import 'package:time_tracker/common/model/event.dart';
 import 'package:time_tracker/common/utils/utils.dart';
 
@@ -11,10 +10,7 @@ class EventButton extends StatelessWidget {
   final ActivityConrtoller activityConrtoller =
       Get.find(tag: "activityConrtoller");
 
-  EventButton(
-      {super.key,
-      required this.event});
-
+  EventButton({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +28,7 @@ class EventButton extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  event.name,
-                  style: const TextStyle(fontSize: 15)),
+                Text(event.name, style: const TextStyle(fontSize: 15)),
                 // 时间间隔格式化输出，比如 1小时30分钟
 
                 Text(

@@ -5,18 +5,18 @@ import 'package:time_tracker/page/login_register/view.dart';
 import 'package:time_tracker/page/category_manage/category_event_manage_page.dart';
 
 class AppPages {
-  static const Home = "/";
-  static const LoginRegister = "/login_register";
-  static const Category = "/category";
-  static const AddCategoryEvent = "/add_category_event_page";
+  static const home = "/";
+  static const loginRegister = "/login_register";
+  static const category = "/category";
+  static const addCategoryEvent = "/add_category_event_page";
 
   static final routes = [
-    GetPage(name: Home, page: () => HomePage()),
+    GetPage(name: home, page: () => const HomePage()),
     GetPage(
-      name: LoginRegister,
+      name: loginRegister,
       page: () => LoginRegisterPage(),
     ),
-    GetPage(name: Category, page: () => CategoryManagePage()),
-    GetPage(name: AddCategoryEvent, page: () => AddCategoryEventPage()),
+    GetPage(name: category, page: () => const CategoryManagePage()),
+    GetPage(name: addCategoryEvent, page: () => const AddCategoryEventPage()),
   ];
 }

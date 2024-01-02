@@ -43,7 +43,8 @@ class Menu extends StatelessWidget {
             ),
             isActive
                 ? Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
                     decoration: BoxDecoration(
                       color: Colors.deepPurple,
                       borderRadius: BorderRadius.circular(30),
@@ -51,30 +52,6 @@ class Menu extends StatelessWidget {
                   )
                 : const SizedBox()
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _registerButton() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey[200]!,
-            spreadRadius: 10,
-            blurRadius: 12,
-          ),
-        ],
-      ),
-      child: const Text(
-        '注册',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.black54,
         ),
       ),
     );

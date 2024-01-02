@@ -42,7 +42,7 @@ class UserManager {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove("user");
     await prefs.remove("token");
-    Get.offAllNamed(AppPages.LoginRegister);
+    Get.offAllNamed(AppPages.loginRegister);
   }
 
   /// 从本地加载token
@@ -64,7 +64,7 @@ class UserManager {
     await loadToken();
 
     if (user == null || token == null) {
-      Get.offAllNamed(AppPages.LoginRegister);
+      Get.offAllNamed(AppPages.loginRegister);
       return;
     }
 
@@ -72,7 +72,7 @@ class UserManager {
     bool isValid = await UserDao.validateToken(token!);
 
     if (!isValid) {
-      Get.offAllNamed(AppPages.LoginRegister);
+      Get.offAllNamed(AppPages.loginRegister);
       return;
     }
   }

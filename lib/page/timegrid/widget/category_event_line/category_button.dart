@@ -86,7 +86,7 @@ class CategoryButton extends StatelessWidget {
     return Obx(() => Column(
           children: [
             Button(
-              text: category.name ?? "null",
+              text: category.name,
               onTap: () => isExpanded.value = !isExpanded.value,
               icon: isExpanded.value
                   ? Icons.arrow_drop_up

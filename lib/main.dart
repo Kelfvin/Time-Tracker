@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         useMaterial3: true,
       ),
-      initialRoute: AppPages.Home,
+      initialRoute: AppPages.home,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
     );

@@ -118,28 +118,28 @@ class DataUtils {
         "id": 1,
         "name": "积极",
         "events": [
-          {"id": 1, "name": "运动", "categoryId": 1, "color": 4281249533},
-          {"id": 2, "name": "看书", "categoryId": 1, "color": 4278223103},
-          {"id": 3, "name": "编程", "categoryId": 1, "color": 4294339721},
-          {"id": 4, "name": "听播客", "categoryId": 1, "color": 4282507916}
+          {"id": 1, "name": "运动", "categoryId": 1, "color": "#2eaefd"},
+          {"id": 2, "name": "看书", "categoryId": 1, "color": "#41e28c"},
+          {"id": 3, "name": "编程", "categoryId": 1, "color": "#f66c89"},
+          {"id": 4, "name": "听播客", "categoryId": 1, "color": "#fdc33f"}
         ]
       },
       {
         "id": 2,
         "name": "消极",
         "events": [
-          {"id": 5, "name": "吃零食", "categoryId": 2, "color": 4294339721},
-          {"id": 6, "name": "玩游戏", "categoryId": 2, "color": 4282507916},
-          {"id": 7, "name": "看视频", "categoryId": 2, "color": 4281249533}
+          {"id": 5, "name": "黑洞", "categoryId": 2, "color": "#a25ddc"},
+          {"id": 6, "name": "玩游戏", "categoryId": 2, "color": "#2eaefd"},
+          {"id": 7, "name": "看视频", "categoryId": 2, "color": "#2eaefd"}
         ]
       },
       {
         "id": 3,
         "name": "日常",
         "events": [
-          {"id": 8, "name": "吃饭", "categoryId": 3, "color": 4294339721},
-          {"id": 9, "name": "睡觉", "categoryId": 3, "color": 4282507916},
-          {"id": 10, "name": "上班", "categoryId": 3, "color": 4281249533}
+          {"id": 8, "name": "吃饭", "categoryId": 3, "color": "#a25ddc"},
+          {"id": 9, "name": "睡觉", "categoryId": 3, "color": "#2eaefd"},
+          {"id": 10, "name": "洗漱", "categoryId": 3, "color": "#2eaefd"}
         ]
       }
     ]
@@ -148,7 +148,7 @@ class DataUtils {
   /// 生成category测试数据
   static List<Category> generateTestCategories() {
     // 字符串转json
-    Map<String, dynamic> json = testJson as Map<String, dynamic>;
+    Map<String, dynamic> json = testJson;
     List<dynamic> categorys = json['categorys'];
     List<Category> categories = [];
     for (var item in categorys) {

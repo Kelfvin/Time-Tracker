@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_tracker/common/dao/user_dao.dart';
@@ -73,10 +74,11 @@ class LoginRegisterController extends GetxController {
 
   /// 用户注册
   void onRegister() async {
-    print("onRegister");
-
-    print(user.value.username);
-    print(user.value.password);
+    if (kDebugMode) {
+      print("onRegister");
+      print(user.value.username);
+      print(user.value.password);
+    }
 
     // 身份验证
     // 请求注册，得到token
@@ -97,7 +99,9 @@ class LoginRegisterController extends GetxController {
         Get.snackbar("注册成功", response.data["message"], colorText: Colors.green);
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

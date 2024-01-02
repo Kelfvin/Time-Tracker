@@ -8,11 +8,11 @@ import 'category_button.dart';
 class CategoryEventLine extends StatelessWidget {
   /// 生成测试数据
 
-  final CATEGORY = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
-  final EVENT = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
+  final categoryNames = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
+  final eventNames = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
 
   /// 彩虹颜色
-  final List<Color> COLOR = [
+  final List<Color> colorList = [
     const Color(0xff2eaefd),
     const Color(0xff41e28c),
     const Color(0xfff66c89),
@@ -26,10 +26,11 @@ class CategoryEventLine extends StatelessWidget {
   List<Category> generateTestData() {
     List<Category> categories = [];
     for (int i = 0; i < 6; i++) {
-      Category category = Category(name: CATEGORY[i]);
+      Category category = Category(name: categoryNames[i]);
 
       for (int j = 0; j < 5; j++) {
-        Event event = Event(name: EVENT[j], color: COLOR[j], categoryId: i);
+        Event event =
+            Event(name: eventNames[j], color: colorList[j], categoryId: i);
         category.events!.add(event);
       }
       categories.add(category);

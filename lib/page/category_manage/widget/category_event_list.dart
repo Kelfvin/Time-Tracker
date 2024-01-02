@@ -80,11 +80,11 @@ class CategoryEventList extends StatelessWidget {
 
   /// 生成测试数据
   List<Category> generateTestData() {
-    final CATEGORY = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
-    final EVENT = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
+    final categoryNames = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
+    final eventNames = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
 
     /// 彩虹颜色
-    final COLOR = [
+    final colorhexList = [
       0xFFE57373,
       0xFFF06292,
       0xFFBA68C8,
@@ -95,11 +95,11 @@ class CategoryEventList extends StatelessWidget {
 
     List<Category> categories = [];
     for (int i = 0; i < 6; i++) {
-      Category category = Category(name: CATEGORY[i], color: COLOR[i]);
+      Category category = Category(name: categoryNames[i], color: colorhexList[i]);
 
       for (int j = 0; j < 3; j++) {
         Event event =
-            Event(name: EVENT[j], color: Color(COLOR[i]), categoryId: i);
+            Event(name: eventNames[j], color: Color(colorhexList[i]), categoryId: i);
         category.events!.add(event);
       }
       categories.add(category);

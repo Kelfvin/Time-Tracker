@@ -1,3 +1,6 @@
+import "dart:async";
+
+import "package:flutter/foundation.dart";
 import "package:get/get.dart";
 import "package:time_tracker/common/model/event.dart";
 import "package:time_tracker/common/model/record.dart";
@@ -22,14 +25,17 @@ class ActivityConrtoller extends GetxController {
   void onInit() {
     super.onInit();
     // 每秒更新一次
-    ever(currentActivityDuration, (_) {
+    // 设置定时器，每秒更新一次时间
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       updateCurrentActivityDuration();
     });
   }
 
   /// 开始一个新的任务
   void startNewActivity(Event event) {
-    print("开始新的任务 ${event.name}");
+    if (kDebugMode) {
+      print("开始新的任务 ${event.name}");
+    }
 
     // 结束当前任务
     endCurrentActivity();

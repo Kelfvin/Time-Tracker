@@ -16,7 +16,7 @@ class UserDao {
       var response = await dio.post("/user/login", data: data);
       return response;
     } catch (e) {
-      print(e);
+      // 处理
     }
 
     return Response(
@@ -36,7 +36,7 @@ class UserDao {
         return false;
       }
     } catch (e) {
-      print(e);
+      //
     }
 
     return true;

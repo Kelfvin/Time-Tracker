@@ -44,7 +44,7 @@ class SettingPage extends StatelessWidget {
                   TextButton(
                       onPressed: () {
                         userManager.logout();
-                        Get.offNamed(AppPages.LoginRegister);
+                        Get.offNamed(AppPages.loginRegister);
                       },
                       child: const Text("退出登录"))
                 ],
@@ -77,7 +77,7 @@ class SettingPage extends StatelessWidget {
             text: "分类管理",
             icon: const Icon(Icons.category),
             onPressed: () {
-              Get.toNamed(AppPages.Category);
+              Get.toNamed(AppPages.category);
             },
           ),
         ])

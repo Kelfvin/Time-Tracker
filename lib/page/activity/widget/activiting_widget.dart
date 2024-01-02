@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:time_tracker/common/activity.dart';
+import 'package:time_tracker/page/activity/activity_controller.dart';
 
 /// 显示当前正在激活的事件
 class ActivatingWidget extends StatelessWidget {
@@ -12,6 +11,12 @@ class ActivatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Obx(() {
+      return _buildView();
+    });
+  }
+
+  Widget _buildView() {
     return Card(
       child: Container(
         padding: const EdgeInsets.all(25),
@@ -48,7 +53,7 @@ class ActivatingWidget extends StatelessWidget {
     }
     return InkWell(
       onTap: () {
-        print("结束");
+        activityConrtoller.endCurrentActivity();
       },
       child: Container(
         width: 30,

@@ -6,6 +6,7 @@ import 'package:time_tracker/page/login_register/controller.dart';
 import 'package:time_tracker/page/login_register/enum.dart';
 import 'package:time_tracker/page/login_register/widgets/login_form.dart';
 import 'package:time_tracker/page/login_register/widgets/register_form.dart';
+import 'package:flutter/foundation.dart';
 
 class Body extends StatelessWidget {
   final LoginRegisterController loginRegisterController =
@@ -15,6 +16,10 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print("KisWeb: $kIsWeb");
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -50,7 +55,9 @@ class Body extends StatelessWidget {
                   const SizedBox(width: 15),
                   GestureDetector(
                     onTap: () {
-                      print(MediaQuery.of(context).size.width);
+                      if (kDebugMode) {
+                        print(MediaQuery.of(context).size.width);
+                      }
                     },
                     child: const Text(
                       "注册",
@@ -62,7 +69,7 @@ class Body extends StatelessWidget {
                 ],
               ),
               Image.asset(
-                'images/illustration-2.png',
+                '/images/illustration-2.png',
                 width: 300,
               ),
             ],

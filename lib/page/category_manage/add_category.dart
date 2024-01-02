@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flex_color_picker/flex_color_picker.dart';
@@ -76,7 +77,9 @@ class AddCategoryEventPage extends StatelessWidget {
                     ColorPickerType.wheel: true,
                   },
                   onColorChanged: (Color color) {
-                    print(color);
+                    if (kDebugMode) {
+                      print(color);
+                    }
                   },
                   color: Colors.red),
               const SizedBox(
@@ -87,7 +90,9 @@ class AddCategoryEventPage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            print("添加分类");
+            if (kDebugMode) {
+              print("添加分类");
+            }
           },
           child: const Icon(Icons.check),
         ));

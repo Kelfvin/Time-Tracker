@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_tracker/common/model/event.dart';
@@ -63,23 +64,32 @@ class TimegridController extends GetxController {
 
   /// 修改focusDay
   void changeFocusDay(DateTime day) {
-    print("changeFocusDay: $day");
+    if (kDebugMode) {
+      print("changeFocusDay: $day");
+    }
     focusedDay.value = day;
 
     /// todo: 获取当天的记录,更新显示
-    print("获取$day的记录,更新显示");
+    if (kDebugMode) {
+      print("获取$day的记录,更新显示");
+    }
   }
 
   /// 添加事件
   void addRecord(Event event) {
     // 检查是否选择了时间区间
     if (!checkSelected()) {
-      print("没有选择时间区间");
+      if (kDebugMode) {
+        print("没有选择时间区间");
+      }
       return;
     }
 
     // 获取选中的时间区间
-    print("添加事件: ${event.name} 开始时间 ${startTime.value} 结束时间 ${endTime.value} ");
+    if (kDebugMode) {
+      print(
+          "添加事件: ${event.name} 开始时间 ${startTime.value} 结束时间 ${endTime.value} ");
+    }
   }
 
   /// 清空选中状态
@@ -97,12 +107,16 @@ class TimegridController extends GetxController {
 
     // 如果当前是非选中状态，那就说明现在是取消选中，直接返回
     if (!isSelecting) {
-      print("取消选中");
+      if (kDebugMode) {
+        print("取消选中");
+      }
       _clearSelected();
       return;
     }
 
-    print("开始选中");
+    if (kDebugMode) {
+      print("开始选中");
+    }
 
     // 计算按下的位置
     // 设置起始选中的格子
@@ -145,8 +159,10 @@ class TimegridController extends GetxController {
     startTime.value = _getTimeByPosition(startRow, startCol);
     endTime.value = _getTimeByPosition(row, col);
 
-    print("startTime: ${startTime.value}");
-    print("endTime: ${endTime.value}");
+    if (kDebugMode) {
+      print("startTime: ${startTime.value}");
+      print("endTime: ${endTime.value}");
+    }
   }
 
   /// 当手指抬起
