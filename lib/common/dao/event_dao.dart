@@ -7,4 +7,6 @@ class EventdDao {
   static final Dio dio = Get.find(tag: "dio");
 
 
+
+
 }

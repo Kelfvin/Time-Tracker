@@ -1,8 +1,27 @@
 import "package:flutter/material.dart";
+import "package:time_tracker/common/model/category.dart";
 import "package:time_tracker/common/model/event.dart";
 import "package:time_tracker/common/model/record.dart";
 
 class DataUtils {
+  ///高亮颜色
+  static const List<Color> colors = [
+    Color(0xff2eaefd),
+    Color(0xff41e28c),
+    Color(0xfff66c89),
+    Color(0xfffdc33f),
+    Color(0xffa25ddc),
+    Color(0xff2eaefd),
+
+    // 转成10进制
+    // 4281249533,
+    // 4278223103,
+    // 4294967295,
+    // 4294339721,
+    // 4294967295,
+    // 4278223103,
+  ];
+
   /// 生成测试数据
   static List<Record> generateTestRecords() {
     List<Record> records = [
@@ -17,7 +36,8 @@ class DataUtils {
             7,
             45,
           ),
-          event: Event(name: "睡觉", color: const Color(0xff41e28c), categoryId: 1),
+          event:
+              Event(name: "睡觉", color: const Color(0xff41e28c), categoryId: 1),
           eventId: 1),
       Record(
           id: 2,
@@ -30,7 +50,8 @@ class DataUtils {
             10,
             22,
           ),
-          event: Event(name: "工作", color: const Color(0xff41e28c), categoryId: 2),
+          event:
+              Event(name: "工作", color: const Color(0xff41e28c), categoryId: 2),
           eventId: 2),
       Record(
           id: 3,
@@ -43,7 +64,8 @@ class DataUtils {
             12,
             30,
           ),
-          event: Event(name: "吃饭", color: const Color(0xfff66c89), categoryId: 3),
+          event:
+              Event(name: "吃饭", color: const Color(0xfff66c89), categoryId: 3),
           eventId: 3),
       Record(
           id: 4,
@@ -61,9 +83,78 @@ class DataUtils {
             13,
             00,
           ),
-          event: Event(name: "工作", color: const Color(0xff41e28c), categoryId: 2),
+          event:
+              Event(name: "工作", color: const Color(0xff41e28c), categoryId: 2),
           eventId: 2),
     ];
     return records;
+  }
+
+  /// 生成Event测试数据
+  static List<Event> generateTestEvents() {
+    List<String> names = [
+      "学习",
+      "工作",
+      "吃饭",
+      "睡觉",
+      "运动",
+      "娱乐",
+    ];
+    List<Event> events = [];
+    for (int i = 0; i < 6; i++) {
+      Event event = Event(
+        name: names[i],
+        color: colors[i],
+        categoryId: 1,
+      );
+      events.add(event);
+    }
+    return events;
+  }
+
+  static Map<String, dynamic> testJson = {
+    "categorys": [
+      {
+        "id": 1,
+        "name": "积极",
+        "events": [
+          {"id": 1, "name": "运动", "categoryId": 1, "color": 4281249533},
+          {"id": 2, "name": "看书", "categoryId": 1, "color": 4278223103},
+          {"id": 3, "name": "编程", "categoryId": 1, "color": 4294339721},
+          {"id": 4, "name": "听播客", "categoryId": 1, "color": 4282507916}
+        ]
+      },
+      {
+        "id": 2,
+        "name": "消极",
+        "events": [
+          {"id": 5, "name": "吃零食", "categoryId": 2, "color": 4294339721},
+          {"id": 6, "name": "玩游戏", "categoryId": 2, "color": 4282507916},
+          {"id": 7, "name": "看视频", "categoryId": 2, "color": 4281249533}
+        ]
+      },
+      {
+        "id": 3,
+        "name": "日常",
+        "events": [
+          {"id": 8, "name": "吃饭", "categoryId": 3, "color": 4294339721},
+          {"id": 9, "name": "睡觉", "categoryId": 3, "color": 4282507916},
+          {"id": 10, "name": "上班", "categoryId": 3, "color": 4281249533}
+        ]
+      }
+    ]
+  };
+
+  /// 生成category测试数据
+  static List<Category> generateTestCategories() {
+    // 字符串转json
+    Map<String, dynamic> json = testJson as Map<String, dynamic>;
+    List<dynamic> categorys = json['categorys'];
+    List<Category> categories = [];
+    for (var item in categorys) {
+      Category category = Category.fromJson(item);
+      categories.add(category);
+    }
+    return categories;
   }
 }

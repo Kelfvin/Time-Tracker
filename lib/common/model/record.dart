@@ -1,16 +1,16 @@
 import 'package:time_tracker/common/model/event.dart';
 
 class Record {
-  int id;
+  int? id;
   DateTime startTime;
-  DateTime endTime;
+  DateTime? endTime;
   Event event;
   int eventId;
 
   Record({
-    required this.id,
+    this.id,
     required this.startTime,
-    required this.endTime,
+    this.endTime,
     required this.event,
     required this.eventId,
   });
@@ -29,6 +29,9 @@ class Record {
 
   // 获取结束时间，格式化输出
   String getEndTime() {
-    return "${endTime.hour.toString().padLeft(2, '0')}:${endTime.minute.toString().padLeft(2, '0')}";
+    if (endTime == null) {
+      return "未结束";
+    }
+    return "${endTime?.hour.toString().padLeft(2, '0')}:${endTime?.minute.toString().padLeft(2, '0')}";
   }
 }

@@ -102,10 +102,16 @@ class RecordLayer extends StatelessWidget {
       List<Widget> blocks = [];
       // 遍历
       for (Record record in controller.records) {
+        // 排除还在进行的record
+        // TODO 以后修改逻辑，显示正在进行的recortd
+        if (record.endTime == null) {
+          continue;
+        }
+
         // 排除法，如果record的开始时间在这一行的时间之后，那么这一行就不会有这个record
         // 如果结束时间在这一行的时间之前，那么这一行就不会有这个record
         if (record.startTime.isAfter(rowEndDateTime) ||
-            record.endTime.isBefore(rowDateTime)) {
+            record.endTime!.isBefore(rowDateTime)) {
           continue;
         }
 
@@ -131,11 +137,11 @@ class RecordLayer extends StatelessWidget {
         }
 
         // 如果record超过了这一行的时间，那么就截断
-        DateTime recordEnd = record.endTime.isBefore(rowEndDateTime)
+        DateTime? recordEnd = record.endTime!.isBefore(rowEndDateTime)
             ? record.endTime
             : rowEndDateTime;
 
-        Duration recordDuration = recordEnd.difference(recordStart);
+        Duration recordDuration = recordEnd!.difference(recordStart);
 
         sumDuration += recordDuration;
 
@@ -146,7 +152,7 @@ class RecordLayer extends StatelessWidget {
             text: text));
 
         // 更新lastEndTime
-        lastEndTime = record.endTime;
+        lastEndTime = record.endTime!;
       }
 
       // 添加最后的空白方块，60分钟减去所有的时间

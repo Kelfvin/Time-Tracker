@@ -1,56 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:time_tracker/common/activity.dart';
+import 'package:time_tracker/common/model/event.dart';
+import 'package:time_tracker/common/utils/utils.dart';
 
 class EventButton extends StatelessWidget {
-  final String title;
-  final Color color;
-  final Duration? duration;
+  final Event event;
 
-  const EventButton(
-      {super.key, required this.title, required this.color, this.duration});
+  final ActivityConrtoller activityConrtoller =
+      Get.find(tag: "activityConrtoller");
 
-  /// 时间间隔格式化输出
-  /// 30秒
-  /// 1分钟30秒
-  /// 1小时30分钟30秒
-  /// 1天1小时30分钟
-  String formatDuration(Duration duration) {
-    String result = "";
-    if (duration.inDays > 0) {
-      result += "${duration.inDays}天";
-    }
-    if (duration.inHours > 0) {
-      result += "${duration.inHours % 24}小时";
-    }
-    if (duration.inMinutes > 0) {
-      result += "${duration.inMinutes % 60}分钟";
-    }
-    if (duration.inSeconds > 0) {
-      result += "${duration.inSeconds % 60}秒";
-    }
-    return result;
-  }
+  EventButton(
+      {super.key,
+      required this.event});
+
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: Material(
-        color: color,
+        color: event.color,
         child: Ink(
           height: 60,
           width: 100,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              activityConrtoller.startNewActivity(event);
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(title),
+                Text(
+                  event.name,
+                  style: const TextStyle(fontSize: 15)),
                 // 时间间隔格式化输出，比如 1小时30分钟
 
                 Text(
-                  formatDuration(
-                    duration ?? Duration.zero,
-                  ),
+                  Utils.formatDurationTime(event.duration),
                   style: const TextStyle(fontSize: 10),
                 )
               ],

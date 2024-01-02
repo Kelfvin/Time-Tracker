@@ -1,61 +1,56 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:time_tracker/common/activity.dart';
+import 'package:time_tracker/common/model/category.dart';
+import 'package:time_tracker/common/model/event.dart';
+import 'package:time_tracker/common/utils/data.dart';
 import 'package:time_tracker/page/activity/widget/activiting_widget.dart';
 import 'package:time_tracker/page/activity/widget/event_button.dart';
 import 'package:time_tracker/page/activity/widget/section.dart';
 
 /// 活动页面，点击活动按钮从当前开始进行计时
 class ActivityPage extends StatelessWidget {
-  /// 生成测试数据
-  List<EventButton> generateTestData() {
-    ///高亮颜色
-    const List<Color> COLORS = [
-      Color(0xff2eaefd),
-      Color(0xff41e28c),
-      Color(0xfff66c89),
-      Color(0xfffdc33f),
-      Color(0xffa25ddc),
-      Color(0xff2eaefd),
-    ];
+  /// 记录当前正在进行的事件
+  final ActivityConrtoller activityConrtoller =
+      Get.put(ActivityConrtoller(), tag: "activityConrtoller");
 
-    List<EventButton> buttons = [];
-    for (int i = 0; i < 6; i++) {
-      EventButton button = EventButton(
-          title: "学习",
-          color: COLORS[i],
-          duration: Duration(seconds: Random().nextInt(10000)));
-      buttons.add(button);
-    }
-    return buttons;
-  }
-
-  const ActivityPage({super.key});
+  ActivityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Category> catgories = DataUtils.generateTestCategories();
+
     return ListView(
       children: [
+        const SizedBox(height: 40),
+        ActivatingWidget(),
         const SizedBox(height: 20),
-        const Text("活动", style: TextStyle(fontSize: 20)),
-        const SizedBox(height: 20),
-        const ActivatingWidget(),
-        const SizedBox(height: 20),
-        Section(
-          title: "活动分类1",
-          buttons: generateTestData(),
-        ),
-        const SizedBox(height: 20),
-        Section(
-          title: "活动分类2",
-          buttons: generateTestData(),
-        ),
-        const SizedBox(height: 20),
-        Section(
-          title: "活动分类3",
-          buttons: generateTestData(),
-        ),
+        ..._buildCategorySections(catgories),
       ],
     );
+  }
+
+  List<Widget> _buildCategorySections(List<Category> categories) {
+    List<Widget> sections = [];
+
+    for (Category category in categories) {
+      sections.add(Section(
+        title: category.name,
+        buttons: _buildButtons(category.events ?? []),
+      ));
+    }
+    return sections;
+  }
+
+  List<EventButton> _buildButtons(List<Event> events) {
+    List<EventButton> buttons = [];
+
+    for (Event event in events) {
+      buttons.add(EventButton(
+        event: event,
+      ));
+    }
+    return buttons;
   }
 }

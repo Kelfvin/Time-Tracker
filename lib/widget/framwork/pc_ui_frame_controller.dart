@@ -9,7 +9,7 @@ import 'package:time_tracker/page/statistic/statistic.dart';
 
 class PCUIFrameController extends GetxController {
   // 当前选中的页面
-  var currentPage = TIMELINE.obs;
+  var currentPage = ACTIVITY.obs;
 
   static const TIMELINE = "TimeLine";
 
@@ -48,7 +48,7 @@ class PCUIFrameController extends GetxController {
     SETTING: () => SettingPage(),
     STATISTIC: () => const StatisticPage(),
     CATEGORY: () => const CategoryManagePage(),
-    ACTIVITY: () => const ActivityPage(),
+    ACTIVITY: () => ActivityPage(),
     GROUP: () => const GroupPage(),
   };
 
