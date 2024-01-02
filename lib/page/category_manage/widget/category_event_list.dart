@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker/common/model/category.dart';
 import 'package:time_tracker/common/model/event.dart';
-import 'package:time_tracker/page/timegrid/widget/category_event_line/category_button.dart';
 
 /// 定义统一的样式
 class TitleButton extends StatelessWidget {
-  String? text;
-  Color? color;
+  final String? text;
+  final Color? color;
 
   /// 按下回调
-  VoidCallback? onPressed;
+  final VoidCallback? onPressed;
 
-  TitleButton({required this.text, required this.color, this.onPressed});
+  const TitleButton(
+      {super.key, required this.text, required this.color, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         height: 50,
         child: Row(
           children: [
@@ -42,9 +42,9 @@ class TitleButton extends StatelessWidget {
 
 /// 分类列表
 class CategoryTitleButton extends StatelessWidget {
-  Category category;
+  final Category category;
 
-  CategoryTitleButton({required this.category});
+  const CategoryTitleButton({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +62,9 @@ class CategoryTitleButton extends StatelessWidget {
 }
 
 class EventTitleButton extends StatelessWidget {
-  Event event;
+  final Event event;
 
-  EventTitleButton({required this.event});
+  const EventTitleButton({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +76,15 @@ class EventTitleButton extends StatelessWidget {
 }
 
 class CategoryEventList extends StatelessWidget {
+  const CategoryEventList({super.key});
+
   /// 生成测试数据
   List<Category> generateTestData() {
-    var CATEGORY = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
-    var EVENT = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
+    final CATEGORY = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
+    final EVENT = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
 
     /// 彩虹颜色
-    var COLOR = [
+    final COLOR = [
       0xFFE57373,
       0xFFF06292,
       0xFFBA68C8,
@@ -96,7 +98,8 @@ class CategoryEventList extends StatelessWidget {
       Category category = Category(name: CATEGORY[i], color: COLOR[i]);
 
       for (int j = 0; j < 3; j++) {
-        Event event = Event(name: EVENT[j], color: Color(COLOR[i]), categoryId: i);
+        Event event =
+            Event(name: EVENT[j], color: Color(COLOR[i]), categoryId: i);
         category.events!.add(event);
       }
       categories.add(category);

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:time_tracker/page/Home/view.dart';
 import 'package:time_tracker/page/activity/activity_page.dart';
 import 'package:time_tracker/page/category_manage/category_event_manage_page.dart';
 import 'package:time_tracker/page/group/group_page.dart';
-import 'package:time_tracker/page/record_list/record_list_page.dart';
 import 'package:time_tracker/page/setting/setting_page.dart';
 import 'package:time_tracker/page/time_line/time_line_page.dart';
 import 'package:time_tracker/page/statistic/statistic.dart';
@@ -49,10 +46,10 @@ class PCUIFrameController extends GetxController {
   static Map<String, Widget Function()> pageMap = {
     TIMELINE: () => TimeLinePage(),
     SETTING: () => SettingPage(),
-    STATISTIC: () => StatisticPage(),
-    CATEGORY: () => CategoryManagePage(),
-    ACTIVITY: () => ActivityPage(),
-    GROUP: () => GroupPage(),
+    STATISTIC: () => const StatisticPage(),
+    CATEGORY: () => const CategoryManagePage(),
+    ACTIVITY: () => const ActivityPage(),
+    GROUP: () => const GroupPage(),
   };
 
   // 当前选中的页面

@@ -64,7 +64,7 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
-      text: event.name ?? "null",
+      text: event.name,
       onTap: () {
         timegridController.addRecord(event);
       },
@@ -92,7 +92,7 @@ class CategoryButton extends StatelessWidget {
                   ? Icons.arrow_drop_up
                   : Icons.arrow_drop_down,
               // 高级颜色
-              color: Color(0xffe0e0e0),
+              color: const Color(0xffe0e0e0),
             ),
             _buildActionList(),
           ],

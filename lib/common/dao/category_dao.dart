@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:time_tracker/common/model/category.dart';
-import 'package:time_tracker/common/model/record.dart';
 
 class CategoryDao {
   static final Dio dio = Get.find(tag: "dio");

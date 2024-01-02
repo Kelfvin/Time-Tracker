@@ -20,11 +20,11 @@ class Event {
         categoryId = json['categoryId'];
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     // data['id'] = this.id;
-    data['name'] = this.name;
-    data['color'] = this.color?.value;
-    data['categoryId'] = this.categoryId;
+    data['name'] = name;
+    data['color'] = color.value;
+    data['categoryId'] = categoryId;
     return data;
   }
 }

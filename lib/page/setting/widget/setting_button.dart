@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SettingCardButton extends StatelessWidget {
-  String text = "";
+  final String text;
 
-  Icon? icon;
+  final Icon? icon;
 
-  VoidCallback? onPressed = () {};
+  final VoidCallback? onPressed;
 
-  SettingCardButton({super.key, required this.text, this.icon, this.onPressed});
+  const SettingCardButton({super.key, required this.text, this.icon, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

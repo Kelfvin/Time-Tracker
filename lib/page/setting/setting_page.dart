@@ -8,7 +8,7 @@ import "package:time_tracker/page/setting/widget/setting_section.dart";
 
 class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);
-  UserManager userManager = Get.find(tag: "userManager");
+  final UserManager userManager = Get.find(tag: "userManager");
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class SettingPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("用户名: ${userManager.user?.username}"),
-                  Text("邮箱: 494407383@qq.com"),
+                  const Text("邮箱: 494407383@qq.com"),
 
                   // 退出登录
                   TextButton(
@@ -46,7 +46,7 @@ class SettingPage extends StatelessWidget {
                         userManager.logout();
                         Get.offNamed(AppPages.LoginRegister);
                       },
-                      child: Text("退出登录"))
+                      child: const Text("退出登录"))
                 ],
               ),
             ],

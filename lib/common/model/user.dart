@@ -5,13 +5,13 @@ class User {
   String? group;
   String? password;
 
-
-  User(
-      {this.id,
-      this.username,
-      this.avatar,
-      this.group,
-      this.password,});
+  User({
+    this.id,
+    this.username,
+    this.avatar,
+    this.group,
+    this.password,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -22,7 +22,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id ?? 0;
     data['username'] = username ?? "";
     data['avatar'] = avatar ?? "";
@@ -33,7 +33,6 @@ class User {
   }
 
   static User empty() {
-    return User(
-        id: 0, username: "", avatar: "", group: "", password: "");
+    return User(id: 0, username: "", avatar: "", group: "", password: "");
   }
 }

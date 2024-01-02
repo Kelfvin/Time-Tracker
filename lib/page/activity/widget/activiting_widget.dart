@@ -24,26 +24,26 @@ class ActivatingWidget extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.blue,
                       shape: BoxShape.circle,
                     ),
                     width: 15,
                     height: 15,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  Text("测试事件"),
+                  const Text("测试事件"),
                 ],
               )
             ],
           ),
 
-          SizedBox(
+          const SizedBox(
             width: 60,
           ),
-          Text(
+          const Text(
             "00:00:00",
             style: TextStyle(fontSize: 17),
           ),
@@ -59,7 +59,7 @@ class ActivatingWidget extends StatelessWidget {
             height: 30,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Color(0xff239afc),
+              color: const Color(0xff239afc),
             ),
             child: const Icon(
               Icons.pause,
@@ -77,7 +77,7 @@ class ActivatingWidget extends StatelessWidget {
             height: 30,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Color(0xff239afc),
+              color: const Color(0xff239afc),
             ),
             child: const Icon(Icons.stop, color: Colors.white),
           )

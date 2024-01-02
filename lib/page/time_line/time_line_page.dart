@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import "package:table_calendar/table_calendar.dart";
 import 'package:time_tracker/page/record_list/record_list_page.dart';
 import 'package:time_tracker/page/time_line/time_line_page_controller.dart';

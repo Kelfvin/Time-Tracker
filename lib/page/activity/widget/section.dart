@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:time_tracker/page/activity/widget/event_button.dart';
 
 class Section extends StatelessWidget {
-  String title = "null";
-  List<EventButton> buttons = [];
+  final String title;
+  final List<EventButton> buttons;
 
-  Section(
-      {super.key, required String title, required List<EventButton> buttons}) {
-    this.title = title;
-    this.buttons = buttons;
-  }
+  const Section({super.key, required this.title, required this.buttons});
 
   @override
   Widget build(BuildContext context) {

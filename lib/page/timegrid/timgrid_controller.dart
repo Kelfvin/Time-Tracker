@@ -195,7 +195,7 @@ class TimegridController extends GetxController {
     _initData();
 
     // 设置定时器，每秒更新一次时间
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       updateTimeCursor();
       update(["timegrid"]);
     });

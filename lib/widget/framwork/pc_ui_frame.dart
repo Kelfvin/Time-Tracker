@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:time_tracker/widget/framwork/pc_ui_frame_controller.dart';
 
 class MaterialIconButton extends StatelessWidget {
@@ -15,7 +13,7 @@ class MaterialIconButton extends StatelessWidget {
   /// 图标颜色
   final Color iconColor;
 
-  MaterialIconButton({
+  const MaterialIconButton({
     Key? key,
     required this.icon,
     required this.text,
@@ -56,7 +54,10 @@ class MaterialIconButton extends StatelessWidget {
 }
 
 class Sidebar extends StatelessWidget {
-  PCUIFrameController sidebarController = Get.find(tag: "sidebarController");
+  final PCUIFrameController sidebarController =
+      Get.find(tag: "sidebarController");
+
+  Sidebar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -124,16 +125,18 @@ class PCUIFrame extends StatelessWidget {
   final PCUIFrameController sidebarController =
       Get.put(PCUIFrameController(), tag: "sidebarController");
 
+  PCUIFrame({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xfff2f3ea),
+      color: const Color(0xfff2f3ea),
       child: Row(
         children: [
           // 左边是侧边栏
           Sidebar(),
           // 右边是主视图
-          Container(child: Body()),
+          Body(),
         ],
       ),
     );

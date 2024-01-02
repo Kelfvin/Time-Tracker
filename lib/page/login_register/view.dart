@@ -6,17 +6,17 @@ import 'package:time_tracker/page/login_register/widgets/menu.dart';
 
 class LoginRegisterPage extends StatelessWidget {
   LoginRegisterPage({Key? key}) : super(key: key);
-  LoginRegisterController controller =
+  final LoginRegisterController controller =
       Get.put(LoginRegisterController(), tag: "loginRegisterController");
 
   // 主视图
   Widget _buildView() {
     return Scaffold(
-      backgroundColor: Color(0xFFf5f5f5),
+      backgroundColor: const Color(0xFFf5f5f5),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 300),
         children: [
-          Menu(),
+          const Menu(),
           // MediaQuery.of(context).size.width >= 980
           //     ? Menu()
           //     : SizedBox(), // Responsive

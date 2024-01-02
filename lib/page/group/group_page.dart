@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import "package:flutter/services.dart";
 import 'package:time_tracker/page/group/user_item.dart';
 
@@ -38,7 +37,7 @@ class GroupPage extends StatelessWidget {
                 IconButton(
                     onPressed: () {
                       // 复制小组号到剪切
-                      Clipboard.setData(ClipboardData(text: "aaa"));
+                      Clipboard.setData(const ClipboardData(text: "aaa"));
                       // 吐司提示
                       Get.snackbar(
                         "复制成功",

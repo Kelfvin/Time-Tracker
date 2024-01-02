@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Item extends StatelessWidget {
-  String title = "";
-  double progress = 0.0;
-  String time = "";
-  Color color = Colors.red;
+  final String title;
+  final double progress;
+  final String time;
+  final Color color;
 
-  Item(
+  const Item(
       {super.key,
       required this.title,
       required this.progress,
@@ -44,9 +44,9 @@ class ListChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const SizedBox(height: 20),
+        SizedBox(height: 20),
         Item(
             title: "睡觉", progress: 0.5, time: "10小时", color: Color(0xfff67280)),
         Item(title: "吃饭", progress: 0.1, time: "1小时", color: Color(0xfff8b195)),

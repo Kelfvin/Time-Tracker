@@ -7,7 +7,7 @@ class PieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SfCircularChart(
-      legend: Legend(isVisible: false),
+      legend: const Legend(isVisible: false),
       annotations: [
         CircularChartAnnotation(
             // 关闭侧边图标

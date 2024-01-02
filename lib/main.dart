@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
     Dio dio = Dio(
       BaseOptions(
           baseUrl: "http://localhost:8080",
-          connectTimeout: Duration(seconds: 5),
-          receiveTimeout: Duration(seconds: 5)),
+          connectTimeout: const Duration(seconds: 5),
+          receiveTimeout: const Duration(seconds: 5)),
     );
 
     Get.put(dio, tag: "dio");

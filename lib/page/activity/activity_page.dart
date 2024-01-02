@@ -30,7 +30,7 @@ class ActivityPage extends StatelessWidget {
     return buttons;
   }
 
-  ActivityPage({super.key});
+  const ActivityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +39,8 @@ class ActivityPage extends StatelessWidget {
         const SizedBox(height: 20),
         const Text("活动", style: TextStyle(fontSize: 20)),
         const SizedBox(height: 20),
-        ActivatingWidget(),
-        SizedBox(height: 20),
+        const ActivatingWidget(),
+        const SizedBox(height: 20),
         Section(
           title: "活动分类1",
           buttons: generateTestData(),
@@ -50,7 +50,7 @@ class ActivityPage extends StatelessWidget {
           title: "活动分类2",
           buttons: generateTestData(),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Section(
           title: "活动分类3",
           buttons: generateTestData(),

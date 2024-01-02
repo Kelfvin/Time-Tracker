@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Section extends StatelessWidget {
-  String sectionName = "";
+  final String sectionName;
 
-  List<Widget> chidren = [];
+  final List<Widget> chidren;
 
-  Section({super.key, required this.sectionName, required this.chidren});
+  const Section({super.key, required this.sectionName, required this.chidren});
 
   @override
   Widget build(BuildContext context) {

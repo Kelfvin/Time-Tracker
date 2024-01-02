@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 
 class TextInput extends StatelessWidget {
-  String title = "";
-  TextInput({super.key, required this.title});
+  final String title;
+  const TextInput({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("分类名称"),
-        const SizedBox(
+        Text("分类名称"),
+        SizedBox(
           height: 10,
         ),
-        const TextField(
+        TextField(
           // 设置高度
 
           decoration: InputDecoration(
@@ -44,10 +44,10 @@ class AddCategoryEventPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              TextInput(
+              const TextInput(
                 title: "分类名称",
               ),
-              TextInput(
+              const TextInput(
                 title: "标签",
               ),
               const SizedBox(

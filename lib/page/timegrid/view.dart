@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:time_tracker/page/timegrid/timgrid_controller.dart';
 import 'package:time_tracker/page/timegrid/widget/category_event_line/category_event_line.dart';
 import 'package:time_tracker/page/timegrid/widget/time_line_bar/time_line_bar.dart';
@@ -22,7 +21,7 @@ class TimeGridView extends StatelessWidget {
     return Expanded(
       child: Row(
         children: [
-          TimelistBar(),
+          const TimelistBar(),
           Expanded(child: Timegrid()),
           SizedBox(width: 70, child: CategoryEventLine()),
         ],

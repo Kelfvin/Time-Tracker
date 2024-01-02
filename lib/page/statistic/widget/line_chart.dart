@@ -25,7 +25,7 @@ class LineChart extends StatelessWidget {
           //按照周显示，一、二、三、四、五、六、日
           intervalType: DateTimeIntervalType.days,
           interval: 1,
-          majorGridLines: MajorGridLines(width: 0)),
+          majorGridLines: const MajorGridLines(width: 0)),
       primaryYAxis: NumericAxis(
           //显示时间
 

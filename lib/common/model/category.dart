@@ -17,17 +17,17 @@ class Category {
     if (json['actions'] != null) {
       events = <Event>[];
       json['events'].forEach((v) {
-        events!.add(new Event.fromJson(v));
+        events!.add(Event.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     // data['id'] = this.id;
-    data['name'] = this.name;
-    if (this.events != null) {
-      data['events'] = this.events!.map((v) => v.toJson()).toList();
+    data['name'] = name;
+    if (events != null) {
+      data['events'] = events!.map((v) => v.toJson()).toList();
     }
     return data;
   }

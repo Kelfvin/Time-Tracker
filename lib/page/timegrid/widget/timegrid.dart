@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:time_tracker/common/model/event.dart';
 import 'package:time_tracker/page/timegrid/timgrid_controller.dart';
 import "package:time_tracker/common/model/record.dart";
 
 class Timegrid extends StatelessWidget {
-  TimegridController controller =
+  final TimegridController controller =
       Get.put(TimegridController(), tag: "timegridController");
 
   Timegrid({Key? key}) : super(key: key);
@@ -32,9 +31,9 @@ class Timegrid extends StatelessWidget {
 class Block extends StatelessWidget {
   final Color color;
   final int flex;
-  String? text = "";
+  final String? text;
 
-  Block({
+  const Block({
     super.key,
     required this.color,
     required this.flex,
@@ -62,7 +61,7 @@ class Block extends StatelessWidget {
 class RecordLayer extends StatelessWidget {
   final TimegridController controller;
 
-  RecordLayer({super.key, required this.controller});
+  const RecordLayer({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +90,7 @@ class RecordLayer extends StatelessWidget {
           0,
           0);
 
-      DateTime rowEndDateTime = rowDateTime.add(Duration(hours: 1));
+      DateTime rowEndDateTime = rowDateTime.add(const Duration(hours: 1));
 
       DateTime lastEndTime = rowDateTime;
 
@@ -127,7 +126,7 @@ class RecordLayer extends StatelessWidget {
         if (record.startTime.isBefore(lastEndTime)) {
           recordStart = lastEndTime;
         } else {
-          text = record.event!.name!;
+          text = record.event.name;
           recordStart = record.startTime;
         }
 

@@ -47,6 +47,7 @@ dependencies:
   flex_color_picker: ^3.3.0
   timeline_tile: ^2.0.0
   dropdown_button2: ^2.3.9
+  intl: ^0.18.1
 
 
 dev_dependencies:
