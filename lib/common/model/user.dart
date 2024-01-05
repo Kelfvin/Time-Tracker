@@ -35,4 +35,8 @@ class User {
   static User empty() {
     return User(id: 0, username: "", avatar: "", group: "", password: "");
   }
+
+  String toString() {
+    return "User{id: $id, username: $username, avatar: $avatar, group: $group, password: $password}";
+  }
 }

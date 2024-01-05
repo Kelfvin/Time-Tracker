@@ -14,6 +14,7 @@ class LoginRegisterController extends GetxController {
 
   Dio dio = Get.find(tag: "dio");
 
+  /// 用于监视当前页面的表单是登录还是注册
   var pageForm = PageForm.login.obs; // 默认是登录页面
 
   /// 是否显示密码
@@ -56,13 +57,11 @@ class LoginRegisterController extends GetxController {
   void onLogin() async {
     var response = await UserDao.login(user.value);
 
+
     // 如果登录成功
     if (response.data["success"]) {
-      // 保存token
-      User user = User.fromJson(response.data["data"]);
-      userManager.storeUser(user);
-      userManager.storeToken(response.data["data"]["token"]);
-
+      await userManager.storeToken(response.data["data"]["token"]);
+      await userManager.loginByToken();
       // 跳转到主页
       Get.snackbar("登录成功", response.data["message"], colorText: Colors.green);
       Get.offAllNamed("/home");

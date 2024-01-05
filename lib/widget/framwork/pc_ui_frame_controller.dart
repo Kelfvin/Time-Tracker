@@ -9,7 +9,7 @@ import 'package:time_tracker/page/statistic/statistic.dart';
 
 class PCUIFrameController extends GetxController {
   // 当前选中的页面
-  var currentPage = ACTIVITY.obs;
+  var currentPage = SETTING.obs;
 
   // ignore: constant_identifier_names
   static const TIMELINE = "TimeLine";

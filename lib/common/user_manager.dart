@@ -1,18 +1,42 @@
 import "dart:convert";
 
+import "package:dio/dio.dart";
+import "package:flutter/foundation.dart";
+
 import "package:get/get.dart";
 import "package:shared_preferences/shared_preferences.dart";
 import "package:time_tracker/common/dao/user_dao.dart";
 import "package:time_tracker/common/model/user.dart";
 import "package:time_tracker/common/routes/app_pages.dart";
 
-class UserManager {
-  User? user;
-  String? token;
+class UserManager extends GetxController {
+  var user = User().obs;
+  var token = "".obs;
+
+  var avatarKey = UniqueKey().obs;
+
+  final Dio dio = Get.find(tag: "dio");
+
+  final SharedPreferences prefs = Get.find(tag: "shared_preferences");
+
+  @override
+  void onInit() {
+    super.onInit();
+    init();
+  }
+
+  /// 初始化
+  init() async {
+    await loadToken();
+    await loginByToken();
+  }
+
+  /// 获取头像
+  void getAvater() async {}
 
   /// 保存用户信息到本地
   storeUser(User user) async {
-    this.user = user;
+    this.user.value = user;
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("user", json.encode(user.toJson()));
@@ -20,26 +44,14 @@ class UserManager {
 
   /// 保存token到本地
   storeToken(String token) async {
-    token = token;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    this.token.value = token;
     await prefs.setString("token", token);
-  }
-
-  /// 从本地加载用户信息
-  loadUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? userBean = prefs.getString("user");
-    if (userBean == null) {
-      return;
-    }
-
-    user = User.fromJson(json.decode(userBean));
   }
 
   /// 注销，清除用户信息和token
   logout() async {
-    user = null;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    user.value = User.empty();
+
     await prefs.remove("user");
     await prefs.remove("token");
     Get.offAllNamed(AppPages.loginRegister);
@@ -49,31 +61,36 @@ class UserManager {
   /// 如果token过期，返回null
   /// 如果token有效，返回token
   loadToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (kDebugMode) {
+      print("loadToken from local");
+    }
+
     String? token = prefs.getString("token");
     if (token == null) {
       return;
     }
 
-    this.token = token;
+    this.token.value = token;
   }
 
   /// 检查登录状态
-  checkLogin() async {
-    await loadUser();
-    await loadToken();
-
-    if (user == null || token == null) {
+  loginByToken() async {
+    // 如果token是空
+    if (token.value == "") {
       Get.offAllNamed(AppPages.loginRegister);
       return;
     }
 
     // 验证token是否有效
-    bool isValid = await UserDao.validateToken(token!);
+    User? resUser = await UserDao.loginByToken(token.value);
 
-    if (!isValid) {
+    if (resUser == null) {
       Get.offAllNamed(AppPages.loginRegister);
       return;
     }
+
+    // 如果token有效，更新用户信息
+    resUser.avatar = "${dio.options.baseUrl}/file/${resUser.id}.jpg";
+    user.value = resUser;
   }
 }

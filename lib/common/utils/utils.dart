@@ -1,6 +1,14 @@
 import 'dart:ui';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:time_tracker/common/user_manager.dart';
 
 class Utils {
+  static Dio dio = Get.find(tag: "dio");
+  static UserManager userManager = Get.find(tag: "userManager");
+
   /// 格式化时间
   static String formatDurationTime(Duration? duration) {
     if (duration == null) {

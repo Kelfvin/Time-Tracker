@@ -11,7 +11,7 @@ class AppPages {
   static const addCategoryEvent = "/add_category_event_page";
 
   static final routes = [
-    GetPage(name: home, page: () => const HomePage()),
+    GetPage(name: home, page: () => HomePage()),
     GetPage(
       name: loginRegister,
       page: () => LoginRegisterPage(),

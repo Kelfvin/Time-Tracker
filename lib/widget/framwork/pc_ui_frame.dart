@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/user_manager.dart';
 import 'package:time_tracker/widget/framwork/pc_ui_frame_controller.dart';
 
 class MaterialIconButton extends StatelessWidget {
@@ -57,6 +59,8 @@ class Sidebar extends StatelessWidget {
   final PCUIFrameController sidebarController =
       Get.find(tag: "sidebarController");
 
+  final UserManager userManager = Get.find(tag: "userManager");
+
   Sidebar({super.key});
 
   @override
@@ -111,8 +115,12 @@ class Sidebar extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        image: const DecorationImage(
-          image: NetworkImage("assets/images/avatar.jpg"),
+        image: DecorationImage(
+          image: CachedNetworkImageProvider(
+            maxWidth: 45,
+            maxHeight: 45,
+            userManager.user.value.avatar ?? "",
+          ),
           fit: BoxFit.cover,
         ),
       ),

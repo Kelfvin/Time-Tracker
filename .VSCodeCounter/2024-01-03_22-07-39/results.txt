@@ -1,0 +1,222 @@
+Date : 2024-01-03 22:07:39
+Directory : c:\Users\49440\Desktop\Time-Tracker
+Total : 108 files,  5092 codes, 704 comments, 887 blanks, all 6683 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| Dart            |         53 |      3,166 |        317 |        517 |      4,000 |
+| C++             |         16 |        545 |        121 |        182 |        848 |
+| XML             |         10 |        463 |         48 |         12 |        523 |
+| CMake           |          7 |        340 |        108 |         87 |        535 |
+| JSON            |          5 |        329 |          0 |          4 |        333 |
+| Groovy          |          3 |         94 |          5 |         22 |        121 |
+| Swift           |          6 |         60 |          7 |         20 |         87 |
+| HTML            |          1 |         38 |         16 |          6 |         60 |
+| YAML            |          3 |         36 |         82 |         26 |        144 |
+| Markdown        |          2 |         13 |          0 |          9 |         22 |
+| Java Properties |          2 |          8 |          0 |          2 |         10 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                      | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                         |        108 |      5,092 |        704 |        887 |      6,683 |
+| . (Files)                                                                                                 |          4 |         46 |         82 |         33 |        161 |
+| android                                                                                                   |         12 |        161 |         51 |         33 |        245 |
+| android (Files)                                                                                           |          3 |         46 |          0 |         11 |         57 |
+| android\app                                                                                               |          8 |        110 |         51 |         21 |        182 |
+| android\app (Files)                                                                                       |          1 |         51 |          5 |         12 |         68 |
+| android\app\src                                                                                           |          7 |         59 |         46 |          9 |        114 |
+| android\app\src\debug                                                                                     |          1 |          3 |          4 |          1 |          8 |
+| android\app\src\main                                                                                      |          5 |         53 |         38 |          7 |         98 |
+| android\app\src\main (Files)                                                                              |          1 |         27 |          6 |          1 |         34 |
+| android\app\src\main\res                                                                                  |          4 |         26 |         32 |          6 |         64 |
+| android\app\src\main\res\drawable                                                                         |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\drawable-v21                                                                     |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\values                                                                           |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\main\res\values-night                                                                     |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\profile                                                                                   |          1 |          3 |          4 |          1 |          8 |
+| android\gradle                                                                                            |          1 |          5 |          0 |          1 |          6 |
+| android\gradle\wrapper                                                                                    |          1 |          5 |          0 |          1 |          6 |
+| ios                                                                                                       |          8 |        229 |          4 |         13 |        246 |
+| ios\Runner                                                                                                |          7 |        222 |          2 |          9 |        233 |
+| ios\Runner (Files)                                                                                        |          2 |         13 |          0 |          3 |         16 |
+| ios\RunnerTests                                                                                           |          1 |          7 |          2 |          4 |         13 |
+| ios\Runner\Assets.xcassets                                                                                |          3 |        148 |          0 |          4 |        152 |
+| ios\Runner\Assets.xcassets\AppIcon.appiconset                                                             |          1 |        122 |          0 |          1 |        123 |
+| ios\Runner\Assets.xcassets\LaunchImage.imageset                                                           |          2 |         26 |          0 |          3 |         29 |
+| ios\Runner\Base.lproj                                                                                     |          2 |         61 |          2 |          2 |         65 |
+| lib                                                                                                       |         54 |      3,247 |        317 |        517 |      4,081 |
+| lib (Files)                                                                                               |          1 |         39 |          2 |         10 |         51 |
+| lib\common                                                                                                |         14 |        599 |         39 |        103 |        741 |
+| lib\common (Files)                                                                                        |          1 |         63 |         12 |         22 |         97 |
+| lib\common\dao                                                                                            |          5 |        132 |         11 |         42 |        185 |
+| lib\common\model                                                                                          |          4 |        121 |          3 |         24 |        148 |
+| lib\common\routes                                                                                         |          1 |         20 |          0 |          3 |         23 |
+| lib\common\utils                                                                                          |          3 |        263 |         13 |         12 |        288 |
+| lib\page                                                                                                  |         37 |      2,408 |        256 |        373 |      3,037 |
+| lib\page\activity                                                                                         |          5 |        241 |         22 |         44 |        307 |
+| lib\page\activity (Files)                                                                                 |          2 |         82 |         15 |         24 |        121 |
+| lib\page\activity\widget                                                                                  |          3 |        159 |          7 |         20 |        186 |
+| lib\page\category_manage                                                                                  |          3 |        214 |         12 |         29 |        255 |
+| lib\page\category_manage (Files)                                                                          |          2 |        116 |          4 |         11 |        131 |
+| lib\page\category_manage\widget                                                                           |          1 |         98 |          8 |         18 |        124 |
+| lib\page\group                                                                                            |          2 |         75 |          4 |          6 |         85 |
+| lib\page\home                                                                                             |          1 |         12 |          2 |          5 |         19 |
+| lib\page\login_register                                                                                   |          7 |        515 |         36 |         52 |        603 |
+| lib\page\login_register (Files)                                                                           |          3 |        105 |         26 |         29 |        160 |
+| lib\page\login_register\widgets                                                                           |          4 |        410 |         10 |         23 |        443 |
+| lib\page\record_list                                                                                      |          2 |         77 |          5 |         11 |         93 |
+| lib\page\setting                                                                                          |          3 |        189 |         56 |         31 |        276 |
+| lib\page\setting (Files)                                                                                  |          1 |        118 |         54 |         18 |        190 |
+| lib\page\setting\widget                                                                                   |          2 |         71 |          2 |         13 |         86 |
+| lib\page\statistic                                                                                        |          4 |        196 |          8 |         21 |        225 |
+| lib\page\statistic (Files)                                                                                |          1 |         26 |          0 |          3 |         29 |
+| lib\page\statistic\widget                                                                                 |          3 |        170 |          8 |         18 |        196 |
+| lib\page\target                                                                                           |          1 |          0 |          0 |          1 |          1 |
+| lib\page\time_line                                                                                        |          3 |        267 |         25 |         36 |        328 |
+| lib\page\time_line (Files)                                                                                |          2 |        190 |         20 |         26 |        236 |
+| lib\page\time_line\record_list                                                                            |          1 |         77 |          5 |         10 |         92 |
+| lib\page\timegrid                                                                                         |          6 |        622 |         86 |        137 |        845 |
+| lib\page\timegrid (Files)                                                                                 |          2 |        221 |         54 |         59 |        334 |
+| lib\page\timegrid\widget                                                                                  |          4 |        401 |         32 |         78 |        511 |
+| lib\page\timegrid\widget (Files)                                                                          |          1 |        243 |         21 |         49 |        313 |
+| lib\page\timegrid\widget\category_event_line                                                              |          2 |        137 |          9 |         24 |        170 |
+| lib\page\timegrid\widget\time_line_bar                                                                    |          1 |         21 |          2 |          5 |         28 |
+| lib\widget                                                                                                |          2 |        201 |         20 |         31 |        252 |
+| lib\widget\framwork                                                                                       |          2 |        201 |         20 |         31 |        252 |
+| linux                                                                                                     |          8 |        260 |         81 |         81 |        422 |
+| linux (Files)                                                                                             |          4 |        161 |         56 |         54 |        271 |
+| linux\flutter                                                                                             |          4 |         99 |         25 |         27 |        151 |
+| macos                                                                                                     |          6 |        452 |          5 |         16 |        473 |
+| macos\Flutter                                                                                             |          1 |         14 |          3 |          4 |         21 |
+| macos\Runner                                                                                              |          4 |        431 |          0 |          8 |        439 |
+| macos\Runner (Files)                                                                                      |          2 |         20 |          0 |          6 |         26 |
+| macos\RunnerTests                                                                                         |          1 |          7 |          2 |          4 |         13 |
+| macos\Runner\Assets.xcassets                                                                              |          1 |         68 |          0 |          1 |         69 |
+| macos\Runner\Assets.xcassets\AppIcon.appiconset                                                           |          1 |         68 |          0 |          1 |         69 |
+| macos\Runner\Base.lproj                                                                                   |          1 |        343 |          0 |          1 |        344 |
+| web                                                                                                       |          2 |         73 |         16 |          7 |         96 |
+| windows                                                                                                   |         14 |        624 |        148 |        187 |        959 |
+| windows (Files)                                                                                           |          1 |         59 |         25 |         19 |        103 |
+| windows\flutter                                                                                           |          4 |        115 |         26 |         29 |        170 |
+| windows\runner                                                                                            |          9 |        450 |         97 |        139 |        686 |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                  | language        | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| c:\Users\49440\Desktop\Time-Tracker\README.md                                                             | Markdown        |         10 |          0 |          7 |         17 |
+| c:\Users\49440\Desktop\Time-Tracker\analysis_options.yaml                                                 | YAML            |          3 |         22 |          4 |         29 |
+| c:\Users\49440\Desktop\Time-Tracker\android\app\build.gradle                                              | Groovy          |         51 |          5 |         12 |         68 |
+| c:\Users\49440\Desktop\Time-Tracker\android\app\src\debug\AndroidManifest.xml                             | XML             |          3 |          4 |          1 |          8 |
+| c:\Users\49440\Desktop\Time-Tracker\android\app\src\main\AndroidManifest.xml                              | XML             |         27 |          6 |          1 |         34 |
+| c:\Users\49440\Desktop\Time-Tracker\android\app\src\main\res\drawable-v21\launch_background.xml           | XML             |          4 |          7 |          2 |         13 |
+| c:\Users\49440\Desktop\Time-Tracker\android\app\src\main\res\drawable\launch_background.xml               | XML             |          4 |          7 |          2 |         13 |
+| c:\Users\49440\Desktop\Time-Tracker\android\app\src\main\res\values-night\styles.xml                      | XML             |          9 |          9 |          1 |         19 |
+| c:\Users\49440\Desktop\Time-Tracker\android\app\src\main\res\values\styles.xml                            | XML             |          9 |          9 |          1 |         19 |
+| c:\Users\49440\Desktop\Time-Tracker\android\app\src\profile\AndroidManifest.xml                           | XML             |          3 |          4 |          1 |          8 |
+| c:\Users\49440\Desktop\Time-Tracker\android\build.gradle                                                  | Groovy          |         27 |          0 |          5 |         32 |
+| c:\Users\49440\Desktop\Time-Tracker\android\gradle.properties                                             | Java Properties |          3 |          0 |          1 |          4 |
+| c:\Users\49440\Desktop\Time-Tracker\android\gradle\wrapper\gradle-wrapper.properties                      | Java Properties |          5 |          0 |          1 |          6 |
+| c:\Users\49440\Desktop\Time-Tracker\android\settings.gradle                                               | Groovy          |         16 |          0 |          5 |         21 |
+| c:\Users\49440\Desktop\Time-Tracker\devtools_options.yaml                                                 | YAML            |          1 |          0 |          1 |          2 |
+| c:\Users\49440\Desktop\Time-Tracker\ios\RunnerTests\RunnerTests.swift                                     | Swift           |          7 |          2 |          4 |         13 |
+| c:\Users\49440\Desktop\Time-Tracker\ios\Runner\AppDelegate.swift                                          | Swift           |         12 |          0 |          2 |         14 |
+| c:\Users\49440\Desktop\Time-Tracker\ios\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json           | JSON            |        122 |          0 |          1 |        123 |
+| c:\Users\49440\Desktop\Time-Tracker\ios\Runner\Assets.xcassets\LaunchImage.imageset\Contents.json         | JSON            |         23 |          0 |          1 |         24 |
+| c:\Users\49440\Desktop\Time-Tracker\ios\Runner\Assets.xcassets\LaunchImage.imageset\README.md             | Markdown        |          3 |          0 |          2 |          5 |
+| c:\Users\49440\Desktop\Time-Tracker\ios\Runner\Base.lproj\LaunchScreen.storyboard                         | XML             |         36 |          1 |          1 |         38 |
+| c:\Users\49440\Desktop\Time-Tracker\ios\Runner\Base.lproj\Main.storyboard                                 | XML             |         25 |          1 |          1 |         27 |
+| c:\Users\49440\Desktop\Time-Tracker\ios\Runner\Runner-Bridging-Header.h                                   | C++             |          1 |          0 |          1 |          2 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\category_dao.dart                                      | Dart            |         18 |          1 |          6 |         25 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\event_dao.dart                                         | Dart            |          6 |          0 |          7 |         13 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\record_dao.dart                                        | Dart            |         39 |          3 |         12 |         54 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\tag_dao.dart                                           | Dart            |          0 |          0 |          1 |          1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\user_dao.dart                                          | Dart            |         69 |          7 |         16 |         92 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\model\category.dart                                        | Dart            |         27 |          1 |          6 |         34 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\model\event.dart                                           | Dart            |         28 |          0 |          5 |         33 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\model\record.dart                                          | Dart            |         30 |          2 |          6 |         38 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\model\user.dart                                            | Dart            |         36 |          0 |          7 |         43 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\routes\app_pages.dart                                      | Dart            |         20 |          0 |          3 |         23 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\user_manager.dart                                          | Dart            |         63 |         12 |         22 |         97 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\utils\data.dart                                            | Dart            |        142 |         12 |          7 |        161 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\utils\testCategory.json                                    | JSON            |         81 |          0 |          0 |         81 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\utils\utils.dart                                           | Dart            |         40 |          1 |          5 |         46 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\main.dart                                                         | Dart            |         39 |          2 |         10 |         51 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\activity_controller.dart                            | Dart            |         37 |         13 |         15 |         65 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\activity_page.dart                                  | Dart            |         45 |          2 |          9 |         56 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\widget\activiting_widget.dart                       | Dart            |         98 |          5 |         10 |        113 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\widget\event_button.dart                            | Dart            |         39 |          1 |          6 |         46 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\widget\section.dart                                 | Dart            |         22 |          1 |          4 |         27 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\category_manage\add_category.dart                            | Dart            |         92 |          2 |          7 |        101 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\category_manage\category_event_manage_page.dart              | Dart            |         24 |          2 |          4 |         30 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\category_manage\widget\category_event_list.dart              | Dart            |         98 |          8 |         18 |        124 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\group\group_page.dart                                        | Dart            |         53 |          4 |          3 |         60 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\group\user_item.dart                                         | Dart            |         22 |          0 |          3 |         25 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\home\view.dart                                               | Dart            |         12 |          2 |          5 |         19 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\controller.dart                               | Dart            |         72 |         22 |         24 |        118 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\enum.dart                                     | Dart            |          1 |          0 |          1 |          2 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\view.dart                                     | Dart            |         32 |          4 |          4 |         40 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\widgets\body.dart                             | Dart            |         87 |          7 |          7 |        101 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\widgets\login_form.dart                       | Dart            |        153 |          2 |          7 |        162 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\widgets\menu.dart                             | Dart            |         56 |          0 |          4 |         60 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\widgets\register_form.dart                    | Dart            |        114 |          1 |          5 |        120 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\record_list\record_list_controller.dart                      | Dart            |          0 |          0 |          1 |          1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\record_list\record_list_page.dart                            | Dart            |         77 |          5 |         10 |         92 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\setting\setting_page.dart                                    | Dart            |        118 |         54 |         18 |        190 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\setting\widget\setting_button.dart                           | Dart            |         42 |          0 |          6 |         48 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\setting\widget\setting_section.dart                          | Dart            |         29 |          2 |          7 |         38 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\statistic\statistic.dart                                     | Dart            |         26 |          0 |          3 |         29 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\statistic\widget\line_chart.dart                             | Dart            |         56 |          6 |          7 |         69 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\statistic\widget\list_chart.dart                             | Dart            |         53 |          1 |          6 |         60 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\statistic\widget\pie_chart.dart                              | Dart            |         61 |          1 |          5 |         67 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\target\view.dart                                             | Dart            |          0 |          0 |          1 |          1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\record_list\record_list_page.dart                  | Dart            |         77 |          5 |         10 |         92 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\time_line_page.dart                                | Dart            |        179 |         20 |         23 |        222 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\time_line_page_controller.dart                     | Dart            |         11 |          0 |          3 |         14 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\timgrid_controller.dart                             | Dart            |        195 |         53 |         54 |        302 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\view.dart                                           | Dart            |         26 |          1 |          5 |         32 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\widget\category_event_line\category_button.dart     | Dart            |         97 |          5 |         14 |        116 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\widget\category_event_line\category_event_line.dart | Dart            |         40 |          4 |         10 |         54 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\widget\time_line_bar\time_line_bar.dart             | Dart            |         21 |          2 |          5 |         28 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\widget\timegrid.dart                                | Dart            |        243 |         21 |         49 |        313 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\widget\framwork\pc_ui_frame.dart                                  | Dart            |        155 |          9 |         18 |        182 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\widget\framwork\pc_ui_frame_controller.dart                       | Dart            |         46 |         11 |         13 |         70 |
+| c:\Users\49440\Desktop\Time-Tracker\linux\CMakeLists.txt                                                  | CMake           |         75 |         38 |         27 |        140 |
+| c:\Users\49440\Desktop\Time-Tracker\linux\flutter\CMakeLists.txt                                          | CMake           |         66 |         13 |         10 |         89 |
+| c:\Users\49440\Desktop\Time-Tracker\linux\flutter\generated_plugin_registrant.cc                          | C++             |         11 |          4 |          5 |         20 |
+| c:\Users\49440\Desktop\Time-Tracker\linux\flutter\generated_plugin_registrant.h                           | C++             |          5 |          5 |          6 |         16 |
+| c:\Users\49440\Desktop\Time-Tracker\linux\flutter\generated_plugins.cmake                                 | CMake           |         17 |          3 |          6 |         26 |
+| c:\Users\49440\Desktop\Time-Tracker\linux\main.cc                                                         | C++             |          5 |          0 |          2 |          7 |
+| c:\Users\49440\Desktop\Time-Tracker\linux\my_application.cc                                               | C++             |         74 |         11 |         20 |        105 |
+| c:\Users\49440\Desktop\Time-Tracker\linux\my_application.h                                                | C++             |          7 |          7 |          5 |         19 |
+| c:\Users\49440\Desktop\Time-Tracker\macos\Flutter\GeneratedPluginRegistrant.swift                         | Swift           |         14 |          3 |          4 |         21 |
+| c:\Users\49440\Desktop\Time-Tracker\macos\RunnerTests\RunnerTests.swift                                   | Swift           |          7 |          2 |          4 |         13 |
+| c:\Users\49440\Desktop\Time-Tracker\macos\Runner\AppDelegate.swift                                        | Swift           |          8 |          0 |          2 |         10 |
+| c:\Users\49440\Desktop\Time-Tracker\macos\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json         | JSON            |         68 |          0 |          1 |         69 |
+| c:\Users\49440\Desktop\Time-Tracker\macos\Runner\Base.lproj\MainMenu.xib                                  | XML             |        343 |          0 |          1 |        344 |
+| c:\Users\49440\Desktop\Time-Tracker\macos\Runner\MainFlutterWindow.swift                                  | Swift           |         12 |          0 |          4 |         16 |
+| c:\Users\49440\Desktop\Time-Tracker\pubspec.yaml                                                          | YAML            |         32 |         60 |         21 |        113 |
+| c:\Users\49440\Desktop\Time-Tracker\web\index.html                                                        | HTML            |         38 |         16 |          6 |         60 |
+| c:\Users\49440\Desktop\Time-Tracker\web\manifest.json                                                     | JSON            |         35 |          0 |          1 |         36 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\CMakeLists.txt                                                | CMake           |         59 |         25 |         19 |        103 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\flutter\CMakeLists.txt                                        | CMake           |         84 |         14 |         12 |        110 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\flutter\generated_plugin_registrant.cc                        | C++             |          9 |          4 |          5 |         18 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\flutter\generated_plugin_registrant.h                         | C++             |          5 |          5 |          6 |         16 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\flutter\generated_plugins.cmake                               | CMake           |         17 |          3 |          6 |         26 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\CMakeLists.txt                                         | CMake           |         22 |         12 |          7 |         41 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\flutter_window.cpp                                     | C++             |         49 |          7 |         16 |         72 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\flutter_window.h                                       | C++             |         20 |          5 |          9 |         34 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\main.cpp                                               | C++             |         30 |          4 |         10 |         44 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\resource.h                                             | C++             |          9 |          6 |          2 |         17 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\utils.cpp                                              | C++             |         54 |          2 |         10 |         66 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\utils.h                                                | C++             |          8 |          6 |          6 |         20 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\win32_window.cpp                                       | C++             |        210 |         24 |         55 |        289 |
+| c:\Users\49440\Desktop\Time-Tracker\windows\runner\win32_window.h                                         | C++             |         48 |         31 |         24 |        103 |
+| Total                                                                                                     |                 |      5,092 |        704 |        887 |      6,683 |
++-----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+

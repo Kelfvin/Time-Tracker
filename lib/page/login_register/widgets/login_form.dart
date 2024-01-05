@@ -127,6 +127,9 @@ class LoginRegisterForm extends StatelessWidget {
         ),
       ),
       onChanged: loginRegisterController.onPasswordChanged,
+      onSubmitted: (value) {
+        loginRegisterController.onLogin();
+      },
     );
   }
 

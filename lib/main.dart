@@ -1,20 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:time_tracker/common/routes/app_pages.dart';
 import "package:intl/date_symbol_data_local.dart";
 import 'package:time_tracker/common/user_manager.dart';
 
-void main() {
-  initializeDateFormatting('zh_CN', null).then((_) => runApp(const MyApp()));
+void main() async {
+  await initializeDateFormatting('zh_CN', null);
+
+  Get.put(await SharedPreferences.getInstance(), tag: "shared_preferences");
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   init() {
-    // 注入全局的dio
-
     Dio dio = Dio(
       BaseOptions(
           baseUrl: "http://localhost:8080",
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
     init();
 
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: '时光迹',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         useMaterial3: true,
