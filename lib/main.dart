@@ -2,14 +2,16 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
+import 'package:time_tracker/common/controller/record_controller.dart';
+import 'package:time_tracker/common/controller/user_controller.dart';
 import 'package:time_tracker/common/routes/app_pages.dart';
 import "package:intl/date_symbol_data_local.dart";
-import 'package:time_tracker/common/user_manager.dart';
 
 void main() async {
   await initializeDateFormatting('zh_CN', null);
 
-  Get.put(await SharedPreferences.getInstance(), tag: "shared_preferences");
+  Get.put(await SharedPreferences.getInstance());
 
   runApp(const MyApp());
 }
@@ -25,10 +27,33 @@ class MyApp extends StatelessWidget {
           receiveTimeout: const Duration(seconds: 5)),
     );
 
-    Get.put(dio, tag: "dio");
+    Get.put(dio);
 
-    // 注入全局的UserManager
-    Get.put(UserManager(), tag: "userManager");
+    UserController userController = Get.put(UserController());
+    // 注入拦截器
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        // 如果有token，就添加到请求头
+        if (userController.token.value != "") {
+          options.headers["Authorization"] = userController.token.value;
+        }
+        return handler.next(options);
+      },
+      onResponse: (response, handler) async {
+        // 如果token过期，就跳转到登录页面
+        if (response.data["code"] == 400) {
+          userController.logout();
+          Get.offAllNamed(AppPages.loginRegister);
+        }
+        return handler.next(response);
+      },
+    ));
+
+    // 注入类型
+    Get.put(CategoryController());
+
+    // 注入recordController
+    Get.put(RecordController());
   }
 
   // This widget is the root of your application.

@@ -6,8 +6,9 @@ import 'package:time_tracker/page/login_register/widgets/menu.dart';
 
 class LoginRegisterPage extends StatelessWidget {
   LoginRegisterPage({Key? key}) : super(key: key);
-  final LoginRegisterController controller =
-      Get.put(LoginRegisterController(), tag: "loginRegisterController");
+  final LoginRegisterController controller = Get.put(
+    LoginRegisterController(),
+  );
 
   // 主视图
   Widget _buildView() {

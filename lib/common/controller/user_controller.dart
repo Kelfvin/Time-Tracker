@@ -5,19 +5,24 @@ import "package:flutter/foundation.dart";
 
 import "package:get/get.dart";
 import "package:shared_preferences/shared_preferences.dart";
+import "package:time_tracker/common/dao/category_dao.dart";
 import "package:time_tracker/common/dao/user_dao.dart";
 import "package:time_tracker/common/model/user.dart";
 import "package:time_tracker/common/routes/app_pages.dart";
+import 'package:time_tracker/common/model/event_category.dart';
 
-class UserManager extends GetxController {
+class UserController extends GetxController {
   var user = User().obs;
   var token = "".obs;
 
   var avatarKey = UniqueKey().obs;
 
-  final Dio dio = Get.find(tag: "dio");
+  final Dio dio = Get.find();
 
-  final SharedPreferences prefs = Get.find(tag: "shared_preferences");
+  final SharedPreferences prefs = Get.find();
+
+  /// 保存类型
+  var categories = <EventCategory>[].obs;
 
   @override
   void onInit() {
@@ -25,10 +30,24 @@ class UserManager extends GetxController {
     init();
   }
 
+  /// 请求所有的类型
+  Future<List<EventCategory>> fetchCategories() async {
+    categories.value = await CategoryDao.fetchCategories();
+    return categories;
+  }
+
   /// 初始化
   init() async {
     await loadToken();
     await loginByToken();
+
+    // 如果token有效，就获取用户的分类
+    if (user.value.id != 0) {
+      if (kDebugMode) {
+        print("fetchCategories");
+      }
+      await fetchCategories();
+    }
   }
 
   /// 获取头像

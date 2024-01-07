@@ -13,7 +13,7 @@ class CategoryManagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: const CategoryEventList(),
+      body: CategoryEventList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.defaultDialog(

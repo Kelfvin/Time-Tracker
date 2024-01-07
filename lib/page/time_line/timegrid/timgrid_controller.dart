@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_tracker/common/model/event.dart';
 
-import "package:time_tracker/common/model/record.dart";
+import 'package:time_tracker/common/model/event_record.dart';
 import 'package:time_tracker/common/utils/data.dart';
 import 'package:time_tracker/page/time_line/time_line_page.dart';
 
@@ -47,7 +47,7 @@ class TimegridController extends GetxController {
   var startTime = DateTime.now().obs;
   var endTime = DateTime.now().obs;
 
-  List<Record> records = DataUtils.generateTestRecords();
+  List<EventRecord> records = DataUtils.generateTestRecords();
 
   /// 当前视图模式
   var viewMode = ViewMode.timeGrid.obs;
@@ -87,6 +87,7 @@ class TimegridController extends GetxController {
 
     // 获取选中的时间区间
     if (kDebugMode) {
+      print("eventid: ${event.id}");
       print(
           "添加事件: ${event.name} 开始时间 ${startTime.value} 结束时间 ${endTime.value} ");
     }

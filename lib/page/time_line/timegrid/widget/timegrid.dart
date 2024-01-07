@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:time_tracker/page/timegrid/timgrid_controller.dart';
-import "package:time_tracker/common/model/record.dart";
+import 'package:time_tracker/common/controller/record_controller.dart';
+import 'package:time_tracker/common/controller/user_controller.dart';
+import 'package:time_tracker/page/time_line/timegrid/timgrid_controller.dart';
+import 'package:time_tracker/common/model/event_record.dart';
 
 class Timegrid extends StatelessWidget {
-  final TimegridController controller =
-      Get.put(TimegridController(), tag: "timegridController");
+  final TimegridController controller = Get.put(TimegridController());
+
+  final UserController userController = Get.find();
 
   Timegrid({Key? key}) : super(key: key);
 
@@ -60,8 +63,11 @@ class Block extends StatelessWidget {
 
 class RecordLayer extends StatelessWidget {
   final TimegridController controller;
+  final UserController userController = Get.find();
 
-  const RecordLayer({super.key, required this.controller});
+  final RecordController recordController = Get.find();
+
+  RecordLayer({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +107,7 @@ class RecordLayer extends StatelessWidget {
       // 一行的小方块
       List<Widget> blocks = [];
       // 遍历
-      for (Record record in controller.records) {
+      for (EventRecord record in recordController.records) {
         // 排除还在进行的record
         // TODO 以后修改逻辑，显示正在进行的recortd
         if (record.endTime == null) {

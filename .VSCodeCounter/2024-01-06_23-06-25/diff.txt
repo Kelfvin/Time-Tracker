@@ -1,0 +1,104 @@
+Date : 2024-01-06 23:06:25
+Directory : c:\Users\49440\Desktop\Time-Tracker
+Total : 43 files,  77 codes, 17 comments, 25 blanks, all 119 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Dart     |         42 |         77 |         17 |         24 |        118 |
+| YAML     |          1 |          0 |          0 |          1 |          1 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                   |         43 |         77 |         17 |         25 |        119 |
+| . (Files)                                                                                                           |          1 |          0 |          0 |          1 |          1 |
+| lib                                                                                                                 |         42 |         77 |         17 |         24 |        118 |
+| lib (Files)                                                                                                         |          1 |          4 |          1 |          1 |          6 |
+| lib\common                                                                                                          |         12 |         74 |         17 |         16 |        107 |
+| lib\common (Files)                                                                                                  |          1 |        -63 |        -12 |        -22 |        -97 |
+| lib\common\controller                                                                                               |          3 |        108 |         22 |         36 |        166 |
+| lib\common\dao                                                                                                      |          4 |         29 |          7 |          2 |         38 |
+| lib\common\model                                                                                                    |          4 |          0 |          0 |          0 |          0 |
+| lib\page                                                                                                            |         29 |         -1 |         -1 |          7 |          5 |
+| lib\page\activity                                                                                                   |          4 |         -2 |         -1 |         -1 |         -4 |
+| lib\page\activity (Files)                                                                                           |          2 |          0 |         -1 |         -1 |         -2 |
+| lib\page\activity\widget                                                                                            |          2 |         -2 |          0 |          0 |         -2 |
+| lib\page\category_manage                                                                                            |          1 |        -22 |         -2 |         -2 |        -26 |
+| lib\page\category_manage\widget                                                                                     |          1 |        -22 |         -2 |         -2 |        -26 |
+| lib\page\home                                                                                                       |          1 |          0 |          0 |          1 |          1 |
+| lib\page\login_register                                                                                             |          4 |         -2 |          0 |          0 |         -2 |
+| lib\page\login_register (Files)                                                                                     |          1 |          1 |          0 |          0 |          1 |
+| lib\page\login_register\widgets                                                                                     |          3 |         -3 |          0 |          0 |         -3 |
+| lib\page\record_list                                                                                                |          1 |         10 |          0 |          1 |         11 |
+| lib\page\setting                                                                                                    |          1 |         -7 |          2 |          1 |         -4 |
+| lib\page\statistic                                                                                                  |          2 |          0 |          0 |          0 |          0 |
+| lib\page\time_line                                                                                                  |          9 |        645 |         86 |        148 |        879 |
+| lib\page\time_line (Files)                                                                                          |          2 |         25 |          1 |          8 |         34 |
+| lib\page\time_line\record_list                                                                                      |          1 |          7 |          0 |          1 |          8 |
+| lib\page\time_line\timegrid                                                                                         |          6 |        613 |         85 |        139 |        837 |
+| lib\page\time_line\timegrid (Files)                                                                                 |          2 |        222 |         54 |         61 |        337 |
+| lib\page\time_line\timegrid\widget                                                                                  |          4 |        391 |         31 |         78 |        500 |
+| lib\page\time_line\timegrid\widget (Files)                                                                          |          1 |        247 |         21 |         51 |        319 |
+| lib\page\time_line\timegrid\widget\category_event_line                                                              |          2 |        123 |          8 |         22 |        153 |
+| lib\page\time_line\timegrid\widget\time_line_bar                                                                    |          1 |         21 |          2 |          5 |         28 |
+| lib\page\timegrid                                                                                                   |          6 |       -623 |        -86 |       -141 |       -850 |
+| lib\page\timegrid (Files)                                                                                           |          2 |       -221 |        -54 |        -63 |       -338 |
+| lib\page\timegrid\widget                                                                                            |          4 |       -402 |        -32 |        -78 |       -512 |
+| lib\page\timegrid\widget (Files)                                                                                    |          1 |       -243 |        -21 |        -49 |       -313 |
+| lib\page\timegrid\widget\category_event_line                                                                        |          2 |       -138 |         -9 |        -24 |       -171 |
+| lib\page\timegrid\widget\time_line_bar                                                                              |          1 |        -21 |         -2 |         -5 |        -28 |
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                            | language | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\controller\category_controller.dart                                  | Dart     |         12 |          0 |          4 |         16 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\controller\record_controller.dart                                    | Dart     |         20 |          7 |          7 |         34 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\controller\user_controller.dart                                      | Dart     |         76 |         15 |         25 |        116 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\category_dao.dart                                                | Dart     |          4 |          0 |          0 |          4 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\event_dao.dart                                                   | Dart     |          0 |          0 |         -4 |         -4 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\record_dao.dart                                                  | Dart     |         20 |          6 |          5 |         31 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\dao\user_dao.dart                                                    | Dart     |          5 |          1 |          1 |          7 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\model\category.dart                                                  | Dart     |        -27 |         -1 |         -6 |        -34 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\model\event_category.dart                                            | Dart     |         27 |          1 |          6 |         34 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\model\event_record.dart                                              | Dart     |         30 |          2 |          6 |         38 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\model\record.dart                                                    | Dart     |        -30 |         -2 |         -6 |        -38 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\common\user_manager.dart                                                    | Dart     |        -63 |        -12 |        -22 |        -97 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\main.dart                                                                   | Dart     |          4 |          1 |          1 |          6 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\activity_controller.dart                                      | Dart     |         -1 |         -1 |         -1 |         -3 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\activity_page.dart                                            | Dart     |          1 |          0 |          0 |          1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\widget\activiting_widget.dart                                 | Dart     |         -1 |          0 |          0 |         -1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\activity\widget\event_button.dart                                      | Dart     |         -1 |          0 |          0 |         -1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\category_manage\widget\category_event_list.dart                        | Dart     |        -22 |         -2 |         -2 |        -26 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\home\view.dart                                                         | Dart     |          0 |          0 |          1 |          1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\view.dart                                               | Dart     |          1 |          0 |          0 |          1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\widgets\body.dart                                       | Dart     |         -1 |          0 |          0 |         -1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\widgets\login_form.dart                                 | Dart     |         -1 |          0 |          0 |         -1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\login_register\widgets\register_form.dart                              | Dart     |         -1 |          0 |          0 |         -1 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\record_list\record_list_page.dart                                      | Dart     |         10 |          0 |          1 |         11 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\setting\setting_page.dart                                              | Dart     |         -7 |          2 |          1 |         -4 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\statistic\statistic.dart                                               | Dart     |        -26 |          0 |         -3 |        -29 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\statistic\view.dart                                                    | Dart     |         26 |          0 |          3 |         29 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\record_list\record_list_page.dart                            | Dart     |          7 |          0 |          1 |          8 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\time_line_page.dart                                          | Dart     |          2 |          1 |         -1 |          2 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\time_line_page_controller.dart                               | Dart     |         23 |          0 |          9 |         32 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\timegrid\timgrid_controller.dart                             | Dart     |        196 |         53 |         54 |        303 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\timegrid\view.dart                                           | Dart     |         26 |          1 |          7 |         34 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\timegrid\widget\category_event_line\category_button.dart     | Dart     |        102 |          5 |         14 |        121 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\timegrid\widget\category_event_line\category_event_line.dart | Dart     |         21 |          3 |          8 |         32 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\timegrid\widget\time_line_bar\time_line_bar.dart             | Dart     |         21 |          2 |          5 |         28 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\time_line\timegrid\widget\timegrid.dart                                | Dart     |        247 |         21 |         51 |        319 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\timgrid_controller.dart                                       | Dart     |       -195 |        -53 |        -58 |       -306 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\view.dart                                                     | Dart     |        -26 |         -1 |         -5 |        -32 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\widget\category_event_line\category_button.dart               | Dart     |        -97 |         -5 |        -14 |       -116 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\widget\category_event_line\category_event_line.dart           | Dart     |        -41 |         -4 |        -10 |        -55 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\widget\time_line_bar\time_line_bar.dart                       | Dart     |        -21 |         -2 |         -5 |        -28 |
+| c:\Users\49440\Desktop\Time-Tracker\lib\page\timegrid\widget\timegrid.dart                                          | Dart     |       -243 |        -21 |        -49 |       -313 |
+| c:\Users\49440\Desktop\Time-Tracker\pubspec.yaml                                                                    | YAML     |          0 |          0 |          1 |          1 |
+| Total                                                                                                               |          |         77 |         17 |         25 |        119 |
++---------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

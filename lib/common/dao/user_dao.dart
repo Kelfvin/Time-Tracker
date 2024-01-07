@@ -1,19 +1,16 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:time_tracker/common/controller/user_controller.dart';
 import 'package:time_tracker/common/model/user.dart';
-import 'package:time_tracker/common/user_manager.dart';
 
 class UserDao {
-  static Dio dio = Get.find(tag: "dio");
-  static UserManager userManager = Get.find(tag: "userManager");
+  static Dio dio = Get.find();
+  static UserController userController = Get.find();
 
   static Future<Response> login(User user) async {
     var data = {
@@ -67,7 +64,7 @@ class UserDao {
   /// 上传文件
   static Future<bool> updateAvatar(XFile file) async {
     String url = "/user/updateAvatar";
-    String token = userManager.token.value;
+    String token = userController.token.value;
 
     MultipartFile avatar;
 
@@ -77,6 +74,12 @@ class UserDao {
           filename: file.name, contentType: MediaType("image", "jpeg"));
     } else {
       avatar = await MultipartFile.fromFile(file.path, filename: file.name);
+    }
+
+    // 判断文件的大小,不能超过5M
+    if (avatar.length > 5 * 1024 * 1024) {
+      Get.snackbar("上传失败", "图片不能超过5M");
+      return false;
     }
 
     FormData formData = FormData.fromMap({

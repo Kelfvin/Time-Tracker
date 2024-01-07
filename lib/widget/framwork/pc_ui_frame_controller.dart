@@ -5,11 +5,11 @@ import 'package:time_tracker/page/category_manage/category_event_manage_page.dar
 import 'package:time_tracker/page/group/group_page.dart';
 import 'package:time_tracker/page/setting/setting_page.dart';
 import 'package:time_tracker/page/time_line/time_line_page.dart';
-import 'package:time_tracker/page/statistic/statistic.dart';
+import 'package:time_tracker/page/statistic/view.dart';
 
 class PCUIFrameController extends GetxController {
   // 当前选中的页面
-  var currentPage = SETTING.obs;
+  var currentPage = TIMELINE.obs;
 
   // ignore: constant_identifier_names
   static const TIMELINE = "TimeLine";

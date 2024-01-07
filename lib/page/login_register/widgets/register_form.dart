@@ -5,8 +5,7 @@ import 'package:time_tracker/page/login_register/enum.dart';
 
 class RegisterForm extends StatelessWidget {
   RegisterForm({Key? key}) : super(key: key);
-  final LoginRegisterController loginRegisterController =
-      Get.find(tag: "loginRegisterController");
+  final LoginRegisterController loginRegisterController = Get.find();
 
   @override
   Widget build(BuildContext context) {

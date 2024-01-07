@@ -1,13 +1,13 @@
 import 'package:time_tracker/common/model/event.dart';
 
-class Record {
+class EventRecord {
   int? id;
   DateTime startTime;
   DateTime? endTime;
   Event event;
   int eventId;
 
-  Record({
+  EventRecord({
     this.id,
     required this.startTime,
     this.endTime,
@@ -15,12 +15,15 @@ class Record {
     required this.eventId,
   });
 
-  Record.fromJson(Map<String, dynamic> json)
+  EventRecord.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        startTime = DateTime.fromMillisecondsSinceEpoch(json['startTime']),
-        endTime = DateTime.fromMillisecondsSinceEpoch(json['endTime']),
+        startTime = DateTime.parse(json['startTimestamp']),
         event = Event.fromJson(json['event']),
-        eventId = json['eventId'];
+        eventId = json['eventId'] {
+    if (json['endTimestamp'] == null) {
+      endTime = null;
+    }
+  }
 
   // 获取开始时间，格式化输出
   String getStartTime() {

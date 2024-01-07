@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/page/activity/activity_controller.dart';
 
 /// 显示当前正在激活的事件
 class ActivatingWidget extends StatelessWidget {
-  final ActivityConrtoller activityConrtoller =
-      Get.find(tag: "activityConrtoller");
+  final ActivityConrtoller activityConrtoller = Get.find();
+  final RecordController recordController = Get.find();
 
   ActivatingWidget({super.key});
 
@@ -48,12 +49,12 @@ class ActivatingWidget extends StatelessWidget {
   /// 完成按钮
   Widget _buildCompletButton() {
     // 如果没有正在进行的事件，就不显示
-    if (activityConrtoller.currentActivity == null) {
+    if (recordController.currentRecord == null) {
       return Container();
     }
     return InkWell(
       onTap: () {
-        activityConrtoller.endCurrentActivity();
+        recordController.endRecord();
       },
       child: Container(
         width: 30,
@@ -79,9 +80,9 @@ class ActivatingWidget extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: activityConrtoller.currentActivity == null
+                color: recordController.currentRecord.value == null
                     ? Colors.grey
-                    : activityConrtoller.currentActivity!.event.color,
+                    : recordController.currentRecord.value!.event.color,
                 shape: BoxShape.circle,
               ),
               width: 15,
@@ -90,10 +91,10 @@ class ActivatingWidget extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            activityConrtoller.currentActivity == null
+            recordController.currentRecord.value == null
                 ? const Text("暂无事件")
                 : Text(
-                    activityConrtoller.currentActivity!.event.name,
+                    recordController.currentRecord.value!.event.name,
                     style: const TextStyle(fontSize: 17),
                   )
           ],

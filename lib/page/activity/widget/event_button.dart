@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/page/activity/activity_controller.dart';
 import 'package:time_tracker/common/model/event.dart';
 import 'package:time_tracker/common/utils/utils.dart';
@@ -7,8 +8,8 @@ import 'package:time_tracker/common/utils/utils.dart';
 class EventButton extends StatelessWidget {
   final Event event;
 
-  final ActivityConrtoller activityConrtoller =
-      Get.find(tag: "activityConrtoller");
+  final ActivityConrtoller activityConrtoller = Get.find();
+  final RecordController recordcontroller = Get.find();
 
   EventButton({super.key, required this.event});
 
@@ -23,7 +24,7 @@ class EventButton extends StatelessWidget {
           width: 100,
           child: InkWell(
             onTap: () {
-              activityConrtoller.startNewActivity(event);
+              recordcontroller.startRecord(event.id!);
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

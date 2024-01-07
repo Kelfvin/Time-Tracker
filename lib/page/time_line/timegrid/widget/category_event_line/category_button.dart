@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:time_tracker/common/model/category.dart';
+import 'package:time_tracker/common/model/event_category.dart';
 import 'package:time_tracker/common/model/event.dart';
-import 'package:time_tracker/page/timegrid/timgrid_controller.dart';
+import 'package:time_tracker/page/time_line/timegrid/timgrid_controller.dart';
 
 /// 一个按钮类，统一风格
 class Button extends StatelessWidget {
@@ -39,9 +39,15 @@ class Button extends StatelessWidget {
               height: 40,
               width: 200,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center, // Add this line
                 children: [
-                  Text(text),
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        text,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
                   if (icon != null) Icon(icon),
                 ],
               ),
@@ -53,13 +59,12 @@ class Button extends StatelessWidget {
   }
 }
 
-class ActionButton extends StatelessWidget {
+class EventButton extends StatelessWidget {
   final Event event;
 
-  final TimegridController timegridController =
-      Get.find(tag: "timegridController");
+  final TimegridController timegridController = Get.find();
 
-  ActionButton({Key? key, required this.event}) : super(key: key);
+  EventButton({Key? key, required this.event}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +80,7 @@ class ActionButton extends StatelessWidget {
 
 /// 一个类别的按钮列表，点击类别可以展开子类别
 class CategoryButton extends StatelessWidget {
-  final Category category;
+  final EventCategory category;
 
   final isExpanded = true.obs;
 
@@ -94,17 +99,17 @@ class CategoryButton extends StatelessWidget {
               // 高级颜色
               color: const Color(0xffe0e0e0),
             ),
-            _buildActionList(),
+            _buildEventList(),
           ],
         ));
   }
 
-  Widget _buildActionList() {
+  Widget _buildEventList() {
     return Obx(() {
       if (isExpanded.value) {
         return Column(
           children: [
-            for (Event action in category.events!) ActionButton(event: action)
+            for (Event event in category.events!) EventButton(event: event)
           ],
         );
       } else {

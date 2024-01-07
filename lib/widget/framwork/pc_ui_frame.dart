@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:time_tracker/common/user_manager.dart';
+import 'package:time_tracker/common/controller/user_controller.dart';
 import 'package:time_tracker/widget/framwork/pc_ui_frame_controller.dart';
 
 class MaterialIconButton extends StatelessWidget {
@@ -56,10 +56,9 @@ class MaterialIconButton extends StatelessWidget {
 }
 
 class Sidebar extends StatelessWidget {
-  final PCUIFrameController sidebarController =
-      Get.find(tag: "sidebarController");
+  final PCUIFrameController sidebarController = Get.find();
 
-  final UserManager userManager = Get.find(tag: "userManager");
+  final UserController userController = Get.find();
 
   Sidebar({super.key});
 
@@ -119,7 +118,8 @@ class Sidebar extends StatelessWidget {
           image: CachedNetworkImageProvider(
             maxWidth: 45,
             maxHeight: 45,
-            userManager.user.value.avatar ?? "",
+            userController.user.value.avatar ??
+                "http://localhost:8080/file/a.jpg",
           ),
           fit: BoxFit.cover,
         ),
@@ -130,8 +130,9 @@ class Sidebar extends StatelessWidget {
 
 /// PC 和 Web 端的界面框架
 class PCUIFrame extends StatelessWidget {
-  final PCUIFrameController sidebarController =
-      Get.put(PCUIFrameController(), tag: "sidebarController");
+  final PCUIFrameController sidebarController = Get.put(
+    PCUIFrameController(),
+  );
 
   PCUIFrame({super.key});
 
@@ -152,8 +153,7 @@ class PCUIFrame extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
-  final PCUIFrameController sidebarController =
-      Get.find(tag: "sidebarController");
+  final PCUIFrameController sidebarController = Get.find();
 
   Body({super.key});
 

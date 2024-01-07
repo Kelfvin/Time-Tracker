@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:time_tracker/common/model/category.dart';
+import 'package:get/get.dart';
+
+import 'package:time_tracker/common/model/event_category.dart';
 import 'package:time_tracker/common/model/event.dart';
+import 'package:time_tracker/common/controller/user_controller.dart';
 
 /// 定义统一的样式
 class TitleButton extends StatelessWidget {
@@ -42,7 +45,7 @@ class TitleButton extends StatelessWidget {
 
 /// 分类列表
 class CategoryTitleButton extends StatelessWidget {
-  final Category category;
+  final EventCategory category;
 
   const CategoryTitleButton({super.key, required this.category});
 
@@ -76,48 +79,20 @@ class EventTitleButton extends StatelessWidget {
 }
 
 class CategoryEventList extends StatelessWidget {
-  const CategoryEventList({super.key});
+  final UserController userController = Get.find();
 
-  /// 生成测试数据
-  List<Category> generateTestData() {
-    final categoryNames = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
-    final eventNames = ["学习", "工作", "娱乐", "运动", "睡觉", "吃饭"];
-
-    /// 彩虹颜色
-    final colorhexList = [
-      0xFFE57373,
-      0xFFF06292,
-      0xFFBA68C8,
-      0xFF9575CD,
-      0xFF7986CB,
-      0xFF64B5F6,
-    ];
-
-    List<Category> categories = [];
-    for (int i = 0; i < 6; i++) {
-      Category category = Category(name: categoryNames[i], color: colorhexList[i]);
-
-      for (int j = 0; j < 3; j++) {
-        Event event =
-            Event(name: eventNames[j], color: Color(colorhexList[i]), categoryId: i);
-        category.events!.add(event);
-      }
-      categories.add(category);
-    }
-    return categories;
-  }
+  CategoryEventList({super.key});
 
   @override
   Widget build(BuildContext context) {
     // 获取数据
-    List<Category> categories = generateTestData();
 
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: [
-        for (Category category in categories)
-          CategoryTitleButton(category: category)
-      ],
-    );
+    return Obx(() => ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            for (EventCategory category in userController.categories)
+              CategoryTitleButton(category: category)
+          ],
+        ));
   }
 }

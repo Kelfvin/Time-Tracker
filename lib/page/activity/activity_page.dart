@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
+import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/page/activity/activity_controller.dart';
-import 'package:time_tracker/common/model/category.dart';
+import 'package:time_tracker/common/model/event_category.dart';
 import 'package:time_tracker/common/model/event.dart';
-import 'package:time_tracker/common/utils/data.dart';
 import 'package:time_tracker/page/activity/widget/activiting_widget.dart';
 import 'package:time_tracker/page/activity/widget/event_button.dart';
 import 'package:time_tracker/page/activity/widget/section.dart';
@@ -11,29 +12,36 @@ import 'package:time_tracker/page/activity/widget/section.dart';
 /// 活动页面，点击活动按钮从当前开始进行计时
 class ActivityPage extends StatelessWidget {
   /// 记录当前正在进行的事件
-  final ActivityConrtoller activityConrtoller =
-      Get.put(ActivityConrtoller(), tag: "activityConrtoller");
+  final ActivityConrtoller activityConrtoller = Get.put(
+    ActivityConrtoller(),
+  );
+
+  final CategoryController categoryController = Get.find();
+
+  final RecordController recordController = Get.find();
 
   ActivityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Category> catgories = DataUtils.generateTestCategories();
+    // List<EventCategory> catgories = DataUtils.generateTestCategories();
+    categoryController.featchData();
+    recordController.fetchCurrentRecord();
 
-    return ListView(
-      children: [
-        const SizedBox(height: 40),
-        ActivatingWidget(),
-        const SizedBox(height: 20),
-        ..._buildCategorySections(catgories),
-      ],
-    );
+    return Obx(() => ListView(
+          children: [
+            const SizedBox(height: 40),
+            ActivatingWidget(),
+            const SizedBox(height: 20),
+            ..._buildCategorySections(categoryController.categories),
+          ],
+        ));
   }
 
-  List<Widget> _buildCategorySections(List<Category> categories) {
+  List<Widget> _buildCategorySections(List<EventCategory> categories) {
     List<Widget> sections = [];
 
-    for (Category category in categories) {
+    for (EventCategory category in categories) {
       sections.add(Section(
         title: category.name,
         buttons: _buildButtons(category.events ?? []),

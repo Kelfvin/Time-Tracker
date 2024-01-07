@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:time_tracker/common/utils/data.dart';
-import 'package:time_tracker/common/model/record.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:time_tracker/common/controller/record_controller.dart';
+import 'package:time_tracker/common/model/event_record.dart';
 
 class Item extends StatelessWidget {
   final String title;
@@ -36,13 +39,18 @@ class Item extends StatelessWidget {
 }
 
 class RecordListPage extends StatelessWidget {
-  const RecordListPage({super.key});
+  final RecordController recordController = Get.find();
+  RecordListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     // 获取数据
-    List<Record> records = DataUtils.generateTestRecords();
+    recordController.fetchRecordByDay(DateTime.now());
 
+    return Obx(() => build_view());
+  }
+
+  Widget build_view() {
     return Column(
       children: [
         const SizedBox(height: 20),
@@ -53,7 +61,7 @@ class RecordListPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text("记录: xx月xx日", style: TextStyle(fontSize: 20)),
-              Text("共${records.length}条记录",
+              Text("共${recordController.records.length}条记录",
                   style: const TextStyle(fontSize: 12)),
             ],
           ),
@@ -61,21 +69,21 @@ class RecordListPage extends StatelessWidget {
         Expanded(
           child: ListView(
             // 添加分割线
-            children: _buildItemsList(records),
+            children: _buildItemsList(recordController.records),
           ),
         ),
       ],
     );
   }
 
-  List<Widget> _buildItemsList(List<Record> records) {
+  List<Widget> _buildItemsList(List<EventRecord> records) {
     List<Widget> items = [];
     Widget divider = const Divider(
       height: 1,
       indent: 20,
       endIndent: 20,
     );
-    for (Record record in records) {
+    for (EventRecord record in records) {
       Widget widget = Item(
           title: record.event.name,
           time: "${record.getStartTime()}-${record.getEndTime()}",

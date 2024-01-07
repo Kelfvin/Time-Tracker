@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
-import "package:time_tracker/common/model/category.dart";
+import 'package:time_tracker/common/model/event_category.dart';
 import "package:time_tracker/common/model/event.dart";
-import "package:time_tracker/common/model/record.dart";
+import 'package:time_tracker/common/model/event_record.dart';
 
 class DataUtils {
   ///高亮颜色
@@ -23,9 +23,9 @@ class DataUtils {
   ];
 
   /// 生成测试数据
-  static List<Record> generateTestRecords() {
-    List<Record> records = [
-      Record(
+  static List<EventRecord> generateTestRecords() {
+    List<EventRecord> records = [
+      EventRecord(
           id: 1,
           startTime: DateTime(DateTime.now().year, DateTime.now().month,
               DateTime.now().day, 0, 0, 0, 0),
@@ -39,7 +39,7 @@ class DataUtils {
           event:
               Event(name: "睡觉", color: const Color(0xff41e28c), categoryId: 1),
           eventId: 1),
-      Record(
+      EventRecord(
           id: 2,
           startTime: DateTime(DateTime.now().year, DateTime.now().month,
               DateTime.now().day, 7, 45, 1, 1),
@@ -53,7 +53,7 @@ class DataUtils {
           event:
               Event(name: "工作", color: const Color(0xff41e28c), categoryId: 2),
           eventId: 2),
-      Record(
+      EventRecord(
           id: 3,
           startTime: DateTime(DateTime.now().year, DateTime.now().month,
               DateTime.now().day, 10, 22, 1, 1),
@@ -67,7 +67,7 @@ class DataUtils {
           event:
               Event(name: "吃饭", color: const Color(0xfff66c89), categoryId: 3),
           eventId: 3),
-      Record(
+      EventRecord(
           id: 4,
           startTime: DateTime(
             DateTime.now().year,
@@ -146,13 +146,13 @@ class DataUtils {
   };
 
   /// 生成category测试数据
-  static List<Category> generateTestCategories() {
+  static List<EventCategory> generateTestCategories() {
     // 字符串转json
     Map<String, dynamic> json = testJson;
     List<dynamic> categorys = json['categorys'];
-    List<Category> categories = [];
+    List<EventCategory> categories = [];
     for (var item in categorys) {
-      Category category = Category.fromJson(item);
+      EventCategory category = EventCategory.fromJson(item);
       categories.add(category);
     }
     return categories;

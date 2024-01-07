@@ -1,20 +1,19 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:time_tracker/common/controller/user_controller.dart';
 import 'package:time_tracker/common/dao/user_dao.dart';
 import 'package:time_tracker/common/routes/app_pages.dart';
-import 'package:time_tracker/common/user_manager.dart';
 
 import 'package:time_tracker/page/setting/widget/setting_button.dart';
 import "package:time_tracker/page/setting/widget/setting_section.dart";
 
 class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);
-  final UserManager userManager = Get.find(tag: "userManager");
+  final UserController userController = Get.find();
 
   /// 保存图片图片更换需要使用
   // late ;
@@ -74,13 +73,13 @@ class SettingPage extends StatelessWidget {
             // 左对齐
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("用户名: ${userManager.user.value.username}"),
-              Text("${userManager.user.value.avatar}"),
+              Text("用户名: ${userController.user.value.username}"),
+              Text("${userController.user.value.avatar}"),
 
               // 退出登录
               TextButton(
                   onPressed: () {
-                    userManager.logout();
+                    userController.logout();
                     Get.offNamed(AppPages.loginRegister);
                   },
                   child: const Text("退出登录"))
@@ -92,27 +91,29 @@ class SettingPage extends StatelessWidget {
   }
 
   void _changeAvatar() async {
-    print("更换头像");
-
     // 使用image_picker
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image == null) {
-      print("没有选择图片");
+      if (kDebugMode) {
+        print("没有选择图片");
+      }
       return;
     }
 
-    print("选择了图片: ${image.path}");
+    if (kDebugMode) {
+      print("选择了图片: ${image.path}");
+    }
+
+    // 判断文件的大小,不能超过5M
 
     // 上传图片
     bool success = await UserDao.updateAvatar(image);
 
     if (success) {
-      print("上传成功");
-
-      userManager.avatarKey.value = UniqueKey();
+      Get.snackbar("上传成功", "头像已更新");
     } else {
-      print("上传失败");
+      Get.snackbar("上传失败", "请稍后再试");
     }
   }
 
@@ -163,27 +164,30 @@ class SettingPage extends StatelessWidget {
 
   /// 头像组件
   Widget _buildAvatar() {
-    return Obx(() => ClipOval(
+    return ClipOval(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: InkWell(
           onTap: () {
             _changeAvatar();
           },
           child: Container(
-            color: Colors.grey,
-            width: 100,
-            height: 100,
-            child: CachedNetworkImage(
-              useOldImageOnUrlChange: false,
-              // 不保存在内存中
-              key: userManager.avatarKey.value,
-              imageUrl: userManager.user.value.avatar ?? "",
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) =>
-                  // 默认头像
-                  const Icon(Icons.person),
-            ),
-          ),
-        )));
+              color: Colors.grey,
+              width: 100,
+              height: 100,
+              child: CachedNetworkImage(
+                // 扩展到最大
+                fit: BoxFit.cover,
+                useOldImageOnUrlChange: true,
+                // 不保存在内存中
+                key: userController.avatarKey.value,
+
+                imageUrl: userController.user.value.avatar ?? "",
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) =>
+                    // 默认头像
+                    const Icon(Icons.person),
+              )),
+        ));
   }
 }

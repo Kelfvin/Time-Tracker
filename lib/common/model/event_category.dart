@@ -1,17 +1,17 @@
 import 'package:time_tracker/common/model/event.dart';
 
-class Category {
+class EventCategory {
   int? id;
   String name;
   List<Event>? events;
 
   int? color;
 
-  Category({this.id, required this.name, this.events, this.color}) {
+  EventCategory({this.id, required this.name, this.events, this.color}) {
     events = [];
   }
 
-  Category.fromJson(Map<String, dynamic> json) : name = json['name'] {
+  EventCategory.fromJson(Map<String, dynamic> json) : name = json['name'] {
     id = json['id'];
     if (json['events'] != null) {
       events = <Event>[];

@@ -9,8 +9,7 @@ import 'package:time_tracker/page/login_register/widgets/register_form.dart';
 import 'package:flutter/foundation.dart';
 
 class Body extends StatelessWidget {
-  final LoginRegisterController loginRegisterController =
-      Get.find(tag: "loginRegisterController");
+  final LoginRegisterController loginRegisterController = Get.find();
 
   Body({super.key});
 
