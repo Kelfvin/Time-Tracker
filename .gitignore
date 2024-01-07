@@ -42,3 +42,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# /vscode的配置文件
+.vscode/
+
+# wordcount插件生成的目录
+/.VsCodeCounter/
