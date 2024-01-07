@@ -3,7 +3,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-import 'package:time_tracker/common/model/event.dart';
 import 'package:time_tracker/common/model/event_record.dart';
 import 'package:intl/intl.dart';
 
@@ -62,12 +61,12 @@ class RecordDao {
   /// 结束一个记录
   static Future<EventRecord?> endRecord(int recordId) async {
     try {
-      var response = await dio.post("/record/end", data: {
+      var response = await dio.post("/record/end", queryParameters: {
         "recordId": recordId,
       });
 
       if (response.data["success"]) {
-        return EventRecord.fromJson(response.data["data"]);
+        return EventRecord.fromJson(response.data["data"]["record"]);
       }
     } on DioException catch (e) {
       // 处理

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:time_tracker/common/controller/user_controller.dart';
 import 'package:time_tracker/common/dao/record_dao.dart';
@@ -18,7 +19,6 @@ class RecordController extends GetxController {
 
   // 开始一个记录
   Future<EventRecord?> startRecord(int eventId) async {
-    // TODO: 1. 请求服务器
     currentRecord.value = await RecordDao.startRecord(eventId);
 
     return currentRecord.value;
@@ -26,7 +26,6 @@ class RecordController extends GetxController {
 
   // 结束一个记录
   Future<EventRecord?> endRecord() async {
-    // TODO: 1. 请求服务器
     if (currentRecord.value == null) {
       return null;
     }
@@ -34,10 +33,15 @@ class RecordController extends GetxController {
     RecordDao.endRecord(currentRecord.value!.id!);
 
     currentRecord.value = null;
+
+    return currentRecord.value;
   }
 
   // 获取某一天的记录
   void fetchRecordByDay(DateTime day) async {
+    if (kDebugMode) {
+      print("fetchRecordByDay");
+    }
     records.value = await RecordDao.getRecordsByDate(day);
   }
 }

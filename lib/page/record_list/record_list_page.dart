@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:intl/intl.dart';
 import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/common/model/event_record.dart';
 import 'package:time_tracker/page/time_line/time_line_page_controller.dart';
@@ -63,7 +64,11 @@ class RecordListPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("记录: xx月xx日", style: TextStyle(fontSize: 20)),
+              Text(
+                  // 格式化日期，使用库
+                  DateFormat("yyyy年MM月dd日")
+                      .format(timeLineController.focusedDay.value),
+                  style: const TextStyle(fontSize: 20)),
               Text("共${recordController.records.length}条记录",
                   style: const TextStyle(fontSize: 12)),
             ],

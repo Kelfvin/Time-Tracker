@@ -1,37 +1,33 @@
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flex_color_picker/flex_color_picker.dart';
-
-class TextInput extends StatelessWidget {
-  final String title;
-  const TextInput({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("分类名称"),
-        SizedBox(
-          height: 10,
-        ),
-        TextField(
-          // 设置高度
-
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+import 'package:get/get.dart';
+import 'package:time_tracker/common/dao/category_dao.dart';
+import 'package:time_tracker/common/model/event_category.dart';
+import 'package:time_tracker/common/utils/utils.dart';
+import 'package:time_tracker/page/category_manage/widget/inputField.dart';
 
 class AddCategoryEventPage extends StatelessWidget {
-  const AddCategoryEventPage({Key? key}) : super(key: key);
+  final Rx<Color> pickeColor = Rx<Color>(Colors.red);
+  final Rx<String> inputCategoryName = Rx<String>("");
+  AddCategoryEventPage({Key? key}) : super(key: key);
+
+  void addCategory() async {
+    if (inputCategoryName.value.isEmpty) {
+      Get.snackbar("添加失败", "分类名称不能为空");
+      return;
+    }
+
+    EventCategory? eventCategory = await CategoryDao.addCategory(
+        inputCategoryName.value, HexColor.toHex(pickeColor.value));
+
+    if (eventCategory != null) {
+      Get.snackbar("添加成功", "添加分类成功");
+    } else {
+      Get.snackbar("添加失败", "添加分类失败");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +41,11 @@ class AddCategoryEventPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              const TextInput(
+              TextInput(
                 title: "分类名称",
-              ),
-              const TextInput(
-                title: "标签",
+                onChanged: (value) {
+                  inputCategoryName.value = value;
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -58,30 +54,7 @@ class AddCategoryEventPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              ColorPicker(
-                  // 设置中文显示
-                  pickerTypeLabels: const <ColorPickerType, String>{
-                    ColorPickerType.both: '全部',
-                    ColorPickerType.primary: '主色',
-                    ColorPickerType.accent: '强调',
-                    ColorPickerType.bw: '黑白',
-                    ColorPickerType.custom: '自定义',
-                    ColorPickerType.wheel: '色盘',
-                  },
-                  pickersEnabled: const <ColorPickerType, bool>{
-                    ColorPickerType.both: true,
-                    ColorPickerType.primary: true,
-                    ColorPickerType.accent: true,
-                    ColorPickerType.bw: false,
-                    ColorPickerType.custom: true,
-                    ColorPickerType.wheel: true,
-                  },
-                  onColorChanged: (Color color) {
-                    if (kDebugMode) {
-                      print(color);
-                    }
-                  },
-                  color: Colors.red),
+              _buildColorPicker(),
               const SizedBox(
                 height: 20,
               ),
@@ -90,11 +63,35 @@ class AddCategoryEventPage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            if (kDebugMode) {
-              print("添加分类");
-            }
+            addCategory();
+            Get.back();
           },
           child: const Icon(Icons.check),
         ));
+  }
+
+  ColorPicker _buildColorPicker() {
+    return ColorPicker(
+        // 设置中文显示
+        pickerTypeLabels: const <ColorPickerType, String>{
+          ColorPickerType.both: '全部',
+          ColorPickerType.primary: '主色',
+          ColorPickerType.accent: '强调',
+          ColorPickerType.bw: '黑白',
+          ColorPickerType.custom: '自定义',
+          ColorPickerType.wheel: '色盘',
+        },
+        pickersEnabled: const <ColorPickerType, bool>{
+          ColorPickerType.both: true,
+          ColorPickerType.primary: true,
+          ColorPickerType.accent: true,
+          ColorPickerType.bw: false,
+          ColorPickerType.custom: true,
+          ColorPickerType.wheel: true,
+        },
+        onColorChanged: (Color color) {
+          pickeColor.value = color;
+        },
+        color: Colors.red);
   }
 }

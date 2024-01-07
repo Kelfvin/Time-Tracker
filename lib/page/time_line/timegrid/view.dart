@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/common/controller/user_controller.dart';
 
 import 'package:time_tracker/page/time_line/timegrid/timgrid_controller.dart';
@@ -12,6 +13,8 @@ class TimeGridView extends StatelessWidget {
   final TimegridController controller =
       Get.put(TimegridController());
 
+  final RecordController recordController = Get.find();
+
   final UserController userController = Get.find();
 
   TimeGridView({super.key});
@@ -22,6 +25,7 @@ class TimeGridView extends StatelessWidget {
   }
 
   Widget _buildPage() {
+    
     return Row(
       children: [
         const TimelistBar(),

@@ -49,7 +49,7 @@ class ActivatingWidget extends StatelessWidget {
   /// 完成按钮
   Widget _buildCompletButton() {
     // 如果没有正在进行的事件，就不显示
-    if (recordController.currentRecord == null) {
+    if (recordController.currentRecord.value == null) {
       return Container();
     }
     return InkWell(

@@ -20,9 +20,10 @@ class EventRecord {
         startTime = DateTime.parse(json['startTimestamp']),
         event = Event.fromJson(json['event']),
         eventId = json['eventId'] {
-    if (json['endTimestamp'] == null) {
-      endTime = null;
+    if (json['endTimestamp'] != null) {
+      endTime = DateTime.parse(json['endTimestamp']);
     }
+    
   }
 
   // 获取开始时间，格式化输出

@@ -10,6 +10,8 @@ class Timegrid extends StatelessWidget {
 
   final UserController userController = Get.find();
 
+  final RecordController recordController = Get.find();
+
   Timegrid({Key? key}) : super(key: key);
 
   @override
@@ -54,8 +56,81 @@ class Block extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(1),
         child: Text(" $text",
+            overflow: TextOverflow.fade,
+            maxLines: 1,
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold)),
+      ),
+    );
+  }
+}
+
+class TimeCursor extends StatelessWidget {
+  const TimeCursor({
+    super.key,
+    required this.controller,
+  });
+
+  final TimegridController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget timeCursor() {
+      /// 计算当前时间指针的位置
+      double top =
+          controller.eachHeight.value * controller.currentTime.value.hour;
+
+      double left = controller.eachWidth.value *
+          controller.currentTime.value.minute /
+          controller.splitSpan.value;
+
+      return Positioned(
+        top: top,
+        left: left,
+        child: Container(
+          height: controller.eachHeight.value,
+          width: 3,
+          color: Colors.red,
+        ),
+      );
+    }
+
+    return Obx(() => timeCursor());
+  }
+}
+
+class BackgroundGrid extends StatelessWidget {
+  const BackgroundGrid({
+    super.key,
+    required this.controller,
+  });
+
+  final TimegridController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      child: Column(
+        children: [
+          for (int i = 0; i < controller.rowNum.value; i++)
+            Expanded(
+              child: Row(
+                children: [
+                  for (int j = 0; j < controller.colNum.value; j++)
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(5),
+                          color: const Color.fromRGBO(196, 223, 255, 1),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -177,77 +252,6 @@ class RecordLayer extends StatelessWidget {
     }
 
     return rows;
-  }
-}
-
-class TimeCursor extends StatelessWidget {
-  const TimeCursor({
-    super.key,
-    required this.controller,
-  });
-
-  final TimegridController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    Widget timeCursor() {
-      /// 计算当前时间指针的位置
-      double top =
-          controller.eachHeight.value * controller.currentTime.value.hour;
-
-      double left = controller.eachWidth.value *
-          controller.currentTime.value.minute /
-          controller.splitSpan.value;
-
-      return Positioned(
-        top: top,
-        left: left,
-        child: Container(
-          height: controller.eachHeight.value,
-          width: 3,
-          color: Colors.red,
-        ),
-      );
-    }
-
-    return Obx(() => timeCursor());
-  }
-}
-
-class BackgroundGrid extends StatelessWidget {
-  const BackgroundGrid({
-    super.key,
-    required this.controller,
-  });
-
-  final TimegridController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      child: Column(
-        children: [
-          for (int i = 0; i < controller.rowNum.value; i++)
-            Expanded(
-              child: Row(
-                children: [
-                  for (int j = 0; j < controller.colNum.value; j++)
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.circular(5),
-                          color: const Color.fromRGBO(196, 223, 255, 1),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-        ],
-      ),
-    );
   }
 }
 

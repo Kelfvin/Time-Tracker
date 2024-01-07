@@ -33,4 +33,24 @@ class CategoryDao {
 
     return [];
   }
+
+  // 添加分类
+  static Future<EventCategory?> addCategory(String name, String color) async {
+    try {
+      Response response = await dio.post("/category/add", data: {
+        "name": name,
+        "color": color,
+      });
+
+      if (response.data["success"]) {
+        return EventCategory.fromJson(response.data["data"]["category"]);
+      }
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+
+    return null;
+  }
 }

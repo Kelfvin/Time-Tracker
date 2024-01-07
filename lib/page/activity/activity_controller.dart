@@ -3,7 +3,6 @@ import "dart:async";
 import "package:get/get.dart";
 import "package:time_tracker/common/controller/record_controller.dart";
 
-
 /// 当前正在进行的任务管理
 
 class ActivityConrtoller extends GetxController {
@@ -16,6 +15,8 @@ class ActivityConrtoller extends GetxController {
     if (recordController.currentRecord.value != null) {
       currentActivityDuration.value = DateTime.now()
           .difference(recordController.currentRecord.value!.startTime);
+    } else {
+      currentActivityDuration.value = const Duration(seconds: 0);
     }
   }
 

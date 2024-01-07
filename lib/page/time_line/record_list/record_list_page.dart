@@ -47,10 +47,10 @@ class RecordListPage extends StatelessWidget {
     // 获取数据
     recordController.fetchRecordByDay(DateTime.now());
 
-    return Obx(() => build_view());
+    return Obx(() => buildView());
   }
 
-  Widget build_view() {
+  Widget buildView() {
     return Column(
       children: [
         const SizedBox(height: 20),
