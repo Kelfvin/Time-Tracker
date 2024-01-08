@@ -16,7 +16,7 @@ class AppPages {
       name: loginRegister,
       page: () => LoginRegisterPage(),
     ),
-    GetPage(name: category, page: () => const CategoryManagePage()),
+    GetPage(name: category, page: () => CategoryManagePage()),
     GetPage(name: addCategoryEvent, page: () => AddCategoryEventPage()),
   ];
 }

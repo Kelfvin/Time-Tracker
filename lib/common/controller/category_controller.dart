@@ -12,4 +12,8 @@ class CategoryController extends GetxController {
   void featchData() async {
     categories.value = await CategoryDao.fetchCategories();
   }
+
+  void featchDateOfDate(DateTime date) async {
+    categories.value = await CategoryDao.fetchCategoriesByDate(date);
+  }
 }

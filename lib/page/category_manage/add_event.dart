@@ -11,7 +11,7 @@ import 'package:time_tracker/common/dao/event_dao.dart';
 import 'package:time_tracker/common/model/event.dart';
 import 'package:time_tracker/common/model/event_category.dart';
 import 'package:time_tracker/common/utils/utils.dart';
-import 'package:time_tracker/page/category_manage/widget/inputField.dart';
+import 'package:time_tracker/page/category_manage/widget/input_field.dart';
 
 class AddEventWidget extends StatelessWidget {
   final CategoryController categoryController = Get.find<CategoryController>();

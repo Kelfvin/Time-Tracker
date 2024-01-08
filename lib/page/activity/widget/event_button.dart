@@ -31,7 +31,6 @@ class EventButton extends StatelessWidget {
               children: [
                 Text(event.name, style: const TextStyle(fontSize: 15)),
                 // 时间间隔格式化输出，比如 1小时30分钟
-
                 Text(
                   Utils.formatDurationTime(event.duration),
                   style: const TextStyle(fontSize: 10),

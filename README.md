@@ -1,16 +1,10 @@
-# time_tracker
+# time_tracker | 时光迹
 
-A new Flutter project.
+## 项目介绍
 
-## Getting Started
+时光迹是一个基于时间的任务管理工具，它可以帮助你更好的管理你的时间，让你的时间更有价值。
 
-This project is a starting point for a Flutter application.
+## 项目特点
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 时间块
+- 时间统计

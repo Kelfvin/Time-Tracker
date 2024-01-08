@@ -23,10 +23,25 @@ class Utils {
     if (duration.inMinutes > 0) {
       result += "${duration.inMinutes % 60}分钟";
     }
-    if (duration.inSeconds > 0) {
+    if (duration.inSeconds >= 0) {
       result += "${duration.inSeconds % 60}秒";
     }
     return result;
+  }
+
+  // 解析 ISO 8601 时间间隔
+  static Duration parseDuration(String? durationString) {
+    if (durationString == null) {
+      return Duration.zero;
+    }
+    RegExp regex = RegExp(r'PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?');
+    Match match = regex.firstMatch(durationString) as Match;
+
+    int hours = int.parse(match[1] ?? '0');
+    int minutes = int.parse(match[2] ?? '0');
+    int seconds = int.parse(match[3] ?? '0');
+
+    return Duration(hours: hours, minutes: minutes, seconds: seconds);
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
 import 'package:time_tracker/page/category_manage/add_category.dart';
 import 'package:time_tracker/page/category_manage/add_event.dart';
 import 'package:time_tracker/page/category_manage/widget/category_event_list.dart';
@@ -8,10 +9,14 @@ import 'package:time_tracker/page/category_manage/widget/category_event_list.dar
 
 /// 以层级列表的形式展示分类和事件
 class CategoryManagePage extends StatelessWidget {
-  const CategoryManagePage({super.key});
+  final CategoryController categoryController = Get.find();
+
+  CategoryManagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    categoryController.featchData();
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: CategoryEventList(),

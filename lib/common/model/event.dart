@@ -19,7 +19,11 @@ class Event {
       : id = json['id'],
         name = json['name'] ?? "null",
         color = HexColor.fromHex(json['color']),
-        categoryId = json['categoryId'];
+        categoryId = json['categoryId'] {
+    if (json['duration'] != null) {
+      duration = Utils.parseDuration(json['duration']);
+    }
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

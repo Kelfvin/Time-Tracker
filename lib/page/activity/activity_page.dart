@@ -25,7 +25,7 @@ class ActivityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // List<EventCategory> catgories = DataUtils.generateTestCategories();
-    categoryController.featchData();
+    categoryController.featchDateOfDate(DateTime.now());
     recordController.fetchCurrentRecord();
 
     return Obx(() => ListView(
@@ -46,6 +46,8 @@ class ActivityPage extends StatelessWidget {
         title: category.name,
         buttons: _buildButtons(category.events ?? []),
       ));
+
+      sections.add(const SizedBox(height: 20));
     }
     return sections;
   }

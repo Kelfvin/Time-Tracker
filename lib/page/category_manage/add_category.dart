@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:time_tracker/common/dao/category_dao.dart';
 import 'package:time_tracker/common/model/event_category.dart';
 import 'package:time_tracker/common/utils/utils.dart';
-import 'package:time_tracker/page/category_manage/widget/inputField.dart';
+import 'package:time_tracker/page/category_manage/widget/input_field.dart';
 
 class AddCategoryEventPage extends StatelessWidget {
   final Rx<Color> pickeColor = Rx<Color>(Colors.red);
