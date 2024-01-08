@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
 import 'package:time_tracker/page/statistic/controller.dart';
 import 'package:time_tracker/page/statistic/widget/date_range_picker.dart';
 import 'package:time_tracker/page/statistic/widget/line_chart.dart';
@@ -10,10 +11,19 @@ class StatisticPage extends StatelessWidget {
   final StatisticPageController statisticPageController =
       Get.put(StatisticPageController());
 
+  final CategoryController categoryController = Get.find();
+
   StatisticPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    DateTime? start = statisticPageController.dateRange.value?.start;
+    DateTime? end = statisticPageController.dateRange.value?.end;
+
+    if (start != null && end != null) {
+      categoryController.featchDateOfDateRange(start, end);
+    }
+
     return Obx(() => _buildView());
   }
 
@@ -26,13 +36,19 @@ class StatisticPage extends StatelessWidget {
       components = _buildMultiDayComponents();
     }
 
-    return ListView(children: [DateRangePicker(), Wrap(children: components)]);
+    return ListView(children: [
+      const SizedBox(
+        height: 20,
+      ),
+      Card(child: DateRangePicker()),
+      Wrap(children: components)
+    ]);
   }
 
   List<Widget> _buildDayComponents() {
     List<Widget> components = [];
     components.add(
-      const Card(child: PieChart()),
+      Card(child: PieChart()),
     );
     components.add(
       const Card(
@@ -46,7 +62,7 @@ class StatisticPage extends StatelessWidget {
   List<Widget> _buildMultiDayComponents() {
     List<Widget> components = [];
     components.add(
-      const Card(child: PieChart()),
+      Card(child: PieChart()),
     );
     components.add(
       const Card(

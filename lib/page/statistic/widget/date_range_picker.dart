@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
 import 'package:time_tracker/page/statistic/controller.dart';
 
 class DateRangePicker extends StatelessWidget {
   final StatisticPageController statisticPageController = Get.find();
+  final CategoryController categoryController = Get.find();
   DateRangePicker({Key? key}) : super(key: key);
 
   @override
@@ -33,6 +35,14 @@ class DateRangePicker extends StatelessWidget {
               onPressed: () {
                 // 处理左切换逻辑
                 statisticPageController.previousDateRange();
+                // 获取当前时间范围内的数据
+                DateTime? start =
+                    statisticPageController.dateRange.value?.start;
+                DateTime? end = statisticPageController.dateRange.value?.end;
+
+                if (start != null && end != null) {
+                  categoryController.featchDateOfDateRange(start, end);
+                }
               },
             ),
             Text(statisticPageController.getFormattedDateRange()),
@@ -41,6 +51,14 @@ class DateRangePicker extends StatelessWidget {
               onPressed: () {
                 // 处理右切换逻辑
                 statisticPageController.nextDateRange();
+                // 获取当前时间范围内的数据
+                DateTime? start =
+                    statisticPageController.dateRange.value?.start;
+                DateTime? end = statisticPageController.dateRange.value?.end;
+
+                if (start != null && end != null) {
+                  categoryController.featchDateOfDateRange(start, end);
+                }
               },
             ),
           ],

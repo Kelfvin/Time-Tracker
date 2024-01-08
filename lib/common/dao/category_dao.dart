@@ -107,4 +107,32 @@ class CategoryDao {
 
     return false;
   }
+
+  static Future<List<EventCategory>?> fetchCategoriesByDateRange(
+      DateTime startDate, DateTime endDate) async {
+    try {
+      var response = await dio.get(
+        "/category/statistics",
+        queryParameters: {
+          "startDate": DateFormat("yyyy-MM-dd").format(startDate),
+          "endDate": DateFormat("yyyy-MM-dd").format(endDate),
+        },
+      );
+
+      if (response.data["success"]) {
+        List<EventCategory> categories = [];
+        for (var item in response.data["data"]["categories"]) {
+          categories.add(EventCategory.fromJson(item));
+        }
+        return categories;
+      }
+    } catch (e) {
+      // 处理
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+
+    return null;
+  }
 }
