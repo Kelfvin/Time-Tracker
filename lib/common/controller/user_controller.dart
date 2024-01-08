@@ -43,9 +43,6 @@ class UserController extends GetxController {
 
     // 如果token有效，就获取用户的分类
     if (user.value.id != 0) {
-      if (kDebugMode) {
-        print("fetchCategories");
-      }
       await fetchCategories();
     }
   }

@@ -6,6 +6,7 @@ import 'package:time_tracker/page/statistic/controller.dart';
 class DateRangePicker extends StatelessWidget {
   final StatisticPageController statisticPageController = Get.find();
   final CategoryController categoryController = Get.find();
+
   DateRangePicker({Key? key}) : super(key: key);
 
   @override
@@ -75,6 +76,13 @@ class DateRangePicker extends StatelessWidget {
           groupValue: statisticPageController.dateRangeMode.value,
           onChanged: (DateRangeMode? value) {
             statisticPageController.changeDateRangeMode(value!);
+            // 获取当前时间范围内的数据
+            DateTime? start = statisticPageController.dateRange.value?.start;
+            DateTime? end = statisticPageController.dateRange.value?.end;
+
+            if (start != null && end != null) {
+              categoryController.featchDateOfDateRange(start, end);
+            }
           },
         ),
         Text(mode.toString()),

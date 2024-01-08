@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
 import 'package:time_tracker/common/dao/category_dao.dart';
 import 'package:time_tracker/common/model/event_category.dart';
 import 'package:time_tracker/common/utils/utils.dart';
 import 'package:time_tracker/page/category_manage/widget/input_field.dart';
 
 class AddCategoryEventPage extends StatelessWidget {
+  final CategoryController categoryController = Get.find();
   final Rx<Color> pickeColor = Rx<Color>(Colors.red);
   final Rx<String> inputCategoryName = Rx<String>("");
   AddCategoryEventPage({Key? key}) : super(key: key);
@@ -24,6 +26,8 @@ class AddCategoryEventPage extends StatelessWidget {
 
     if (eventCategory != null) {
       Get.snackbar("添加成功", "添加分类成功");
+      categoryController.featchData();
+      
     } else {
       Get.snackbar("添加失败", "添加分类失败");
     }

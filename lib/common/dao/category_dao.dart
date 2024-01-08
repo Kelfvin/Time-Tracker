@@ -46,6 +46,9 @@ class CategoryDao {
 
   /// 获取用户的所有分类
   static Future<List<EventCategory>> fetchCategories() async {
+    if (kDebugMode) {
+      print("fetchCategories");
+    }
     try {
       var response = await dio.get(
         "/category/getAllCategory",
@@ -71,7 +74,7 @@ class CategoryDao {
   // 添加分类
   static Future<EventCategory?> addCategory(String name, String color) async {
     try {
-      Response response = await dio.post("/category/add", data: {
+      Response response = await dio.post("/category", data: {
         "name": name,
         "color": color,
       });

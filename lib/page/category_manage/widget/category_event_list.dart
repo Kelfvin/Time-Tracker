@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
 import 'package:time_tracker/common/dao/category_dao.dart';
 import 'package:time_tracker/common/dao/event_dao.dart';
 
@@ -49,8 +50,9 @@ class TitleButton extends StatelessWidget {
 class CategoryTitleButton extends StatelessWidget {
   final EventCategory category;
   final VoidCallback? onTap;
+  final CategoryController categoryController = Get.find();
 
-  const CategoryTitleButton({super.key, required this.category, this.onTap});
+  CategoryTitleButton({super.key, required this.category, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,7 @@ class CategoryTitleButton extends StatelessWidget {
             width: 300,
             child: Column(
               children: [
-                const Text("删除事件后，该事件下的事件也会被删除，确认删除吗？"),
+                const Text("删除事件后不可恢复，确认删除吗？"),
                 const SizedBox(
                   height: 20,
                 ),
@@ -95,9 +97,10 @@ class CategoryTitleButton extends StatelessWidget {
                         },
                         child: const Text("取消")),
                     TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           Get.back();
-                          EventDao.deleteEvent(event.id!);
+                          var result = await EventDao.deleteEvent(event.id!);
+                          if (result) categoryController.featchData();
                         },
                         child: const Text("确认")),
                   ],
@@ -123,7 +126,7 @@ class EventTitleButton extends StatelessWidget {
 }
 
 class CategoryEventList extends StatelessWidget {
-  final UserController userController = Get.find();
+  final CategoryController categoryController = Get.find();
 
   CategoryEventList({super.key});
 
@@ -131,19 +134,23 @@ class CategoryEventList extends StatelessWidget {
   Widget build(BuildContext context) {
     // 获取数据
 
-    return Obx(() => ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            for (EventCategory category in userController.categories)
-              CategoryTitleButton(
-                category: category,
-                onTap: () {
-                  // 确认删除的弹窗
-                  showCategoryDeleteDialog(category);
-                },
-              )
-          ],
-        ));
+    return Obx(() => _buildVIew());
+  }
+
+  ListView _buildVIew() {
+    return ListView(
+      scrollDirection: Axis.vertical,
+      children: [
+        for (EventCategory category in categoryController.categories)
+          CategoryTitleButton(
+            category: category,
+            onTap: () {
+              // 确认删除的弹窗
+              showCategoryDeleteDialog(category);
+            },
+          )
+      ],
+    );
   }
 
   void showCategoryDeleteDialog(EventCategory category) {
@@ -168,9 +175,11 @@ class CategoryEventList extends StatelessWidget {
                         },
                         child: const Text("取消")),
                     TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           Get.back();
-                          CategoryDao.deleteCategory(category.id!);
+                          var result =
+                              await CategoryDao.deleteCategory(category.id!);
+                          if (result) categoryController.featchData();
                         },
                         child: const Text("确认")),
                   ],

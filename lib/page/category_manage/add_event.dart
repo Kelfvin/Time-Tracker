@@ -32,6 +32,7 @@ class AddEventWidget extends StatelessWidget {
     if (event != null) {
       // 添加成功
       Get.snackbar("添加成功", "添加事件成功");
+      categoryController.featchData();
     }
   }
 
