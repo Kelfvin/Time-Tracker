@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
+import 'package:time_tracker/common/model/event.dart';
+import 'package:time_tracker/common/utils/utils.dart';
 
 class Item extends StatelessWidget {
   final String title;
@@ -26,7 +32,8 @@ class Item extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontSize: 12)),
+          Text("${title} ${(progress * 100).toStringAsFixed(2)}%",
+              style: const TextStyle(fontSize: 12)),
           const SizedBox(height: 5),
           LinearProgressIndicator(
             color: color,
@@ -40,19 +47,36 @@ class Item extends StatelessWidget {
 }
 
 class ListChart extends StatelessWidget {
-  const ListChart({super.key});
+  final CategoryController categoryController = Get.find();
+
+  ListChart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Obx(() => _buildView());
+  }
+
+  Column _buildView() {
+    List<Event> events = [];
+
+    for (var category in categoryController.categories) {
+      for (var event in category.events!) {
+        if (event.duration.inSeconds > 0) {
+          events.add(event);
+        }
+      }
+    }
+
+    return Column(
       children: [
-        SizedBox(height: 20),
-        Item(
-            title: "睡觉", progress: 0.5, time: "10小时", color: Color(0xfff67280)),
-        Item(title: "吃饭", progress: 0.1, time: "1小时", color: Color(0xfff8b195)),
-        Item(title: "学习", progress: 0.2, time: "2小时", color: Color(0xff74b49b)),
-        Item(
-            title: "打游戏", progress: 0.3, time: "3小时", color: Color(0xff4b87b9)),
+        for (Event event in events)
+          Item(
+            title: event.name,
+            progress: event.duration.inSeconds /
+                categoryController.totalDuration.value.inSeconds,
+            time: Utils.formatDurationTime(event.duration),
+            color: event.color,
+          )
       ],
     );
   }

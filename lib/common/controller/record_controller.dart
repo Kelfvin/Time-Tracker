@@ -42,6 +42,10 @@ class RecordController extends GetxController {
     if (kDebugMode) {
       print("fetchRecordByDay");
     }
+
     records.value = await RecordDao.getRecordsByDate(day);
+
+    // 排序，根据开始时间
+    records.value.sort((a, b) => a.startTime.compareTo(b.startTime));
   }
 }

@@ -51,7 +51,7 @@ class StatisticPage extends StatelessWidget {
       Card(child: PieChart()),
     );
     components.add(
-      const Card(
+      Card(
         child: ListChart(),
       ),
     );
@@ -65,13 +65,13 @@ class StatisticPage extends StatelessWidget {
       Card(child: PieChart()),
     );
     components.add(
-      const Card(
+      Card(
         child: ListChart(),
       ),
     );
 
     components.add(
-      const Card(
+      Card(
         child: LineChart(),
       ),
     );

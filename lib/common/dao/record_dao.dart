@@ -88,4 +88,31 @@ class RecordDao {
       Get.snackbar("获取当前记录错误", e.response!.data["message"]);
     }
   }
+
+  /// 添加一条记录，根据开始时间和结束时间
+  static Future<EventRecord?> addRecord(
+      DateTime startTime, DateTime endTime, int eventId) async {
+// 开始时间必须小于结束时间
+    if (startTime.isAfter(endTime)) {
+      Get.snackbar("错误", "开始时间必须小于结束时间");
+      return null;
+    }
+
+    try {
+      var response = await dio.post("/record/add", data: {
+        "startTimestamp": startTime.toIso8601String(),
+        "endTimestamp": endTime.toIso8601String(),
+        "eventId": eventId,
+      });
+
+      if (response.data["success"]) {
+        return EventRecord.fromJson(response.data["data"]["record"]);
+      }
+    } on DioException catch (e) {
+      // 处理
+      Get.snackbar("添加记录错误", e.response!.data["message"]);
+    }
+
+    return null;
+  }
 }

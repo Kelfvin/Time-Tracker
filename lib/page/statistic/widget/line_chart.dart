@@ -1,10 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
 
 class LineChart extends StatelessWidget {
-  const LineChart({super.key});
+  final CategoryController categoryController = Get.find();
+  LineChart({super.key});
 
   @override
   Widget build(BuildContext context) {

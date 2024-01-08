@@ -6,7 +6,7 @@ import 'package:time_tracker/common/model/event_category.dart';
 class CategoryController extends GetxController {
   var categories = <EventCategory>[].obs;
 
-  final totalDuration = const Duration(seconds: 0).obs;
+  final totalDuration = const Duration(milliseconds: 1).obs;
 
   /// 计算总时间
   void calculateTotalDuration() {

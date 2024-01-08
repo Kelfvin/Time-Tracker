@@ -3,15 +3,18 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/record_controller.dart';
+import 'package:time_tracker/common/dao/record_dao.dart';
 import 'package:time_tracker/common/model/event.dart';
 
 import 'package:time_tracker/common/model/event_record.dart';
 import 'package:time_tracker/common/utils/data.dart';
 import 'package:time_tracker/page/time_line/time_line_page.dart';
+import 'package:time_tracker/page/time_line/time_line_page_controller.dart';
 
 class TimegridController extends GetxController {
-  /// 显示的日期,默认为今天
-  var focusedDay = DateTime.now().obs;
+  RecordController recordController = Get.find();
+  TimeLinePageController timeLinePageController = Get.find();
 
   /// 当前的时间
   var currentTime = DateTime.now().obs;
@@ -62,34 +65,30 @@ class TimegridController extends GetxController {
     return true;
   }
 
-  /// 修改focusDay
-  void changeFocusDay(DateTime day) {
-    if (kDebugMode) {
-      print("changeFocusDay: $day");
-    }
-    focusedDay.value = day;
-
-    /// todo: 获取当天的记录,更新显示
-    if (kDebugMode) {
-      print("获取$day的记录,更新显示");
-    }
-  }
-
   /// 添加事件
-  void addRecord(Event event) {
+  void addRecord(Event event) async {
     // 检查是否选择了时间区间
     if (!checkSelected()) {
-      if (kDebugMode) {
-        print("没有选择时间区间");
-      }
+      Get.snackbar("错误", "请选择时间区间");
       return;
     }
 
-    // 获取选中的时间区间
-    if (kDebugMode) {
-      print("eventid: ${event.id}");
-      print(
-          "添加事件: ${event.name} 开始时间 ${startTime.value} 结束时间 ${endTime.value} ");
+    // 这里要做开始时间和结束时间的对换，保证开始时间小于结束时间
+    DateTime tmp = startTime.value;
+    if (startTime.value.isAfter(endTime.value)) {
+      startTime.value = endTime.value;
+      endTime.value = tmp;
+    }
+
+    EventRecord? record =
+        await RecordDao.addRecord(startTime.value, endTime.value, event.id!);
+
+    if (record != null) {
+      // 拉取数据
+      recordController
+          .fetchRecordByDay(timeLinePageController.focusedDay.value);
+
+      _clearSelected();
     }
   }
 
@@ -100,6 +99,8 @@ class TimegridController extends GetxController {
         cellSelected[i][j] = false;
       }
     }
+
+    isSelecting = false;
   }
 
   /// 当手指按下网格，记录起始位置，同时更新选中状态
@@ -124,6 +125,9 @@ class TimegridController extends GetxController {
     startRow = (details.localPosition.dy / eachHeight.value).floor();
     startCol = (details.localPosition.dx / eachWidth.value).floor();
 
+    // 更新选中的时间
+    startTime.value = _getTimeByPosition(startRow, startCol - 1);
+
     // 更新选中状态
     if (startRow >= 0 &&
         startRow < rowNum.value &&
@@ -136,8 +140,12 @@ class TimegridController extends GetxController {
 
   /// 通过网格的位置得到时间
   DateTime _getTimeByPosition(int row, int col) {
-    return DateTime(currentTime.value.year, currentTime.value.month,
-        currentTime.value.day, row, col * splitSpan.value);
+    return DateTime(
+        timeLinePageController.focusedDay.value.year,
+        timeLinePageController.focusedDay.value.month,
+        timeLinePageController.focusedDay.value.day,
+        row,
+        (col + 1) * splitSpan.value);
   }
 
   /// 当手指在网格上移动
@@ -157,7 +165,6 @@ class TimegridController extends GetxController {
     }
 
     // 更新选中的时间
-    startTime.value = _getTimeByPosition(startRow, startCol);
     endTime.value = _getTimeByPosition(row, col);
 
     if (kDebugMode) {

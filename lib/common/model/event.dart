@@ -5,7 +5,7 @@ class Event {
   int? id;
   String name;
   Color color;
-  Duration? duration;
+  Duration duration;
   int categoryId;
 
   Event(
@@ -19,7 +19,8 @@ class Event {
       : id = json['id'],
         name = json['name'] ?? "null",
         color = HexColor.fromHex(json['color']),
-        categoryId = json['categoryId'] {
+        categoryId = json['categoryId'],
+        duration = const Duration(seconds: 0) {
     if (json['duration'] != null) {
       duration = Utils.parseDuration(json['duration']);
     }
@@ -33,4 +34,6 @@ class Event {
     data['categoryId'] = categoryId;
     return data;
   }
+
+  static empty() {}
 }

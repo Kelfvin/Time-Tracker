@@ -20,7 +20,7 @@ class CategoryDao {
 
     try {
       var response = await dio.get(
-        "/category/getStatistics",
+        "/category/statistics",
         queryParameters: {
           "startDate": formatDate,
           "endDate": formatDate,

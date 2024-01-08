@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/common/controller/user_controller.dart';
+import 'package:time_tracker/page/time_line/time_line_page_controller.dart';
 import 'package:time_tracker/page/time_line/timegrid/timgrid_controller.dart';
 import 'package:time_tracker/common/model/event_record.dart';
 
@@ -66,16 +67,21 @@ class Block extends StatelessWidget {
 }
 
 class TimeCursor extends StatelessWidget {
-  const TimeCursor({
+  final TimeLinePageController timeLineController = Get.find();
+  final TimegridController controller;
+
+  TimeCursor({
     super.key,
     required this.controller,
   });
 
-  final TimegridController controller;
-
   @override
   Widget build(BuildContext context) {
     Widget timeCursor() {
+      if (timeLineController.focusedDay.value.day != DateTime.now().day) {
+        return Container();
+      }
+
       /// 计算当前时间指针的位置
       double top =
           controller.eachHeight.value * controller.currentTime.value.hour;
@@ -142,6 +148,8 @@ class RecordLayer extends StatelessWidget {
 
   final RecordController recordController = Get.find();
 
+  final TimeLinePageController timeLineController = Get.find();
+
   RecordLayer({super.key, required this.controller});
 
   @override
@@ -155,25 +163,23 @@ class RecordLayer extends StatelessWidget {
   List<Widget> getRows() {
     List<Widget> rows = [];
 
-    // 将获取到的records按照开始时间排序
-    controller.records.sort((a, b) => a.startTime.compareTo(b.startTime));
-
     // 保存上一次的结束时间,是当前行的开始时间
     // 从0点开始到24点，依次填充每一行
 
     for (int i = 0; i < 24; i++) {
-      // 时间是当天的
-      DateTime rowDateTime = DateTime(
-          controller.currentTime.value.year,
-          controller.currentTime.value.month,
-          controller.currentTime.value.day,
+      // 时间是根据当前视图的天来的
+      DateTime rowStartDateTime = DateTime(
+          timeLineController.focusedDay.value.year,
+          timeLineController.focusedDay.value.month,
+          timeLineController.focusedDay.value.day,
           i,
           0,
           0);
 
-      DateTime rowEndDateTime = rowDateTime.add(const Duration(hours: 1));
+      DateTime rowEndDateTime = rowStartDateTime.add(const Duration(hours: 1));
 
-      DateTime lastEndTime = rowDateTime;
+      /// 上一次的结束时间
+      DateTime lastEndTime = rowStartDateTime;
 
       Duration sumDuration = const Duration(minutes: 0);
 
@@ -191,8 +197,8 @@ class RecordLayer extends StatelessWidget {
 
         // 排除法，如果record的开始时间在这一行的时间之后，那么这一行就不会有这个record
         // 如果结束时间在这一行的时间之前，那么这一行就不会有这个record
-        if (record.startTime.isAfter(rowEndDateTime) ||
-            record.endTime!.isBefore(rowDateTime)) {
+        if (!record.startTime.isBefore(rowEndDateTime) ||
+            !record.endTime!.isAfter(rowStartDateTime)) {
           continue;
         }
 
