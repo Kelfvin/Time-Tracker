@@ -34,6 +34,8 @@ class RecordController extends GetxController {
 
     currentRecord.value = null;
 
+    
+
     return currentRecord.value;
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
 import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/page/activity/activity_controller.dart';
 
@@ -7,6 +8,7 @@ import 'package:time_tracker/page/activity/activity_controller.dart';
 class ActivatingWidget extends StatelessWidget {
   final ActivityConrtoller activityConrtoller = Get.find();
   final RecordController recordController = Get.find();
+  final CategoryController categoryController = Get.find();
 
   ActivatingWidget({super.key});
 
@@ -55,6 +57,7 @@ class ActivatingWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         recordController.endRecord();
+        categoryController.featchDateOfDate(DateTime.now());
       },
       child: Container(
         width: 30,
