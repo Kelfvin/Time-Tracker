@@ -73,7 +73,8 @@ class UserDao {
       avatar = MultipartFile.fromBytes(await file.readAsBytes(),
           filename: file.name, contentType: MediaType("image", "jpeg"));
     } else {
-      avatar = await MultipartFile.fromFile(file.path, filename: file.name);
+      avatar = await MultipartFile.fromFile(file.path,
+          filename: file.name, contentType: MediaType("image", "jpeg"));
     }
 
     // 判断文件的大小,不能超过5M

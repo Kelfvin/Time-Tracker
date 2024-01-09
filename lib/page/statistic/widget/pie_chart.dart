@@ -16,8 +16,6 @@ class PieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO 创建数据
-
     return Obx(() => _buildView());
   }
 
@@ -35,7 +33,7 @@ class PieChart extends StatelessWidget {
           animationDuration: 0,
           explode: true,
           explodeIndex: exploadIndex.value,
-          dataSource: categoryController.categories.value,
+          dataSource: categoryController.categories,
           xValueMapper: (EventCategory data, _) => data.name,
           yValueMapper: (EventCategory data, _) =>
               data.duration?.inMicroseconds == 0
@@ -50,7 +48,7 @@ class PieChart extends StatelessWidget {
             } else {
               exploadIndex.value = details.pointIndex;
             }
-            print(exploadIndex.value);
+
           },
 
           innerRadius: '70%',

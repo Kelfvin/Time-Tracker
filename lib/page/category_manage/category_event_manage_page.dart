@@ -22,10 +22,20 @@ class CategoryManagePage extends StatelessWidget {
       body: CategoryEventList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // 手机端就直接跳转
+          if (GetPlatform.isMobile) {
+            Get.to(() => Scaffold(
+                  appBar: AppBar(),
+                  backgroundColor: Colors.white,
+                  body: _buildView(),
+                ));
+            return;
+          }
+
           Get.defaultDialog(
               title: "",
               titleStyle: const TextStyle(fontSize: 15),
-              content: SizedBox(height: 600, width: 700, child: _buildView()));
+              content: SizedBox(height: 600, width: 900, child: _buildView()));
         },
         child: const Icon(Icons.add),
       ),

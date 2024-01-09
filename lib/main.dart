@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,8 +8,10 @@ import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/common/controller/user_controller.dart';
 import 'package:time_tracker/common/routes/app_pages.dart';
 import "package:intl/date_symbol_data_local.dart";
+import 'package:time_tracker/widget/framwork/ui_frame_controller.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('zh_CN', null);
 
   Get.put(await SharedPreferences.getInstance());
@@ -20,9 +23,13 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   init() {
+    String baseUrl = "http://localhost:8080";
+    if (!kIsWeb || !kDebugMode) {
+      baseUrl = "http://8.142.36.198:8080";
+    }
     Dio dio = Dio(
       BaseOptions(
-          baseUrl: "http://localhost:8080",
+          baseUrl: baseUrl,
           connectTimeout: const Duration(seconds: 5),
           receiveTimeout: const Duration(seconds: 5)),
     );
@@ -54,6 +61,8 @@ class MyApp extends StatelessWidget {
 
     // 注入recordController
     Get.put(RecordController());
+
+    Get.put(UIFrameController());
   }
 
   // This widget is the root of your application.

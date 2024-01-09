@@ -36,13 +36,13 @@ class StatisticPage extends StatelessWidget {
       components = _buildMultiDayComponents();
     }
 
-    return ListView(children: [
-      const SizedBox(
-        height: 20,
-      ),
-      Card(child: DateRangePicker()),
-      Wrap(children: components)
-    ]);
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: ListView(children: [
+        Card(child: DateRangePicker()),
+        Wrap(children: components)
+      ]),
+    );
   }
 
   List<Widget> _buildDayComponents() {

@@ -32,7 +32,7 @@ class Item extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("${title} ${(progress * 100).toStringAsFixed(2)}%",
+          Text("$title ${(progress * 100).toStringAsFixed(2)}%",
               style: const TextStyle(fontSize: 12)),
           const SizedBox(height: 5),
           LinearProgressIndicator(

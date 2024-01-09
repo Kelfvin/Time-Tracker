@@ -15,16 +15,13 @@ class CategoryController extends GetxController {
     for (EventCategory category in categories) {
       if (category.events != null) {
         for (Event event in category.events!) {
-          totalDuration.value += event.duration ?? const Duration(seconds: 0);
+          totalDuration.value += event.duration;
         }
       }
     }
   }
 
-  CategoryController() {
-    featchData();
-    calculateTotalDuration();
-  }
+  CategoryController() {}
 
   void featchData() async {
     categories.value = await CategoryDao.fetchCategories();

@@ -53,6 +53,7 @@ dependencies:
 
   http_parser: ^4.0.0
   getwidget: ^4.0.0
+  permission_handler: ^11.1.0
 
 
 

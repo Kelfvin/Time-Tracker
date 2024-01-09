@@ -28,13 +28,15 @@ class ActivityPage extends StatelessWidget {
     categoryController.featchDateOfDate(DateTime.now());
     recordController.fetchCurrentRecord();
 
-    return Obx(() => ListView(
-          children: [
-            const SizedBox(height: 40),
-            ActivatingWidget(),
-            const SizedBox(height: 20),
-            ..._buildCategorySections(categoryController.categories),
-          ],
+    return Obx(() => Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListView(
+            children: [
+              ActivatingWidget(),
+              const SizedBox(height: 20),
+              ..._buildCategorySections(categoryController.categories),
+            ],
+          ),
         ));
   }
 

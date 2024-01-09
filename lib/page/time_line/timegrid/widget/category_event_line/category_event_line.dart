@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_tracker/common/controller/category_controller.dart';
 
 import 'package:time_tracker/common/model/event_category.dart';
-
-import 'package:time_tracker/common/controller/user_controller.dart';
 
 import 'category_button.dart';
 
@@ -11,11 +10,9 @@ import 'category_button.dart';
 class CategoryEventLine extends StatelessWidget {
   /// 生成测试数据
 
-  final UserController userController = Get.find();
+  final CategoryController categoryController = Get.find();
 
-  CategoryEventLine({super.key}) {
-    userController.fetchCategories();
-  }
+  CategoryEventLine({super.key}) {}
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +20,7 @@ class CategoryEventLine extends StatelessWidget {
     return Obx(() => ListView(
           scrollDirection: Axis.vertical,
           children: [
-            for (EventCategory category in userController.categories)
+            for (EventCategory category in categoryController.categories)
               CategoryButton(category: category)
           ],
         ));

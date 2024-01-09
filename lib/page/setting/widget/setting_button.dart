@@ -7,14 +7,15 @@ class SettingCardButton extends StatelessWidget {
 
   final VoidCallback? onPressed;
 
-  const SettingCardButton({super.key, required this.text, this.icon, this.onPressed});
+  const SettingCardButton(
+      {super.key, required this.text, this.icon, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Material(
-        color: Colors.white,
+        color: Color.fromARGB(255, 135, 182, 221),
         child: Ink(
           width: 100,
           child: InkWell(

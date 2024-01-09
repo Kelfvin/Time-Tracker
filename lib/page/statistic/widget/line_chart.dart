@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:time_tracker/common/controller/category_controller.dart';
 

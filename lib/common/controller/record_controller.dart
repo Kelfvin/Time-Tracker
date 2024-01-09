@@ -8,6 +8,8 @@ class RecordController extends GetxController {
   final UserController userManager = Get.find();
   var records = <EventRecord>[].obs;
 
+  RecordController();
+
   // 当前正在运行的记录
   Rx<EventRecord?> currentRecord = Rx<EventRecord?>(null);
 
@@ -34,8 +36,6 @@ class RecordController extends GetxController {
 
     currentRecord.value = null;
 
-    
-
     return currentRecord.value;
   }
 
@@ -48,6 +48,6 @@ class RecordController extends GetxController {
     records.value = await RecordDao.getRecordsByDate(day);
 
     // 排序，根据开始时间
-    records.value.sort((a, b) => a.startTime.compareTo(b.startTime));
+    records.sort((a, b) => a.startTime.compareTo(b.startTime));
   }
 }

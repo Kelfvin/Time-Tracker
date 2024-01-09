@@ -30,21 +30,12 @@ class UserController extends GetxController {
     init();
   }
 
-  /// 请求所有的类型
-  Future<List<EventCategory>> fetchCategories() async {
-    categories.value = await CategoryDao.fetchCategories();
-    return categories;
-  }
+
 
   /// 初始化
   init() async {
     await loadToken();
     await loginByToken();
-
-    // 如果token有效，就获取用户的分类
-    if (user.value.id != 0) {
-      await fetchCategories();
-    }
   }
 
   /// 获取头像

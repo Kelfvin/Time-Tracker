@@ -17,17 +17,29 @@ class DateRangePicker extends StatelessWidget {
   Row _buildView() {
     return Row(
       children: [
+        const SizedBox(
+          width: 10,
+        ),
         // 左边的日、周、年模式选择
-        Expanded(
+
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          width: 80,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildModeButton(DateRangeMode.day),
-              _buildModeButton(DateRangeMode.week),
-              _buildModeButton(DateRangeMode.month),
-              _buildModeButton(DateRangeMode.year),
+              Expanded(child: ModeButton(mode: DateRangeMode.day)),
+              Expanded(child: ModeButton(mode: DateRangeMode.week)),
+              Expanded(child: ModeButton(mode: DateRangeMode.month)),
+              Expanded(child: ModeButton(mode: DateRangeMode.year)),
             ],
           ),
         ),
+        Expanded(child: Container()),
         // 右边的左右切换和显示时间范围的按钮
         Row(
           children: [
@@ -87,6 +99,38 @@ class DateRangePicker extends StatelessWidget {
         ),
         Text(mode.toString()),
       ],
+    );
+  }
+}
+
+class ModeButton extends StatelessWidget {
+  final DateRangeMode mode;
+  final StatisticPageController statisticPageController = Get.find();
+  final CategoryController categoryController = Get.find();
+  ModeButton({super.key, required this.mode});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: statisticPageController.dateRangeMode.value == mode
+            ? Colors.blue
+            : Colors.white,
+      ),
+      child: GestureDetector(
+        child: Center(child: Text(mode.toString())),
+        onTap: () {
+          statisticPageController.changeDateRangeMode(mode);
+          // 获取当前时间范围内的数据
+          DateTime? start = statisticPageController.dateRange.value?.start;
+          DateTime? end = statisticPageController.dateRange.value?.end;
+
+          if (start != null && end != null) {
+            categoryController.featchDateOfDateRange(start, end);
+          }
+        },
+      ),
     );
   }
 }

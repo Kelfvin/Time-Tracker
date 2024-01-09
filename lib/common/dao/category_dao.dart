@@ -46,6 +46,11 @@ class CategoryDao {
 
   /// 获取用户的所有分类
   static Future<List<EventCategory>> fetchCategories() async {
+    // 判断token
+    if (userController.token.value == "") {
+      return [];
+    }
+
     if (kDebugMode) {
       print("fetchCategories");
     }

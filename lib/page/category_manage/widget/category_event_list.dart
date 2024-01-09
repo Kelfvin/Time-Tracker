@@ -6,7 +6,6 @@ import 'package:time_tracker/common/dao/event_dao.dart';
 
 import 'package:time_tracker/common/model/event_category.dart';
 import 'package:time_tracker/common/model/event.dart';
-import 'package:time_tracker/common/controller/user_controller.dart';
 
 /// 定义统一的样式
 class TitleButton extends StatelessWidget {
@@ -16,13 +15,21 @@ class TitleButton extends StatelessWidget {
   /// 按下回调
   final VoidCallback? onTap;
 
+  /// 长按回调
+  final VoidCallback? onLongPress;
+
   const TitleButton(
-      {super.key, required this.text, required this.color, this.onTap});
+      {super.key,
+      required this.text,
+      required this.color,
+      this.onTap,
+      this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      onLongPress: onLongPress,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         height: 50,
@@ -51,8 +58,10 @@ class CategoryTitleButton extends StatelessWidget {
   final EventCategory category;
   final VoidCallback? onTap;
   final CategoryController categoryController = Get.find();
+  final VoidCallback? onLongPress;
 
-  CategoryTitleButton({super.key, required this.category, this.onTap});
+  CategoryTitleButton(
+      {super.key, required this.category, this.onTap, this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +69,17 @@ class CategoryTitleButton extends StatelessWidget {
         // 默认展开
         initiallyExpanded: true,
         title: TitleButton(
-            text: category.name, color: category.color, onTap: onTap),
+            text: category.name,
+            color: category.color,
+            onTap: onTap,
+            onLongPress: onLongPress),
         // 不要描边
         shape: const Border(),
         children: [
           for (Event event in category.events!)
             EventTitleButton(
               event: event,
-              onTap: () {
+              onLongPress: () {
                 // 确认删除的弹窗
                 showEventDeleteDialog(event);
               },
@@ -79,48 +91,51 @@ class CategoryTitleButton extends StatelessWidget {
     Get.defaultDialog(
         title: "删除事件",
         titleStyle: const TextStyle(fontSize: 15),
-        content: SizedBox(
-            height: 100,
-            width: 300,
-            child: Column(
+        content: Column(
+          children: [
+            const Text("删除事件后不可恢复，确认删除吗？"),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Text("删除事件后不可恢复，确认删除吗？"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        child: const Text("取消")),
-                    TextButton(
-                        onPressed: () async {
-                          Get.back();
-                          var result = await EventDao.deleteEvent(event.id!);
-                          if (result) categoryController.featchData();
-                        },
-                        child: const Text("确认")),
-                  ],
-                )
+                TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Text("取消")),
+                TextButton(
+                    onPressed: () async {
+                      Get.back();
+                      var result = await EventDao.deleteEvent(event.id!);
+                      if (result) categoryController.featchData();
+                    },
+                    child: const Text("确认")),
               ],
-            )));
+            )
+          ],
+        ));
   }
 }
 
 class EventTitleButton extends StatelessWidget {
   final Event event;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
 
-  const EventTitleButton({super.key, required this.event, this.onTap});
+  const EventTitleButton(
+      {super.key, required this.event, this.onTap, this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(60, 0, 0, 0),
-      child: TitleButton(text: event.name, color: event.color, onTap: onTap),
+      child: TitleButton(
+          text: event.name,
+          color: event.color,
+          onTap: onTap,
+          onLongPress: onLongPress),
     );
   }
 }
@@ -144,7 +159,7 @@ class CategoryEventList extends StatelessWidget {
         for (EventCategory category in categoryController.categories)
           CategoryTitleButton(
             category: category,
-            onTap: () {
+            onLongPress: () {
               // 确认删除的弹窗
               showCategoryDeleteDialog(category);
             },
@@ -157,34 +172,31 @@ class CategoryEventList extends StatelessWidget {
     Get.defaultDialog(
         title: "删除分类",
         titleStyle: const TextStyle(fontSize: 15),
-        content: SizedBox(
-            height: 100,
-            width: 300,
-            child: Column(
+        content: Column(
+          children: [
+            const Text("删除分类后，该分类下的事件也会被删除，\n确认删除吗？"),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Text("删除分类后，该分类下的事件也会被删除，确认删除吗？"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        child: const Text("取消")),
-                    TextButton(
-                        onPressed: () async {
-                          Get.back();
-                          var result =
-                              await CategoryDao.deleteCategory(category.id!);
-                          if (result) categoryController.featchData();
-                        },
-                        child: const Text("确认")),
-                  ],
-                )
+                TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Text("取消")),
+                TextButton(
+                    onPressed: () async {
+                      Get.back();
+                      var result =
+                          await CategoryDao.deleteCategory(category.id!);
+                      if (result) categoryController.featchData();
+                    },
+                    child: const Text("确认")),
               ],
-            )));
+            )
+          ],
+        ));
   }
 }

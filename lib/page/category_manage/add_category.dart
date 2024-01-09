@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:flex_color_picker/flex_color_picker.dart';
@@ -27,7 +26,6 @@ class AddCategoryEventPage extends StatelessWidget {
     if (eventCategory != null) {
       Get.snackbar("添加成功", "添加分类成功");
       categoryController.featchData();
-      
     } else {
       Get.snackbar("添加失败", "添加分类失败");
     }
@@ -59,9 +57,6 @@ class AddCategoryEventPage extends StatelessWidget {
                 height: 10,
               ),
               _buildColorPicker(),
-              const SizedBox(
-                height: 20,
-              ),
             ],
           ),
         ),

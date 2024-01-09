@@ -192,7 +192,7 @@ class RecordLayer extends StatelessWidget {
         // 排除还在进行的record
         // TODO 以后修改逻辑，显示正在进行的recortd
         if (record.endTime == null) {
-          continue;
+          record.endTime = DateTime.now();
         }
 
         // 排除法，如果record的开始时间在这一行的时间之后，那么这一行就不会有这个record

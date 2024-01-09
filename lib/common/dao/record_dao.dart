@@ -2,15 +2,22 @@ import 'package:dio/dio.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:time_tracker/common/controller/user_controller.dart';
 
 import 'package:time_tracker/common/model/event_record.dart';
 import 'package:intl/intl.dart';
 
 class RecordDao {
   static final Dio dio = Get.find();
+  static final UserController userController = Get.find();
 
   /// 获取用户某一天的记录
   static Future<List<EventRecord>> getRecordsByDate(DateTime date) async {
+    // 判断token
+    if (userController.token.value == "") {
+      return [];
+    }
+
     // 把日期转换成yyyy-MM-dd格式，如2021-09-09
     String formatDate = DateFormat("yyyy-MM-dd").format(date);
 
@@ -30,7 +37,6 @@ class RecordDao {
       }
     } on DioException catch (e) {
       // 处理
-
       Get.snackbar("请求错误", e.response!.data["message"]);
     } catch (e) {
       // 处理

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,57 +9,62 @@ import 'package:image_picker/image_picker.dart';
 import 'package:time_tracker/common/controller/user_controller.dart';
 import 'package:time_tracker/common/dao/user_dao.dart';
 import 'package:time_tracker/common/routes/app_pages.dart';
+import 'package:time_tracker/page/category_manage/category_event_manage_page.dart';
 
 import 'package:time_tracker/page/setting/widget/setting_button.dart';
 import "package:time_tracker/page/setting/widget/setting_section.dart";
 
 class SettingPage extends StatelessWidget {
-  SettingPage({Key? key}) : super(key: key);
   final UserController userController = Get.find();
 
-  /// 保存图片图片更换需要使用
+  final avatarUrl = "".obs;
+  SettingPage({Key? key}) : super(key: key) {
+    avatarUrl.value =
+        "${userController.user.value.avatar!}?t=${DateTime.now().millisecondsSinceEpoch}";
+  }
+
   // late ;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // 间隔
-        const SizedBox(
-          height: 100,
-        ),
-        Obx(() => _buildUserInfoSection()),
-
-        const SizedBox(
-          height: 20,
-        ),
-        Section(
-          sectionName: "主题",
-          chidren: [
-            SettingCardButton(
-              text: "明亮模式",
-              icon: const Icon(Icons.sunny),
-              onPressed: () {},
-            ),
-            SettingCardButton(
-              text: "夜间模式",
-              icon: const Icon(Icons.dark_mode),
-              onPressed: () {},
-            ),
-          ],
-        ),
-
-        Section(sectionName: "分类管理", chidren: [
-          SettingCardButton(
-            text: "分类管理",
-            icon: const Icon(Icons.category),
-            onPressed: () {
-              Get.toNamed(AppPages.category);
-            },
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Obx(() => _buildUserInfoSection()),
+          const SizedBox(
+            height: 20,
           ),
-        ])
-      ],
+          Section(
+            sectionName: "主题",
+            chidren: [
+              SettingCardButton(
+                text: "明亮模式",
+                icon: const Icon(Icons.sunny),
+                onPressed: () {},
+              ),
+              SettingCardButton(
+                text: "夜间模式",
+                icon: const Icon(Icons.dark_mode),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          Section(sectionName: "分类管理", chidren: [
+            SettingCardButton(
+              text: "分类管理",
+              icon: const Icon(Icons.category),
+              onPressed: () {
+                Get.to(Scaffold(
+                  appBar: AppBar(),
+                  body: CategoryManagePage(),
+                ));
+              },
+            ),
+          ])
+        ],
+      ),
     );
   }
 
@@ -74,13 +81,11 @@ class SettingPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("用户名: ${userController.user.value.username}"),
-              Text("${userController.user.value.avatar}"),
-
               // 退出登录
               TextButton(
                   onPressed: () {
+                    Get.offAllNamed(AppPages.loginRegister);
                     userController.logout();
-                    Get.offNamed(AppPages.loginRegister);
                   },
                   child: const Text("退出登录"))
             ],
@@ -112,6 +117,11 @@ class SettingPage extends StatelessWidget {
 
     if (success) {
       Get.snackbar("上传成功", "头像已更新");
+      // 更新头像
+      avatarUrl.value =
+          "${userController.user.value.avatar!}?t=${DateTime.now().millisecondsSinceEpoch}";
+
+      print(avatarUrl.value);
     } else {
       Get.snackbar("上传失败", "请稍后再试");
     }
@@ -167,27 +177,16 @@ class SettingPage extends StatelessWidget {
     return ClipOval(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: InkWell(
-          onTap: () {
-            _changeAvatar();
-          },
-          child: Container(
-              color: Colors.grey,
-              width: 100,
-              height: 100,
-              child: CachedNetworkImage(
-                // 扩展到最大
-                fit: BoxFit.cover,
-                useOldImageOnUrlChange: true,
-                // 不保存在内存中
-                key: userController.avatarKey.value,
-
-                imageUrl: userController.user.value.avatar ?? "",
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
-                errorWidget: (context, url, error) =>
-                    // 默认头像
-                    const Icon(Icons.person),
-              )),
-        ));
+            onTap: () {
+              _changeAvatar();
+            },
+            child: Container(
+                color: Colors.grey,
+                width: 100,
+                height: 100,
+                child: Image.network(avatarUrl.value, fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.person);
+                }))));
   }
 }

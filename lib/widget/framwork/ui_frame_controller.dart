@@ -7,7 +7,7 @@ import 'package:time_tracker/page/setting/setting_page.dart';
 import 'package:time_tracker/page/time_line/time_line_page.dart';
 import 'package:time_tracker/page/statistic/view.dart';
 
-class PCUIFrameController extends GetxController {
+class UIFrameController extends GetxController {
   // 当前选中的页面
   var currentPage = TIMELINE.obs;
 

@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "package:table_calendar/table_calendar.dart";
+import 'package:time_tracker/common/controller/category_controller.dart';
 import 'package:time_tracker/common/controller/record_controller.dart';
 import 'package:time_tracker/page/record_list/record_list_page.dart';
 import 'package:time_tracker/page/time_line/time_line_page_controller.dart';
@@ -10,12 +11,14 @@ import 'package:time_tracker/page/time_line/timegrid/view.dart';
 /// 时间线页面，用于呈现这种时间记录，但不涉及统计
 class TimeLinePage extends StatelessWidget {
   final RecordController recordController = Get.find();
+  final CategoryController categoryController = Get.find();
 
   final TimeLinePageController pageController =
       Get.put(TimeLinePageController());
 
   TimeLinePage({super.key}) {
     recordController.fetchRecordByDay(pageController.focusedDay.value);
+    categoryController.featchData();
   }
 
   @override
