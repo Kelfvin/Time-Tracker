@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 
   init() {
     String baseUrl = "http://localhost:8080";
-    if (!kIsWeb || !kDebugMode) {
+    if (GetPlatform.isMobile || !kDebugMode) {
       baseUrl = "http://8.142.36.198:8080";
     }
     Dio dio = Dio(

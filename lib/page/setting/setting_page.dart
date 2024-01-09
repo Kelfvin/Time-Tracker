@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -121,7 +118,9 @@ class SettingPage extends StatelessWidget {
       avatarUrl.value =
           "${userController.user.value.avatar!}?t=${DateTime.now().millisecondsSinceEpoch}";
 
-      print(avatarUrl.value);
+      if (kDebugMode) {
+        print(avatarUrl.value);
+      }
     } else {
       Get.snackbar("上传失败", "请稍后再试");
     }

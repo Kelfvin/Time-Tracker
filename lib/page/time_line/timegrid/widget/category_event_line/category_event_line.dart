@@ -12,7 +12,7 @@ class CategoryEventLine extends StatelessWidget {
 
   final CategoryController categoryController = Get.find();
 
-  CategoryEventLine({super.key}) {}
+  CategoryEventLine({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class CategoryController extends GetxController {
     }
   }
 
-  CategoryController() {}
+  CategoryController();
 
   void featchData() async {
     categories.value = await CategoryDao.fetchCategories();

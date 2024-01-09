@@ -5,7 +5,6 @@ import "package:flutter/foundation.dart";
 
 import "package:get/get.dart";
 import "package:shared_preferences/shared_preferences.dart";
-import "package:time_tracker/common/dao/category_dao.dart";
 import "package:time_tracker/common/dao/user_dao.dart";
 import "package:time_tracker/common/model/user.dart";
 import "package:time_tracker/common/routes/app_pages.dart";
@@ -29,8 +28,6 @@ class UserController extends GetxController {
     super.onInit();
     init();
   }
-
-
 
   /// 初始化
   init() async {

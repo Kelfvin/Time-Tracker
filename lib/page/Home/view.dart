@@ -6,10 +6,9 @@ import 'package:time_tracker/common/controller/user_controller.dart';
 
 import 'package:time_tracker/widget/framwork/pc_ui_frame.dart';
 import 'package:time_tracker/widget/framwork/phone_ui_frame.dart';
-import 'package:time_tracker/widget/framwork/ui_frame_controller.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key) {}
+  HomePage({Key? key}) : super(key: key);
 
   // 全局的控制器
   final UserController userController = Get.find();
@@ -18,7 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 如果是手机端
-    if (Platform.isAndroid || Platform.isIOS) {
+    if (GetPlatform.isMobile) {
       return PhoneUIFrame();
     }
 

@@ -15,7 +15,7 @@ class SettingCardButton extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Material(
-        color: Color.fromARGB(255, 135, 182, 221),
+        color: const Color.fromARGB(255, 135, 182, 221),
         child: Ink(
           width: 100,
           child: InkWell(

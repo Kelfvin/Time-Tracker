@@ -52,6 +52,6 @@ class LoginRegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GetPlatform.isMobile ? _buildPhoneView() : _buildView());
+    return GetPlatform.isMobile ? Obx(() => _buildPhoneView()) : _buildView();
   }
 }

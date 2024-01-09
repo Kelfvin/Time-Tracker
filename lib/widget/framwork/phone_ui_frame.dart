@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:time_tracker/widget/framwork/pc_ui_frame.dart';
 import 'package:time_tracker/widget/framwork/ui_frame_controller.dart';
 
 class PhoneUIFrame extends StatelessWidget {
