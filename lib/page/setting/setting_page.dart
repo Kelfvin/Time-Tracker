@@ -16,8 +16,12 @@ class SettingPage extends StatelessWidget {
 
   final avatarUrl = "".obs;
   SettingPage({Key? key}) : super(key: key) {
-    avatarUrl.value =
-        "${userController.user.value.avatar!}?t=${DateTime.now().millisecondsSinceEpoch}";
+    String? url = userController.user.value.avatar;
+    if (url == null || url == "") {
+      avatarUrl.value = "";
+    } else {
+      avatarUrl.value = "$url?t=${DateTime.now().millisecondsSinceEpoch}";
+    }
   }
 
   // late ;
@@ -81,7 +85,6 @@ class SettingPage extends StatelessWidget {
               // 退出登录
               TextButton(
                   onPressed: () {
-                    Get.offAllNamed(AppPages.loginRegister);
                     userController.logout();
                   },
                   child: const Text("退出登录"))

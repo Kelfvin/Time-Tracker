@@ -58,7 +58,8 @@ class UserController extends GetxController {
 
     await prefs.remove("user");
     await prefs.remove("token");
-    Get.offAllNamed(AppPages.loginRegister);
+
+    await Get.offAllNamed(AppPages.loginRegister);
   }
 
   /// 从本地加载token
