@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:time_tracker/common/controller/user_controller.dart';
 import 'package:time_tracker/common/dao/user_dao.dart';
-import 'package:time_tracker/common/routes/app_pages.dart';
 import 'package:time_tracker/page/category_manage/category_event_manage_page.dart';
 
 import 'package:time_tracker/page/setting/widget/setting_button.dart';
@@ -129,50 +128,6 @@ class SettingPage extends StatelessWidget {
     }
   }
 
-  /// 更换头像的一个对话框
-  /// 中间是一个图片显示和选择按钮
-  /// 项目是确实和取消按钮
-  /// 点击确定按钮，就会上传图片
-  // void _showChangeAvatarDialog() {
-  //   Get.defaultDialog(
-  //     title: "更换头像",
-  //     content: Column(
-  //       children: [
-  //         // 图片
-  //         Container(
-  //           width: 200,
-  //           height: 200,
-  //           color: Colors.grey,
-  //           child: CachedNetworkImage(
-  //             // 扩展到最大
-  //             fit: BoxFit.cover,
-  //             useOldImageOnUrlChange: false,
-  //             // 不保存在内存中
-  //             key: UniqueKey(),
-  //             imageUrl: userManager.user.value.avatar ?? "",
-  //             placeholder: (context, url) => const CircularProgressIndicator(),
-  //             errorWidget: (context, url, error) =>
-  //                 // 默认头像
-  //                 const Icon(Icons.person),
-  //           ),
-  //         ),
-  //         // 选择按钮
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: [
-  //             TextButton(
-  //                 onPressed: () {
-  //                   _changeAvatar();
-  //                 },
-  //                 child: const Text("选择图片")),
-  //           ],
-  //         )
-  //       ],
-  //     ),
-  //     textConfirm: "确定",
-  //     textCancel: "取消",
-  //   );
-  // }
 
   /// 头像组件
   Widget _buildAvatar() {
